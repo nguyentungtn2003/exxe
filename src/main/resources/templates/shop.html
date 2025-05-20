@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+
+<!-- Mirrored from thetork.com/demos/html/torganic/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Apr 2025 14:27:02 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>Torganic | Organic Food eCommerce HTML Template </title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Sites meta Data -->
+    <meta name="application-name" content="Torganic | Organic Food eCommerce HTML Template">
+    <meta name="author" content="thetork">
+    <meta name="keywords" content="Torganic, Crypto, Forex, and Stocks Trading Business">
+    <meta name="description"
+          content="Torganic is a premium, fully responsive HTML template designed for organic food eCommerce sites. Featuring clean, modern design and powerful functionality, it’s perfect for creating a professional online store. Boost your sales with Torganic's user-friendly layout, SEO-optimized code, and seamless shopping experience.">
+
+    <!-- OG meta data -->
+    <meta property="og:title" content="Torganic | Organic Food eCommerce HTML Template">
+    <meta property="og:site_name" content=Torganic>
+    <meta property="og:url" content="index-2.html">
+    <meta property="og:description"
+          content="Welcome to Torganic – Organic Food eCommerce HTML Template
+
+Discover Torganic, a meticulously designed HTML template tailored for organic food and eco-friendly eCommerce websites. Whether you're building an online store for fresh produce, natural products, or sustainable goods, Torganic offers a clean, modern design with powerful functionality to make your site stand out.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/images/og.png">
+
+
+
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.png}" type="image/x-icon">
+
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/aos.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/swiper-bundle.min.css}">
+
+    <!-- main css for template -->
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+
+
+</head>
+
+<body>
+
+<!-- ===============>> Preloader start here <<================= -->
+<div class="preloader">
+    <img th:src="@{/assets/anhduan/logo.jpg}" alt="logo">
+    <style>
+        .preloader img {
+            height: 500px;    /* giảm chiều cao ảnh */
+            width: auto;     /* giữ tỉ lệ ảnh */
+            display: block;
+            margin: 0 auto;  /* căn giữa ảnh */
+        }
+    </style>
+</div>
+
+<!-- ===============>> Preloader end here <<================= -->
+
+
+
+
+<!-- ===============>> Header section start here <<================= -->
+
+<div th:replace="~{header :: header}"></div>
+
+
+<!-- ===============>> Header section end here <<================= -->
+
+
+
+<!-- ================> Page header start here <================== -->
+<section class="page-header bg--cover">
+    <div class="container">
+        <div class="page-header__content" data-aos="fade-right" data-aos-duration="1000">
+            <h1>Shop</h1>
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item "><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">shop</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+<!-- ================> Page header end here <================== -->
+
+
+
+
+
+<!-- ===============>>Flash Product section start here <<================= -->
+<section class="product padding-top padding-bottom ">
+    <div class="container">
+        <div class="product__wrapper">
+            <div class="row justify-content-center flex-lg-row-reverse g-5">
+                <div class="col-lg-9" th:fragment="productList">
+                    <div class="row row-cols-xl-4 row-cols-md-3 row-cols-2 row-cols-1 justify-content-center g-3">
+                        <div class="col" th:each="product : ${products}">
+                            <div class="product__item product__item--style2">
+                                <div class="product__item-inner">
+                                    <div class="product__item-badge" 
+                                        th:if="${product.discount != null and product.discount > 0}">
+                                        <span th:text="${#numbers.formatDecimal(product.discount * 100, 0, 0)}"></span>%
+                                    </div>
+
+                                    <div class="product__item-thumb">
+                                        <img th:src="@{${product.imageUrl}}" alt="Product Image">
+                                    </div>
+                                    <div class="product__item-content">
+                                        <h5><a th:href="@{'/product-details/' + ${product.productId}}" th:text="${product.name}">Product Name</a></h5>
+                                        <div class="product__item-rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <span th:text="${avgRatings[product.productId] != null ? #numbers.formatDecimal(avgRatings[product.productId], 1, 1) : '0.0'}"></span>
+                                            <span>
+                                (<span th:text="${reviewCounts[product.productId] != null ? reviewCounts[product.productId] : 0}"></span> Reviews)
+                            </span>
+                                        </div>
+                                        <div class="product__item-footer">
+                                                <div class="product__item-price">
+                                                    <!-- Nếu có giảm giá -->
+                                                    <div th:if="${product.discount != null and product.discount > 0}">
+                                                        <h4>
+                                                            <del th:text="${#numbers.formatInteger(product.price, 3, 'POINT') + ' VNĐ'}"></del>
+                                                        </h4>
+                                                        <h4 style="color: red;"
+                                                            th:text="${#numbers.formatInteger(product.price - (product.price * product.discount), 3, 'POINT') + ' VNĐ'}">
+                                                        </h4>
+                                                    </div>
+
+                                                    <!-- Nếu không có giảm giá -->
+                                                    <div th:unless="${product.discount != null and product.discount > 0}">
+                                                        <h4 th:text="${#numbers.formatInteger(product.price, 3, 'POINT') + ' VNĐ'}"></h4>
+                                                    </div>
+                                                </div>
+
+                                                <div class="product__item-action">
+                                                    <a class="trk-btn trk-btn--outline" th:href="@{'/cart/add/' + ${product.productId}}">Add to cart</a>
+                                                </div>
+                                            </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="row mt-4">
+                        <div class="col text-center">
+                            <nav>
+                                <ul class="pagination justify-content-center">
+                                    <!-- Previous Page -->
+                                    <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                                        <a class="page-link" href="javascript:void(0)"
+                                           th:onclick="'fetchFilteredProducts(' + (${currentPage} - 1) + ')'"
+                                           tabindex="-1" aria-disabled="true">Previous</a>
+                                    </li>
+
+                                    <!-- Page Numbers -->
+                                    <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+                                        th:classappend="${currentPage == i} ? 'active'">
+                                        <a class="page-link" href="javascript:void(0)"
+                                           th:onclick="'fetchFilteredProducts(' + ${i} + ')'"
+                                           th:text="${i + 1}"></a>
+                                    </li>
+
+                                    <!-- Next Page -->
+                                    <li class="page-item" th:classappend="${currentPage + 1 == totalPages} ? 'disabled'">
+                                        <a class="page-link" href="javascript:void(0)"
+                                           th:onclick="'fetchFilteredProducts(' + (${currentPage} + 1) + ')'">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- Sidebar Filter Section -->
+                <div class="col-lg-3 col-sm-8 col-md-6">
+                    <div class="product__sidebar">
+                        <!-- FILTER: NAME / CATEGORY -->
+                        <div class="sidebar-filter sidebar-filter--brand sidebar-filter--collapsible mb-40">
+                            <div class="sidebar-filter__header">
+                                <h3 class="sidebar-filter__title">Name</h3>
+                                <button class="sidebar-filter__toggle btn btn-link p-0" aria-expanded="true" aria-controls="brand-filter-content">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </button>
+                            </div>
+                            <div id="brand-filter-content" class="sidebar-filter__content">
+                                <div class="sidebar-filter__search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control sidebar-filter__search-input" placeholder="Search" id="searchInput" oninput="fetchFilteredProducts()">
+                                        <span class="input-group-text">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                                    </div>
+                                </div>
+
+                                <h3 class="sidebar-filter__title">Category</h3>
+                                <ul class="sidebar-filter__list list-unstyled">
+                                    <li th:each="category : ${categories}" class="sidebar-filter__item">
+                                        <div class="form-check">
+                                            <div class="check-group flex-grow-1">
+                                                <input class="form-check-input" type="checkbox" th:id="'category-' + ${category.categoryId}" name="category"
+                                                       th:value="${category.categoryId}" onchange="fetchFilteredProducts()">
+                                                <label class="form-check-label d-block" th:for="'category-' + ${category.categoryId}" th:text="${category.name}">Category Name</label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- FILTER: DISCOUNT -->
+                        <div class="sidebar-filter sidebar-filter--brand sidebar-filter--collapsible">
+                            <div class="sidebar-filter__header">
+                                <h3 class="sidebar-filter__title">Discount</h3>
+                                <button class="sidebar-filter__toggle btn btn-link p-0" aria-expanded="true" aria-controls="brand-filter-content2">
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </button>
+                            </div>
+                            <div id="brand-filter-content2" class="sidebar-filter__content">
+                                <ul class="sidebar-filter__list list-unstyled">
+                                    <li class="sidebar-filter__item">
+                                        <div class="form-check">
+                                            <div class="check-group flex-grow-1">
+                                                <input class="form-check-input" type="checkbox" id="d1-check" onchange="fetchFilteredProducts()">
+                                                <label class="form-check-label d-block" for="d1-check">Up to 5%</label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="sidebar-filter__item">
+                                        <div class="form-check">
+                                            <div class="check-group flex-grow-1">
+                                                <input class="form-check-input" type="checkbox" id="d2-check" onchange="fetchFilteredProducts()">
+                                                <label class="form-check-label d-block" for="d2-check">5% - 20%</label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="sidebar-filter__item">
+                                        <div class="form-check">
+                                            <div class="check-group flex-grow-1">
+                                                <input class="form-check-input" type="checkbox" id="d3-check" onchange="fetchFilteredProducts()">
+                                                <label class="form-check-label d-block" for="d3-check">20% - 30%</label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="sidebar-filter__item">
+                                        <div class="form-check">
+                                            <div class="check-group flex-grow-1">
+                                                <input class="form-check-input" type="checkbox" id="d4-check" onchange="fetchFilteredProducts()">
+                                                <label class="form-check-label d-block" for="d4-check">30% - 50%</label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    function fetchFilteredProducts(page = 0) {
+                        const selectedCategories = Array.from(document.querySelectorAll('input[name="category"]:checked'))
+                            .map(cb => cb.value);
+
+                        const selectedDiscounts = [];
+                        if (document.getElementById('d1-check').checked) selectedDiscounts.push('0-5');
+                        if (document.getElementById('d2-check').checked) selectedDiscounts.push('5-20');
+                        if (document.getElementById('d3-check').checked) selectedDiscounts.push('20-30');
+                        if (document.getElementById('d4-check').checked) selectedDiscounts.push('30-50');
+
+                        const searchKeyword = document.getElementById('searchInput').value;
+
+                        const params = new URLSearchParams();
+                        selectedCategories.forEach(id => params.append('category', id));
+                        selectedDiscounts.forEach(range => params.append('discount', range));
+                        if (searchKeyword) {
+                            params.append('search', searchKeyword);
+                        }
+
+                        params.append('page', page); // Giữ lại page khi gọi
+
+                        fetch('/shop/filter?' + params.toString())
+                            .then(res => res.text())
+                            .then(html => {
+                                document.querySelector('.col-lg-9').innerHTML = html;
+                                updatePaginationLinks(params); // Cập nhật lại link phân trang
+                            });
+                    }
+
+                    function updatePaginationLinks(params) {
+                        document.querySelectorAll('.pagination a.page-link').forEach(link => {
+                            const pageNumber = link.textContent.trim();
+                            if (!isNaN(pageNumber)) {
+                                params.set('page', parseInt(pageNumber) - 1);
+                                link.href = '/shop/filter?' + params.toString();
+                            }
+                        });
+                    }
+                </script>
+
+            </div>
+        </div>
+    </div>
+    <style>
+        .row.row-cols-xl-4 > .col {
+  display: flex;
+  align-items: stretch;
+}
+
+.product__item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid #ddd; /* ví dụ */
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.product__item-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.product__item-thumb img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.product__item-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product__item-content h5 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.product__item-footer {
+  margin-top: auto;
+}
+
+    </style>
+</section>
+<!-- ===============>>Flash Product section end here <<================= -->
+
+
+
+<!-- ===============>> Feature bar section start here <<================= -->
+<div class="feature-bar border-top">
+    <div class="container">
+        <div class="row py-3 g-5 g-lg-4 justify-content-center">
+            <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
+                <div class="feature-bar__item d-flex align-items-center">
+                    <img src="assets/images/feature/bar/1.png" alt="delivery car">
+                    <div class="feature-bar__text ms-4">
+                        <h3 class="feature-bar__title fs-6 fw-bold mb-0">Fast Delivery</h3>
+                        <p class="feature-bar__description fs-7 mb-0">Minimum order $40</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
+                <div class="feature-bar__item d-flex align-items-center">
+                    <img src="assets/images/feature/bar/2.png" alt="support image">
+                    <div class="feature-bar__text ms-4">
+                        <h3 class="feature-bar__title fs-6 fw-bold mb-0">24/7 Support</h3>
+                        <p class="feature-bar__description fs-7 mb-0">Contact us 24 Hours</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
+                <div class="feature-bar__item d-flex align-items-center">
+                    <img src="assets/images/feature/bar/3.png" alt="pay security">
+                    <div class="feature-bar__text ms-4">
+                        <h3 class="feature-bar__title fs-6 fw-bold mb-0">Pay Security</h3>
+                        <p class="feature-bar__description fs-7 mb-0">100% Secure Payment</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
+                <div class="feature-bar__item d-flex align-items-center">
+                    <img src="assets/images/feature/bar/4.png" alt="money returns">
+                    <div class="feature-bar__text ms-4">
+                        <h3 class="feature-bar__title fs-6 fw-bold mb-0">Easy Returns</h3>
+                        <p class="feature-bar__description fs-7 mb-0">Within 30 Days</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ===============>> Feature bar section end here <<================= -->
+
+
+
+
+<!-- ===============>> footer start here <<================= -->
+
+<div th:replace="~{footer :: footer}"></div>
+
+
+<!-- ===============>> footer end here <<================= -->
+
+
+
+<!-- ===============>> scrollToTop start here <<================= -->
+<a href="#" class="scrollToTop scrollToTop--style1"><i class="fa-solid fa-arrow-up-from-bracket"></i></a>
+<!-- ===============>> scrollToTop ending here <<================= -->
+
+
+<!-- vendor plugins -->
+<script th:src="@{/assets/js/metismenujs.min.js}"></script>
+<script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/assets/js/all.min.js}"></script>
+<script th:src="@{/assets/js/swiper-bundle.min.js}"></script>
+<script th:src="@{/assets/js/aos.js}"></script>
+<script th:src="@{/assets/js/fslightbox.js}"></script>
+<script th:src="@{/assets/js/purecounter_vanilla.js}"></script>
+<script th:src="@{/assets/js/trk-menu.js}"></script>
+<script th:src="@{/assets/js/custom.js}"></script>
+
+
+
+</body>
+
+
+<!-- Mirrored from thetork.com/demos/html/torganic/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Apr 2025 14:27:02 GMT -->
+</html>

@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+
+<!-- Mirrored from thetork.com/demos/html/torganic/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Apr 2025 14:26:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>Torganic | Organic Food eCommerce HTML Template </title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Sites meta Data -->
+    <meta name="application-name" content="Torganic | Organic Food eCommerce HTML Template">
+    <meta name="admin" content="thetork">
+    <meta name="keywords" content="Torganic, Crypto, Forex, and Stocks Trading Business">
+    <meta name="description"
+          content="Torganic is a premium, fully responsive HTML template designed for organic food eCommerce sites. Featuring clean, modern design and powerful functionality, it’s perfect for creating a professional online store. Boost your sales with Torganic's user-friendly layout, SEO-optimized code, and seamless shopping experience.">
+
+    <!-- OG meta data -->
+    <meta property="og:title" content="Torganic | Organic Food eCommerce HTML Template">
+    <meta property="og:site_name" content=Torganic>
+    <meta property="og:url" content="index-2.html">
+    <meta property="og:description"
+          content="Welcome to Torganic – Organic Food eCommerce HTML Template.
+
+    Discover Torganic, a meticulously designed HTML template tailored for organic food and eco-friendly eCommerce websites. Whether you're building an online store for fresh produce, natural products, or sustainable goods, Torganic offers a clean, modern design with powerful functionality to make your site stand out.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/images/og.png">
+
+
+
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.png}" type="image/x-icon">
+
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/aos.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/swiper-bundle.min.css}">
+
+    <!-- main css for template -->
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+</head>
+
+<body>
+
+<!-- ===============>> Preloader start here <<================= -->
+<div class="preloader">
+    <img th:src="@{/assets/anhduan/logo.jpg}" alt="logo">
+    <style>
+        .preloader img {
+            height: 500px;    /* giảm chiều cao ảnh */
+            width: auto;     /* giữ tỉ lệ ảnh */
+            display: block;
+            margin: 0 auto;  /* căn giữa ảnh */
+        }
+    </style>
+</div>
+
+
+<!-- ===============>> Preloader end here <<================= -->
+
+
+
+
+<!-- ===============>> Header section start here <<================= -->
+<div th:replace="~{header :: header}"></div>
+
+<!-- ===============>> Header section end here <<================= -->
+
+
+
+<!-- ===============>> Banner section start here <<================= -->
+<section class="banner banner--style1">
+    <div class="container">
+        <div class="banner__wrapper">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 col-md-7">
+                    <div class="banner__content" data-aos="fade-right" data-aos-duration="800">
+                        <h1 class="banner__content-heading">Seamless Shopping for Every Day</h1>
+                        <p class="banner__content-moto">Elevate your shopping experience with competitive prices and convenient
+                            services.
+                        </p>
+                        <a href="/shop" class="trk-btn trk-btn--primary">Shop now
+                            <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-5">
+                    <div class="banner__thumb" data-aos="fade-left" data-aos-duration="1000">
+                        <img src="/assets/anhduan/banner.jpg" alt="banner-thumb" class="dark">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="banner__shape">
+      <span class="banner__shape-item banner__shape-item--1"><img src="assets/images/banner/home1/radish.png"
+                                                                  alt="shape icon"></span>
+
+        <span class="banner__shape-item banner__shape-item--2"><img src="assets/images/banner/home1/tomato.png"
+                                                                    alt="shape icon"></span>
+
+        <span class="banner__shape-item banner__shape-item--3"><img src="assets/images/banner/home1/chilli.png"
+                                                                    alt="shape icon"></span>
+
+        <span class="banner__shape-item banner__shape-item--5"><img src="assets/images/banner/home1/leaf.png"
+                                                                    alt="shape icon"></span>
+
+        <span class="banner__shape-item banner__shape-item--6"><img src="assets/images/banner/home1/chilli-2.png"
+                                                                    alt="shape icon"></span>
+
+        <span class="banner__shape-item banner__shape-item--7"><img src="assets/images/banner/home1/radish-2.png"
+                                                                    alt="shape icon"></span>
+    </div> -->
+</section>
+<style>
+.banner {
+    padding: 80px 0;
+    background-color: #ffffff;
+}
+
+.banner__content-heading {
+    font-size: 2.5rem; /* Nhỏ hơn trước */
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 16px;
+    line-height: 1.3;
+}
+
+.banner__content-moto {
+    font-size: 1rem;
+    color: #6b7280;
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.trk-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.trk-btn--primary {
+    background-color: #10b981;
+    color: #ffffff;
+}
+
+.trk-btn--primary:hover {
+    background-color: #0f766e;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+}
+
+.banner__thumb img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+    transition: transform 0.4s ease;
+}
+
+.banner__thumb img:hover {
+    transform: scale(1.015);
+}
+
+@media (max-width: 768px) {
+    .banner {
+        padding: 60px 0;
+    }
+
+    .banner__content-heading {
+        font-size: 1.8rem;
+    }
+
+    .banner__content-moto {
+        font-size: 0.95rem;
+    }
+
+    .trk-btn {
+        padding: 9px 18px;
+        font-size: 0.9rem;
+    }
+}
+
+</style>
+
+<!-- ===============>> Banner section end here <<================= -->
+
+
+
+
+
+<!-- ===============>> featured-categories section start here <<================= -->
+<section class="featured-categories padding-top padding-bottom" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-header__content">
+                <h2 class="mb-10">Featured categories</h2>
+            </div>
+            <div class="section-header__action">
+                <div class="swiper-nav swiper-nav--style1">
+                    <button class="swiper-nav__btn featured-categories__slider-prev"><i
+                            class="fa-solid fa-arrow-left-long"></i></button>
+                    <button class="swiper-nav__btn featured-categories__slider-next active"><i
+                            class="fa-solid fa-arrow-right-long"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="featured-categories__slider swiper">
+            <div class="swiper-wrapper">
+                <th:block th:each="category : ${categories}">
+                    <div class="swiper-slide">
+                        <div class="featured-categories__item">
+                            <div class="featured-categories__item-inner">
+                                <div class="featured-categories__content">
+                                    <h4><a href="/shop" class="stretched-link" th:text="${category.name}"></a></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- ===============>> featured-categories section end here <<================= -->
+
+
+
+
+
+<!-- ===============>>Flash Product section start here <<================= -->
+<section class="product padding-top padding-bottom section-bg">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-header__content">
+                <h2 class="mb-10 me-30">Flash sales</h2>
+
+                <div class="countdown countdown--style1">
+                    <div class="countdown__block">
+                        <h5 id="days" class="countdown__number">00</h5>
+                        <p class="countdown__label">Days</p>
+                    </div>
+                    <div class="countdown__block">
+                        <h5 id="hours" class="countdown__number">00</h5>
+                        <p class="countdown__label">Hours</p>
+                    </div>
+                    <div class="countdown__block">
+                        <h5 id="minutes" class="countdown__number">00</h5>
+                        <p class="countdown__label">Mins</p>
+                    </div>
+                    <div class="countdown__block">
+                        <h5 id="seconds" class="countdown__number">00</h5>
+                        <p class="countdown__label">Secs</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section-header__action order-sm-2">
+                <div class="swiper-nav swiper-nav--style1">
+                    <button class="swiper-nav__btn product__slider-prev"><i class="fa-solid fa-arrow-left-long"></i></button>
+                    <button class="swiper-nav__btn product__slider-next active"><i
+                            class="fa-solid fa-arrow-right-long"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="product__wrapper" data-aos="fade-up" data-aos-duration="1000">
+            <div class="product__slider swiper">
+                <div class="swiper-wrapper">
+                    <th:block th:each="product : ${newProducts}">
+                        <div class="swiper-slide">
+                            <div class="product__item product__item--style1">
+                                <div class="product__item-inner">
+
+                                    <div class="product__item-badge"
+                                         th:if="${product.discount != null && product.discount > 0}"
+                                         th:text="'-' + ${T(java.lang.Math).round(product.discount * 100)} + '%'">
+                                    </div>
+
+
+
+                                    <div class="product__item-thumb">
+                                        <img th:src="${product.imageUrl}" th:alt="${product.name}" />
+                                    </div>
+
+                                    <div class="product__item-content">
+                                        <h4>
+                                            <a th:href="@{/product-details/{id}(id=${product.productId})}"
+                                               th:text="${product.name}">Product Name</a>
+                                        </h4>
+
+                                        <div class="product__item-rating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <span th:text="${avgRatings[product.productId] != null ? #numbers.formatDecimal(avgRatings[product.productId], 1, 1) : '0.0'}"></span>
+                                            <span>
+                (<span th:text="${reviewCounts[product.productId] != null ? reviewCounts[product.productId] : 0}"></span> Reviews)
+              </span>
+                                        </div>
+
+                                        <div class="product__item-price"
+                                             th:attr="data-price=${product.price}, data-discount=${product.discount}">
+                                            <!-- Giá sau giảm sẽ hiện ở đây -->
+                                            <h4 class="discounted-price" style="color: red">Loading price...</h4>
+                                            <!-- Giá gốc (được gạch ngang nếu có discount) -->
+                                            <span class="original-price">
+                                            <del th:text="'$' + ${#numbers.formatDecimal(product.price, 1, 2)}">Original Price</del>
+                                          </span>
+                                        </div>
+
+                                        <div class="product__item-action">
+                                            <a class="trk-btn trk-btn--outline"
+                                               th:href="@{/cart/add/{id}(id=${product.productId})}">
+                                                Add to cart
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                </div>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const priceContainers = document.querySelectorAll('.product__item-price');
+
+                        priceContainers.forEach(container => {
+                            const price = parseFloat(container.dataset.price);
+                            const discount = parseFloat(container.dataset.discount);
+                            const discountedPriceEl = container.querySelector('.discounted-price');
+                            const originalPriceEl = container.querySelector('.original-price del');
+
+                            function formatVND(number) {
+                                return number.toString()
+                                    .replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' VNĐ';
+                            }
+
+                            if (isNaN(price)) {
+                                discountedPriceEl.textContent = 'N/A';
+                                originalPriceEl.textContent = '';
+                                return;
+                            }
+
+                            if (!isNaN(discount) && discount > 0) {
+                                const discountedPrice = price * (1 - discount);
+                                discountedPriceEl.textContent = formatVND(Math.round(discountedPrice));
+                                discountedPriceEl.style.color = 'red';
+
+                                originalPriceEl.textContent = formatVND(Math.round(price));
+                                originalPriceEl.style.textDecoration = 'line-through';
+                                originalPriceEl.style.color = 'gray';
+                            } else {
+                                discountedPriceEl.textContent = formatVND(Math.round(price));
+                                discountedPriceEl.style.color = 'black';
+
+                                originalPriceEl.style.display = 'none';
+                            }
+                        });
+                    });
+                </script>
+
+
+            </div>
+        </div>
+        <style>
+            
+        </style>
+
+    </div>
+</section>
+<style>
+.product__item-thumb {
+    width: 100%;
+    height: 250px; /* chiều cao cố định, bạn chỉnh theo ý */
+    overflow: hidden;
+    position: relative;
+}
+
+.product__item-thumb img {
+    width: 100%;
+    height: 100%; /* chiều cao bằng khung */
+    object-fit: cover; /* ảnh phủ đầy khung, có thể bị cắt */
+    display: block;
+    object-position: center center; /* ảnh canh giữa */
+}
+
+</style>
+
+
+<!-- ===============>>Flash Product section end here <<================= -->
+
+
+
+
+<!-- ===============>> Sale-Banner longs section start here <<================= -->
+<section class="sale-banner padding-top padding-bottom">
+    <div class="container">
+        <div class="sale-banner__wrapper" data-aos="fade-up" data-aos-duration="1000">
+            <div class="sale-banner__item sale-banner__item--style1">
+                <div class="sale-banner__item-inner">
+                    <div class="sale-banner__item-thumb">
+                        <img class="sale-banner__image" src="assets/images/product/sale-banner/1.png" alt="Fresh vegetables">
+                        <div class="sale-banner__item-discount-badge">
+                            <span>Up to</span>
+                            <h3 class="sale-banner__discount-amount">20%</h3>
+                            <span>Discount</span>
+                        </div>
+                    </div>
+                    <div class="sale-banner__item-content">
+                        <h2>Super Sale Vegetables</h2>
+                        <p>Discover a world of fresh produce, pantry staples, and more at your
+                            fingertips.</p>
+                        <a href="/shop" class="trk-btn trk-btn--md mt-3">Shop Now
+                            <span><i class="fa-solid fa-arrow-right"></i></span> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- bg-shape -->
+    <div class="sale-banner__shape">
+      <span class="sale-banner__shape-item sale-banner__shape-item--1"><img
+              src="assets/images/product/sale-banner/leaf-1.png" alt="shape icon"></span>
+        <span class="sale-banner__shape-item sale-banner__shape-item--2"><img
+                src="assets/images/product/sale-banner/leaf-2.png" alt="shape icon"></span>
+    </div>
+</section>
+<!-- ===============>> Sale-banner section end here <<================= -->
+
+
+
+<!-- ===============>>Popular Product section start here <<================= -->
+<section class="popular-product">
+    <div class="popular-product__wrapper" data-aos="fade-up" data-aos-duration="1000">
+        <div class="popular-product__header section-header">
+            <h2 class="popular-product__title order-sm-1">                                          Popular Products</h2>
+            <div class="popular-product__filters order-sm-3 order-lg-2">
+                <ul class="nav nav-pills " id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-all-tab" data-bs-toggle="pill" data-bs-target="#pills-all"
+                                type="button" role="tab" aria-controls="pills-all" aria-selected="true">All</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-new-arrivals-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-new-arrivals" type="button" role="tab" aria-controls="pills-new-arrivals"
+                                aria-selected="false">New
+                            arrivals</button>
+                    </li>
+                </ul>
+            </div>
+        
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <div class="tab-content" id="pills-tabContent">
+            <!-- Tất cả sản phẩm -->
+            <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
+                <div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-2 justify-content-center g-3">
+                    <div class="col" th:each="product : ${products}">
+                        <div class="product__item product__item--style2">
+                            <div class="product__item-inner">
+                                <div class="product__item-badge" th:if="${product.discount != null && product.discount > 0}">
+                                    <span th:text="'-' + ${T(java.lang.Math).round(product.discount * 100)} + '%'">-20%</span>
+                                </div>
+                                <div class="product__item-thumb">
+                                    <img th:src="@{${product.imageUrl}}" alt="Product Image">
+                                </div>
+                                <div class="product__item-content">
+                                    <h5><a th:href="@{/product-details/{id}(id=${product.productId})}" th:text="${product.name}">Product Name</a></h5>
+                                    <div class="product__item-rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <span th:text="${avgRatings[product.productId] != null ? #numbers.formatDecimal(avgRatings[product.productId], 1, 1) : '0.0'}"></span>
+                                        <span>(<span th:text="${reviewCounts[product.productId] != null ? reviewCounts[product.productId] : 0}"></span> Reviews)</span>
+                                    </div>
+
+                                    <div class="product__item-footer">
+                                        <div class="product__item-price"
+                                             th:attr="data-price=${product.price}, data-discount=${product.discount}">
+                                            <h4 class="discounted-price" style="color:red;">Loading...</h4>
+                                            <span>
+                                        <del th:text="${#numbers.formatDecimal(product.price, 0, 0)} + ' VNĐ'"></del>
+                                    </span>
+                                        </div>
+
+                                        <div class="product__item-action">
+                                            <a class="trk-btn trk-btn--outline" href="/cart">Add to cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sản phẩm mới -->
+            <div class="tab-pane fade" id="pills-new-arrivals" role="tabpanel" aria-labelledby="pills-new-arrivals-tab">
+                <div class="row row-cols-xl-5 row-cols-lg-4 row-cols-md-3 row-cols-2 justify-content-center g-3">
+                    <div class="col" th:each="product : ${newProducts}">
+                        <div class="product__item product__item--style2">
+                            <div class="product__item-inner">
+                                <div class="product__item-badge" th:if="${product.discount != null && product.discount > 0}">
+                                    <span th:text="'-' + ${T(java.lang.Math).round(product.discount * 100)} + '%'">-20%</span>
+                                </div>
+                                <div class="product__item-thumb">
+                                    <img th:src="@{${product.imageUrl}}" alt="Product Image">
+                                </div>
+                                <div class="product__item-content">
+                                    <h5><a th:href="@{/product-details/{id}(id=${product.productId})}" th:text="${product.name}">Product Name</a></h5>
+                                    <div class="product__item-rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <span th:text="${avgRatings[product.productId] != null ? #numbers.formatDecimal(avgRatings[product.productId], 1, 1) : '0.0'}"></span>
+                                        <span>(<span th:text="${reviewCounts[product.productId] != null ? reviewCounts[product.productId] : 0}"></span> Reviews)</span>
+                                    </div>
+
+                                    <div class="product__item-footer">
+                                        <div class="product__item-price"
+                                             th:attr="data-price=${product.price}, data-discount=${product.discount}" style="color: red">
+                                            <h4 class="discounted-price" style="color: red">Loading...</h4>
+                                            <span>
+                                        <del th:text="'$' + ${#numbers.formatDecimal(product.price, 1, 2)}">Original Price</del>
+                                          </span>
+                                        </div>
+
+                                        <div class="product__item-action">
+                                            <a class="trk-btn trk-btn--outline" href="/cart">Add to cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Script xử lý giảm giá và hiển thị giá đã format -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                document.querySelectorAll('.product__item-price').forEach(el => {
+                    const rawPrice = parseFloat(el.getAttribute('data-price'));
+                    const rawDiscount = parseFloat(el.getAttribute('data-discount'));
+
+                    if (!isNaN(rawPrice)) {
+                        let finalPrice = rawPrice;
+
+                        if (!isNaN(rawDiscount)) {
+                            if (rawDiscount > 0 && rawDiscount <= 1) {
+                                finalPrice = rawPrice * (1 - rawDiscount);
+                            } else if (rawDiscount > 1 && rawDiscount <= 100) {
+                                finalPrice = rawPrice * (1 - rawDiscount / 100);
+                            }
+                        }
+
+                        const formattedPrice = finalPrice.toLocaleString('vi-VN') + ' VNĐ';
+                        const discountedEl = el.querySelector('.discounted-price');
+                        const formattedEl = el.querySelector('.formatted-price');
+
+                        if (discountedEl) discountedEl.textContent = formattedPrice;
+                        if (formattedEl) formattedEl.textContent = formattedPrice;
+                    } else {
+                        const discountedEl = el.querySelector('.discounted-price');
+                        const formattedEl = el.querySelector('.formatted-price');
+
+                        if (discountedEl) discountedEl.textContent = 'N/A';
+                        if (formattedEl) formattedEl.textContent = 'N/A';
+                    }
+                });
+            });
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- ===============>>Product Listing section start here <<================= -->
+        <section class="product-listing padding-bottom padding-top section-bg">
+            <div class="container">
+                <div class="product-listing__wrapper" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="row align-items-center justify-content-center g-5 g-lg-4">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="row g-3 ">
+                                <h2>Top selling</h2>
+                              <div th:each="product : ${topSellingProducts}">
+    <div class="col-12">
+        <div class="product__item product__item--style3">
+            <div class="product__item-inner">
+                <!-- Ảnh sản phẩm -->
+                <div class="product__item-thumb">
+                    <img th:src="@{${product.imageUrl}}" alt="Product Images">
+                </div>
+
+                <div class="product__item-content">
+                    <!-- Tên sản phẩm và link chi tiết -->
+                    <h5>
+                        <a th:href="@{product-details/{id}(id=${product.productId})}" th:text="${product.name}"></a>
+                    </h5>
+
+                    <!-- Đánh giá và số lượng review -->
+                    <div class="product__item-rating">
+                        <i class="fa-solid fa-star"></i>
+                        <span th:text="${avgRatings[product.productId] != null ? #numbers.formatDecimal(avgRatings[product.productId], 1, 1) : '0.0'}"></span>
+                        <span>
+                            (<span th:text="${reviewCounts[product.productId] != null ? reviewCounts[product.productId] : 0}"></span> Reviews)
+                        </span>
+                    </div>
+
+                    <div class="product__item-footer">
+                        <!-- Giá sản phẩm và giá giảm nếu có -->
+                        <div class="product__item-price"
+                             th:attr="data-price=${product.price}, data-discount=${product.discount}">
+                            <h4 class="discounted-price" style="color: red">Loading...</h4>
+                            <span>
+                                <del th:text="${#numbers.formatDecimal(product.price, 0, 0).replace(',', '.')} + ' VNĐ'"></del>
+                            </span>
+                        </div>
+
+                        <!-- Script tính giá giảm -->
+                        <script>
+                            document.querySelectorAll('.product__item-price').forEach(el => {
+                                const price = parseFloat(el.dataset.price);
+                                const discount = parseFloat(el.dataset.discount) || 0;
+
+                                const discountedPrice = price * (1 - discount / 100);
+                                const formattedPrice = discountedPrice.toFixed(2);
+
+                                el.querySelector('.discounted-price').textContent = formattedPrice + ' VNĐ';
+                            });
+                        </script>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="row g-3">
+                                <h2>Trending products</h2>
+                                <div th:each="product : ${trendingProducts}">
+    <div class="col-12">
+        <div class="product__item product__item--style3">
+            <div class="product__item-inner">
+                <!-- Hiển thị badge giảm giá -->
+                <div class="product__item-badge"
+                     th:if="${product.discount != null && product.discount > 0}"
+                     th:text="'-' + ${T(java.lang.Math).round(product.discount * 100)} + '%'">
+                </div>
+
+                <!-- Hiển thị ảnh sản phẩm -->
+                <div class="product__item-thumb">
+                    <img th:src="@{${product.imageUrl}}" alt="Product Images">
+                </div>
+
+                <div class="product__item-content">
+                    <!-- Hiển thị tên sản phẩm, link đến chi tiết -->
+                    <h5>
+                        <a th:href="@{product-details/{id}(id=${product.productId})}" 
+                           th:text="${product.name}"></a>
+                    </h5>
+
+                    <!-- Hiển thị đánh giá sản phẩm -->
+                    <div class="product__item-rating">
+                        <i class="fa-solid fa-star"></i>
+                        <span th:text="${avgRatings[product.productId] != null ? #numbers.formatDecimal(avgRatings[product.productId], 1, 1) : '0.0'}"></span>
+                        <span>
+                            (<span th:text="${reviewCounts[product.productId] != null ? reviewCounts[product.productId] : 0}"></span> Reviews)
+                        </span>
+                    </div>
+
+                    <div class="product__item-footer">
+                        <div class="product__item-price"
+                             th:attr="data-price=${product.price}, data-discount=${product.discount}">
+                            <h4 class="discounted-price" style="color: red">Loading...</h4>
+                            <span>
+                                <del th:text="${#numbers.formatDecimal(product.price, 0, 0).replace(',', '.')} + ' VNĐ'"></del>
+                            </span>
+                        </div>
+
+                        <!-- Script tính giá giảm cho từng sản phẩm -->
+                        <script>
+                            document.querySelectorAll('.product__item-price').forEach(el => {
+                                const price = parseFloat(el.dataset.price);
+                                const discount = parseFloat(el.dataset.discount) || 0;
+
+                                // Tính giá sau giảm (discount là phần trăm, ví dụ 15 = 15%)
+                                const discountedPrice = price * (1 - discount / 100);
+
+                                // Format số kiểu 2 chữ số thập phân
+                                const formattedPrice = discountedPrice.toFixed(2);
+
+                                // Hiển thị giá giảm
+                                el.querySelector('.discounted-price').textContent = formattedPrice + ' VNĐ';
+                            });
+                        </script>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="row g-3">
+                                <h2>New products</h2>
+                                <div th:each="product : ${top3newproducts}">
+                                    <div class="col-12">
+                                        <div class="product__item product__item--style3">
+                                            <div class="product__item-inner">
+                                                <!-- Hiển thị badge giảm giá -->
+                                                <div class="product__item-badge"
+                                                     th:if="${product.discount != null && product.discount > 0}"
+                                                     th:text="'-' + ${T(java.lang.Math).round(product.discount * 100)} + '%'">
+                                                </div>
+                                                <!-- Hiển thị ảnh sản phẩm -->
+                                                <div class="product__item-thumb">
+                                                    <img th:src="@{${product.imageUrl}}" alt="Product Images">
+                                                </div>
+
+                                                <div class="product__item-content">
+                                                    <!-- Hiển thị tên sản phẩm -->
+                                                    <h5><a th:href="@{product-details/{id}(id=${product.productId})}" th:text="${product.name}"></a></h5>
+
+                                                    <!-- Hiển thị đánh giá sản phẩm -->
+
+                                                    <div class="product__item-rating">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <span th:text="${avgRatings[product.productId] != null ? #numbers.formatDecimal(avgRatings[product.productId], 1, 1) : '0.0'}"></span>
+                                                        <span>
+                                                (<span th:text="${reviewCounts[product.productId] != null ? reviewCounts[product.productId] : 0}"></span> Reviews)
+                                            </span>
+                                                    </div>
+
+
+                                                    <div class="product__item-footer">
+                                                        <div class="product__item-price"
+                                                             th:attr="data-price=${product.price}, data-discount=${product.discount}">
+                                                            <h4 class="discounted-price" style="color: red">Loading...</h4>
+                                                            <span>
+        <del th:text="${#numbers.formatDecimal(product.price, 0, 0).replace(',', '.')} + ' VNĐ'"></del>
+    </span>
+                                                        </div>
+
+                                                        <script>
+                                                            document.querySelectorAll('.product__item-price').forEach(el => {
+                                                                const price = parseFloat(el.dataset.price);
+                                                                const discount = parseFloat(el.dataset.discount) || 0;
+
+                                                                // Tính giá sau giảm (discount đang là phần trăm, vd 15 = 15%)
+                                                                const discountedPrice = price * (1 - discount / 100);
+
+                                                                // Format số kiểu 2 chữ số thập phân
+                                                                const formattedPrice = discountedPrice.toFixed(2);
+
+                                                                // Hiển thị
+                                                                el.querySelector('.discounted-price').textContent = '$' + formattedPrice;
+                                                            });
+                                                        </script>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</section>
+<!-- ===============>>Product Listing section end here <<================= -->
+
+
+
+
+<!-- ===============>> Sale-banner section start here <<================= -->
+<!-- <section class="sale-banner padding-top padding-bottom">
+    <div class="container">
+        <div class="sale-banner__wrapper" data-aos="fade-up" data-aos-duration="1000">
+            <div class="row g-3">
+                <div class="col-xl-6 col-lg-12">
+                    <div class="sale-banner__item sale-banner__item--style4">
+                        <div class="sale-banner__item-inner">
+                            <div class="sale-banner__item-thumb">
+                                <img src="assets/images/product/sale-banner/4.png" alt="banner image">
+
+                                <div class="sale-banner__item-discount-badge sale-banner__item-discount-badge--style3">
+                                    <span class="sale-banner__discount-text">Up to</span>
+                                    <h4 class="sale-banner__discount-amount">20%</h4>
+                                </div>
+                            </div>
+                            <div class="sale-banner__item-content">
+                                <h6>Limited time only</h6>
+                                <h3>Super grocery collection</h3>
+                                <a href="/shop" class="trk-btn trk-btn--sm mt-3">Shop Now <span><i
+                                        class="fa-solid fa-arrow-right-long"></i></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-6  col-lg-12">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="sale-banner__item sale-banner__item--style5">
+                                <div class="sale-banner__item-inner">
+                                    <div class="sale-banner__item-content">
+                                        <h4 class="sale-banner__title">Organic pure honey</h4>
+                                        <a href="/shop" class="text-btn">Shop Now</a>
+                                    </div>
+                                    <div class="sale-banner__item-thumb">
+                                        <img src="assets/images/product/sale-banner/5.png" alt="Fresh Honey">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="sale-banner__item sale-banner__item--style52">
+                                <div class="sale-banner__item-inner">
+                                    <div class="sale-banner__item-content">
+                                        <h4 class="sale-banner__title">Organic almond butter</h4>
+                                        <a href="signin.html" class="text-btn text-btn--sm">Shop Now</a>
+                                    </div>
+                                    <div class="sale-banner__item-thumb">
+                                        <img src="assets/images/product/sale-banner/6.png" alt="Fresh Honey">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+<!-- ===============>> Sale-banner section end here <<================= -->
+
+
+
+
+<!-- ===============>> Blog section start here <<================= -->
+<section class="blog padding-top padding-bottom section-bg">
+    <div class="container">
+        <div class="section-header d-md-flex align-items-center justify-content-between">
+            <div class="section-header__content">
+                <h2 class="mb-10">Regular articles</h2>
+            </div>
+            <div class="section-header__action">
+                <div class="swiper-nav swiper-nav--style1">
+                    <button class="swiper-nav__btn blog__slider-prev"><i class="fa-solid fa-arrow-left-long"></i></button>
+                    <button class="swiper-nav__btn blog__slider-next active"><i
+                            class="fa-solid fa-arrow-right-long"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="blog__wrapper" data-aos="fade-up" data-aos-duration="1000">
+            <div class="blog__slider swiper">
+                <div class="swiper-wrapper">
+                    <th:block th:each="article : ${articles}">
+                        <div class="swiper-slide">
+                            <div class="blog__item blog__item--style2">
+                                <div class="blog__item-inner">
+                                    <div class="blog__thumb">
+                                        <img th:src="@{${article.image_Url}}" alt="blog image">
+                                    </div>
+
+                                    <div class="blog__content">
+                                        <div class="blog__meta">
+                                            <a href="#"><span class="blog__meta-tag blog__meta-tag--style1">Article</span></a>
+                                        </div>
+                                        <h4>
+                                            <a th:href="@{'/article/' + ${article.articleId}}"
+                                               th:text="${article.title}">Article Title</a>
+                                        </h4>
+
+                                        <div class="blog__admin">
+                                            <div class="blog__admin-name">
+                                                <span><i class="fa-regular fa-user"></i></span>
+                                                <span th:text="${article.authorUsername}">Author Name</span>
+                                            </div>
+                                            <div class="blog__admin-date">
+                                                <span><i class="fa-regular fa-calendar-check"></i></span>
+                                                <span th:text="${#temporals.format(article.createdAt, 'MMM dd, yyyy')}">Date</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                </div>
+            </div>
+
+        </div>
+        <div class="section-btn mt-4 text-center">
+            <a class="trk-btn trk-btn--primary " href="blogs.html">View More</a>
+        </div>
+    </div>
+</section>
+<!-- ===============>> Blog section start here <<================= -->
+
+
+
+
+<!-- ===============>> Newsletter section start here <<================= -->
+<section class="newsletter padding-top padding-bottom  bg-color">
+    <div class="container">
+        <div class="newsletter__wrapper" data-aos="fade-up" data-aos-duration="1000">
+            <div class="newsletter__content">
+                <h2 class="newsletter__title">Subscribe To The Newsletter</h2>
+                <p class="newsletter__description">Join our subscribers list to get the latest news, updates and special
+                    offers delivered directly to your inbox.</p>
+                <form class="newsletter__form">
+                    <input type="email" class="newsletter__input" placeholder="Your Email Address" required>
+                    <button type="submit" class="trk-btn trk-btn--primary">Subscribe</button>
+                </form>
+            </div>
+            <div class="newsletter__image">
+                <!-- image include in css -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ===============>> Newsletter section start here <<================= -->
+
+
+
+<!-- ===============>> Feature bar section start here <<================= -->
+<div class="feature-bar border-top">
+    <div class="container">
+        <div class="row py-3 g-5 g-lg-4 justify-content-center">
+            <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
+                <div class="feature-bar__item d-flex align-items-center">
+                    <img src="assets/images/feature/bar/1.png" alt="delivery car">
+                    <div class="feature-bar__text ms-4">
+                        <h3 class="feature-bar__title fs-6 fw-bold mb-0">Fast Delivery</h3>
+                        <p class="feature-bar__description fs-7 mb-0">Minimum order $40</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
+                <div class="feature-bar__item d-flex align-items-center">
+                    <img src="assets/images/feature/bar/2.png" alt="support image">
+                    <div class="feature-bar__text ms-4">
+                        <h3 class="feature-bar__title fs-6 fw-bold mb-0">24/7 Support</h3>
+                        <p class="feature-bar__description fs-7 mb-0">Contact us 24 Hours</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
+                <div class="feature-bar__item d-flex align-items-center">
+                    <img src="assets/images/feature/bar/3.png" alt="pay security">
+                    <div class="feature-bar__text ms-4">
+                        <h3 class="feature-bar__title fs-6 fw-bold mb-0">Pay Security</h3>
+                        <p class="feature-bar__description fs-7 mb-0">100% Secure Payment</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
+                <div class="feature-bar__item d-flex align-items-center">
+                    <img src="assets/images/feature/bar/4.png" alt="money returns">
+                    <div class="feature-bar__text ms-4">
+                        <h3 class="feature-bar__title fs-6 fw-bold mb-0">Easy Returns</h3>
+                        <p class="feature-bar__description fs-7 mb-0">Within 30 Days</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ===============>> Feature bar section end here <<================= -->
+
+
+
+
+<!-- ===============>> footer start here <<================= -->
+<div th:replace="~{footer :: footer}"></div>
+
+<!-- ===============>> footer end here <<================= -->
+
+
+
+<!-- ===============>> scrollToTop start here <<================= -->
+<a href="#" class="scrollToTop scrollToTop--style1"><i class="fa-solid fa-arrow-up-from-bracket"></i></a>
+<!-- ===============>> scrollToTop ending here <<================= -->
+
+
+<!-- vendor plugins -->
+
+
+
+<script th:src="@{/assets/js/metismenujs.min.js}"></script>
+<script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/assets/js/all.min.js}"></script>
+<script th:src="@{/assets/js/swiper-bundle.min.js}"></script>
+<script th:src="@{/assets/js/aos.js}"></script>
+<script th:src="@{/assets/js/fslightbox.js}"></script>
+<script th:src="@{/assets/js/purecounter_vanilla.js}"></script>
+<script th:src="@{/assets/js/trk-menu.js}"></script>
+<script th:src="@{/assets/js/custom.js}"></script>
+
+
+</div>
+</section>
+</body>
+
+<!-- Mirrored from thetork.com/demos/html/torganic/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Apr 2025 14:26:46 GMT -->
+</html>
+<style>
+    .featured-categories__slider .swiper-slide {
+        height: 100%;
+        display: flex;
+        align-items: stretch;
+    }
+
+    .featured-categories__item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+        height: 100%;
+        padding: 10px;
+        border: 1px solid #eee;
+        border-radius: 8px;
+    }
+
+    .featured-categories__content {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: 80px; /* hoặc tùy vào thiết kế của bạn */
+    }
+
+</style>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+
+<!-- Mirrored from thetork.com/demos/html/torganic/product-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Apr 2025 14:27:30 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>Torganic | Organic Food eCommerce HTML Template </title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Sites meta Data -->
+    <meta name="application-name" content="Torganic | Organic Food eCommerce HTML Template">
+    <meta name="author" content="thetork">
+    <meta name="keywords" content="Torganic, Crypto, Forex, and Stocks Trading Business">
+    <meta name="description"
+          content="Torganic is a premium, fully responsive HTML template designed for organic food eCommerce sites. Featuring clean, modern design and powerful functionality, it’s perfect for creating a professional online store. Boost your sales with Torganic's user-friendly layout, SEO-optimized code, and seamless shopping experience.">
+
+    <!-- OG meta data -->
+    <meta property="og:title" content="Torganic | Organic Food eCommerce HTML Template">
+    <meta property="og:site_name" content=Torganic>
+    <meta property="og:url" content="index-2.html">
+    <meta property="og:description"
+          content="Welcome to Torganic – Organic Food eCommerce HTML Template
+
+Discover Torganic, a meticulously designed HTML template tailored for organic food and eco-friendly eCommerce websites. Whether you're building an online store for fresh produce, natural products, or sustainable goods, Torganic offers a clean, modern design with powerful functionality to make your site stand out.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/images/og.png">
+
+
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.png}" type="image/x-icon">
+
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/aos.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/swiper-bundle.min.css}">
+
+    <!-- main css for template -->
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+
+</head>
+
+<body>
+
+<!-- ===============>> Preloader start here <<================= -->
+<div class="preloader">
+    <img th:src="@{/assets/images/logo/preloader.png}" alt="preloader icon">
+</div>
+
+<!-- ===============>> Preloader end here <<================= -->
+
+
+
+
+<!-- ===============>> Header section start here <<================= -->
+<div th:replace="~{header :: header}"></div>
+
+<!-- ===============>> Header section end here <<================= -->
+
+
+
+
+<!-- ================> Page header start here <================== -->
+<section class="page-header bg--cover">
+    <div class="container">
+        <div class="page-header__content" data-aos="fade-right" data-aos-duration="1000">
+            <h1>Product Details</h1>
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item "><a href="/home">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Product Details</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+<!-- ================> Page header end here <================== -->
+
+
+
+
+
+<!-- ===============>>Product Details section start here <<================= -->
+<section class="product-details padding-top padding-bottom ">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="product-details">
+                    <div class="row g-5">
+                        <!-- Product Image and Thumbnails -->
+                        <div class="col-md-6 col-12">
+                            <div class="product-thumb">
+                                <div class="swiper pro-single-top">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="single-thumb">
+                                                <img th:src="@{${product.imageUrl}}" alt="shop">
+                                            </div>
+                                        </div>
+                                        <!-- Add more swiper slides for other images -->
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Product Details Content -->
+                        <div class="col-md-6 col-12">
+                            <div class="post-content">
+                                <h2 th:text="${product.name}">Product Name</h2>
+                                <!-- Hiển thị sao -->
+                                <p class="rating">
+                                    <i th:class="${T(java.lang.Math).round(avgRating) >= 1} ? 'fa fa-star' : 'fa fa-star'"
+                                       th:style="${T(java.lang.Math).round(avgRating) >= 1} ? 'color: gold;' : 'color: #ccc;'"></i>
+
+                                    <i th:class="${T(java.lang.Math).round(avgRating) >= 2} ? 'fa fa-star' : 'fa fa-star'"
+                                       th:style="${T(java.lang.Math).round(avgRating) >= 2} ? 'color: gold;' : 'color: #ccc;'"></i>
+
+                                    <i th:class="${T(java.lang.Math).round(avgRating) >= 3} ? 'fa fa-star' : 'fa fa-star'"
+                                       th:style="${T(java.lang.Math).round(avgRating) >= 3} ? 'color: gold;' : 'color: #ccc;'"></i>
+
+                                    <i th:class="${T(java.lang.Math).round(avgRating) >= 4} ? 'fa fa-star' : 'fa fa-star'"
+                                       th:style="${T(java.lang.Math).round(avgRating) >= 4} ? 'color: gold;' : 'color: #ccc;'"></i>
+
+                                    <i th:class="${T(java.lang.Math).round(avgRating) >= 5} ? 'fa fa-star' : 'fa fa-star'"
+                                       th:style="${T(java.lang.Math).round(avgRating) >= 5} ? 'color: gold;' : 'color: #ccc;'"></i>
+
+                                    <span th:text="|(${reviewCount} Reviews)|" style="margin-left: 5px; color: gray;"></span>
+                                </p>
+
+
+
+
+
+
+
+
+                                <div class="post-content__price"
+                                     th:attr="data-price=${product.price}, data-discount=${product.discount != null ? product.discount : 0}">
+
+                                    <!-- Giá sau giảm -->
+                                    <h2 class="discounted-price" style="color: red">Loading...</h2>
+
+                                    <!-- Giá gốc -->
+                                    <span>
+        <del class="original-price">Loading...</del>
+    </span>
+
+                                    <!-- Discount -->
+                                    <span class="discount-rate"></span>
+                                </div>
+                                <script>
+                                    document.querySelectorAll('.post-content__price').forEach(el => {
+                                        let price = parseFloat(el.dataset.price);
+                                        let discount = parseFloat(el.dataset.discount);
+
+                                        // Kiểm tra và gán mặc định nếu giá trị không hợp lệ
+                                        if (isNaN(price)) price = 0;
+                                        if (isNaN(discount)) discount = 0;
+
+                                        // Tính giá sau khi giảm
+                                        const discountedPrice = Math.round(price * (1 - discount));
+
+                                        // Hàm định dạng giá kiểu Việt Nam
+                                        const formatVN = (num) => {
+                                            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ' VNĐ';
+                                        };
+
+                                        // Hiển thị giá lên HTML
+                                        el.querySelector('.discounted-price').textContent = formatVN(discountedPrice);
+                                        el.querySelector('.original-price').textContent = formatVN(price);
+
+                                        // Nếu discount = 0 thì ẩn, ngược lại hiển thị
+                                        if (discount > 0) {
+                                            el.querySelector('.discount-rate').textContent = `(${Math.round(discount * 100)}% off)`;
+                                        } else {
+                                            el.querySelector('.discount-rate').textContent = '';
+                                        }
+                                    });
+                                </script>
+
+
+
+                                <div class="post-content__brand">
+                                    Category: <span th:text="${product.category.name}">Category Name</span>
+                                </div>
+
+                                <div class="post-content__btn btn-group">
+                                    <!-- Thẻ hidden để lưu stock -->
+                                    <input type="hidden" id="product-stock" th:value="${product.stock}">
+                                    <input type="hidden" id="product-id" th:value="${product.productId}" />
+
+                                    <div class="quantity-button">
+                                        <button class="quantity-button__control quantity-button__control--decrease" onclick="updateQuantity('decrease')">-</button>
+                                        <!-- Thêm input để người dùng nhập số lượng -->
+                                        <input type="number" id="quantity" value="1" min="1" max="${product.stock}" onchange="updateQuantityFromInput()" />
+                                        <button class="quantity-button__control quantity-button__control--increase" onclick="updateQuantity('increase')">+</button>
+                                    </div>
+
+                                    <script>
+                                        // Lấy giá trị stock từ thẻ hidden
+                                        var stock = document.getElementById("product-stock").value;  // Lấy stock từ thẻ hidden
+                                        stock = parseInt(stock);  // Chuyển đổi thành số nguyên nếu cần thiết
+
+                                        // Mặc định là 1
+                                        var quantity = 1;
+
+                                        // In ra console để kiểm tra giá trị stock
+                                        console.log("Product stock: " + stock);
+
+                                        // Cập nhật số lượng khi nhấn + hoặc -
+                                        function updateQuantity(action) {
+                                            if (action === 'increase' && quantity < stock) {
+                                                quantity++;
+                                            } else if (action === 'decrease' && quantity > 1) {
+                                                quantity--;
+                                            }
+
+                                            // Cập nhật lại giá trị trong input
+                                            document.getElementById("quantity").value = quantity;
+                                        }
+
+                                        // Cập nhật số lượng khi người dùng nhập trực tiếp
+                                        function updateQuantityFromInput() {
+                                            var inputValue = parseInt(document.getElementById("quantity").value);
+
+                                            // Nếu giá trị nhập vào nhỏ hơn 1, set lại thành 1
+                                            if (inputValue < 1) {
+                                                quantity = 1;
+                                            } else if (inputValue > stock) {  // Nếu vượt quá stock, set lại thành stock
+                                                quantity = stock;
+                                            } else {
+                                                quantity = inputValue;
+                                            }
+
+                                            // Cập nhật lại giá trị trong input và giá trị quantity
+                                            document.getElementById("quantity").value = quantity;
+                                        }
+                                    </script>
+
+
+                                    <a id="addToCartBtn" href="#" class="trk-btn trk-btn--primary" onclick="handleAddToCart()">Add to Cart</a>
+
+                                    <script>
+                                        function handleAddToCart() {
+                                            // Lấy giá trị của productId và quantity từ các thẻ input
+                                            var productId = document.getElementById("product-id").value;
+                                            var quantity = document.getElementById("quantity").value;
+
+                                            // Debug: in giá trị ra console
+                                            console.log("Product ID:", productId);
+                                            console.log("Quantity:", quantity);
+
+                                            // Điều hướng đến trang giỏ hàng và thêm sản phẩm vào giỏ hàng với ID và số lượng
+                                            window.location.href = `/cart/add?productId=${productId}&quantity=${quantity}`;
+                                        }
+
+                                        // Đảm bảo JS chỉ chạy sau khi DOM đã được tải hoàn toàn
+                                        document.addEventListener("DOMContentLoaded", function () {
+                                            document.getElementById("addToCartBtn").addEventListener("click", function (event) {
+                                                event.preventDefault(); // Ngăn chặn hành động mặc định của thẻ <a>
+                                                handleAddToCart(); // Gọi hàm xử lý thêm vào giỏ hàng
+                                            });
+                                        });
+                                    </script>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="product-details__pill">
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="pills-description-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-description" type="button" role="tab" aria-controls="pills-description"
+                                    aria-selected="true">Description</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-review-tab" data-bs-toggle="pill" data-bs-target="#pills-review"
+                                    type="button" role="tab" aria-controls="pills-review" aria-selected="false">Reviews</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-description" role="tabpanel"
+                             aria-labelledby="pills-description-tab" tabindex="0">
+
+                            <div class="product-details__content">
+                                <p th:text="${product.description}"></p>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab"
+                             tabindex="0">
+                            <div class="product-details__review section-bg">
+                                <div class="product-details__review-title">
+                                    <h2>Reviews</h2>
+                                </div>
+                                <div th:each="review : ${reviews}" class="product-details__review-card">
+                                    <div class="product-details__review-author">
+                                        <div class="product-details__review-name">
+                                            <h4 th:text="${review.getUser().getEmail()}">Reviewer Email</h4>
+                                            <p th:text="${#temporals.format(review.createdAt, 'MMMM dd, yyyy')}">Date</p>
+                                        </div>
+                                    </div>
+                                    <div class="product-details__review-content">
+                                        <div class="rating">
+                                            <!-- In số sao theo rating -->
+                                            <th:block th:if="${review.rating != null}">
+                                                <i class="fa-solid fa-star"
+                                                   th:each="i : ${#numbers.sequence(1, review.rating)}"></i>
+                                            </th:block>
+                                        </div>
+
+                                        <p th:text="${review.comment}">
+                                            Review content
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="product-details__review product-details__review--add section-bg">
+                                <div class="product-details__review-title">
+                                    <h2>Add a Review</h2>
+                                </div>
+                                <!-- Nếu người dùng đã đăng nhập -->
+                                <div sec:authorize="isAuthenticated()">
+                                    <form th:action="@{/product-details/{id}/add-review(id=${product.productId})}" th:method="post">
+                                        <!-- CSRF Token -->
+                                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+                                        <div class="rating">
+                                            <h4>Your Review</h4>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="rating" id="rating1" value="1" required>
+                                                <label class="form-check-label" for="rating1">1 ⭐</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="rating" id="rating2" value="2" required>
+                                                <label class="form-check-label" for="rating2">2 ⭐</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="rating" id="rating3" value="3" required>
+                                                <label class="form-check-label" for="rating3">3 ⭐</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="rating" id="rating4" value="4" required>
+                                                <label class="form-check-label" for="rating4">4 ⭐</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="rating" id="rating5" value="5" required>
+                                                <label class="form-check-label" for="rating5">5 ⭐</label>
+                                            </div>
+                                        </div>
+
+                                        <!-- Comment Section -->
+                                        <div class="row g-4 mt-3">
+                                            <div class="col-md-12">
+                                                <label for="textarea" class="form-label">Message</label>
+                                                <textarea cols="30" rows="5" class="form-control" id="textarea" name="comment" placeholder="Enter Your Message" required></textarea>
+                                            </div>
+                                        </div>
+
+                                        <!-- Submit Button -->
+                                        <button type="submit" class="trk-btn trk-btn--border trk-btn--primary mt-4">Send Message</button>
+                                    </form>
+                                </div>
+
+                                <!-- Nếu người dùng chưa đăng nhập -->
+                                <div sec:authorize="isAnonymous()">
+                                    <p class="text-danger mt-3">Bạn cần <a th:href="@{/login}">đăng nhập</a> để viết đánh giá.</p>
+                                </div>
+
+                            </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ===============>>Product Details section end here <<================= -->
+
+
+
+
+<!-- ===============>> Feature bar section start here <<================= -->
+<div class="feature-bar border-top">
+    <div class="container">
+        <div class="row py-3 g-4 justify-content-center">
+            <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
+                <div class="feature-bar__item d-flex align-items-center">
+                    <img th:src="@{/assets/images/feature/bar/1.png}" alt="delivery car">
+                    <div class="feature-bar__text ms-4">
+                        <h3 class="feature-bar__title fs-6 fw-bold mb-0">Fast Delivery</h3>
+                        <p class="feature-bar__description fs-7 mb-0">Minimum order $40</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
+                <div class="feature-bar__item d-flex align-items-center">
+                    <img th:src="@{/assets/images/feature/bar/2.png}" alt="support image">
+                    <div class="feature-bar__text ms-4">
+                        <h3 class="feature-bar__title fs-6 fw-bold mb-0">24/7 Support</h3>
+                        <p class="feature-bar__description fs-7 mb-0">Contact us 24 Hours</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
+                <div class="feature-bar__item d-flex align-items-center">
+                    <img th:src="@{/assets/images/feature/bar/3.png}" alt="pay security">
+                    <div class="feature-bar__text ms-4">
+                        <h3 class="feature-bar__title fs-6 fw-bold mb-0">Pay Security</h3>
+                        <p class="feature-bar__description fs-7 mb-0">100% Secure Payment</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
+                <div class="feature-bar__item d-flex align-items-center">
+                    <img th:src="@{/assets/images/feature/bar/4.png}" alt="money returns">
+                    <div class="feature-bar__text ms-4">
+                        <h3 class="feature-bar__title fs-6 fw-bold mb-0">Easy Returns</h3>
+                        <p class="feature-bar__description fs-7 mb-0">Within 30 Days</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ===============>> Feature bar section end here <<================= -->
+
+
+
+
+<!-- ===============>> footer start here <<================= -->
+<div th:replace="~{footer :: footer}"></div>
+
+<!-- ===============>> footer end here <<================= -->
+
+
+
+
+<!-- ===============>> scrollToTop start here <<================= -->
+<a href="#" class="scrollToTop scrollToTop--style1"><i class="fa-solid fa-arrow-up-from-bracket"></i></a>
+<!-- ===============>> scrollToTop ending here <<================= -->
+
+
+<!-- vendor plugins -->
+
+<script th:src="@{/assets/js/metismenujs.min.js}"></script>
+<script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/assets/js/all.min.js}"></script>
+<script th:src="@{/assets/js/swiper-bundle.min.js}"></script>
+<script th:src="@{/assets/js/aos.js}"></script>
+<script th:src="@{/assets/js/fslightbox.js}"></script>
+<script th:src="@{/assets/js/purecounter_vanilla.js}"></script>
+<script th:src="@{/assets/js/trk-menu.js}"></script>
+<script th:src="@{/assets/js/custom.js}"></script>
+
+
+</body>
+
+
+<!-- Mirrored from thetork.com/demos/html/torganic/product-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Apr 2025 14:27:35 GMT -->
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+
+<!-- Mirrored from thetork.com/demos/html/torganic/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Apr 2025 14:27:05 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>Torganic | Organic Food eCommerce HTML Template </title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Sites meta Data -->
+    <meta name="application-name" content="Torganic | Organic Food eCommerce HTML Template">
+    <meta name="author" content="thetork">
+    <meta name="keywords" content="Torganic, Crypto, Forex, and Stocks Trading Business">
+    <meta name="description"
+          content="Torganic is a premium, fully responsive HTML template designed for organic food eCommerce sites. Featuring clean, modern design and powerful functionality, it’s perfect for creating a professional online store. Boost your sales with Torganic's user-friendly layout, SEO-optimized code, and seamless shopping experience.">
+    <meta name="_csrf" content="${_csrf.token}">
+    <meta name="_csrf_header" content="${_csrf.headerName}">
+
+    <!-- OG meta data -->
+    <meta property="og:title" content="Torganic | Organic Food eCommerce HTML Template">
+    <meta property="og:site_name" content=Torganic>
+    <meta property="og:url" content="index-2.html">
+    <meta property="og:description"
+          content="Welcome to Torganic – Organic Food eCommerce HTML Template
+
+  Discover Torganic, a meticulously designed HTML template tailored for organic food and eco-friendly eCommerce websites. Whether you're building an online store for fresh produce, natural products, or sustainable goods, Torganic offers a clean, modern design with powerful functionality to make your site stand out.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/images/og.png">
+
+
+
+
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.png}" type="image/x-icon">
+
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/aos.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/swiper-bundle.min.css}">
+
+    <!-- main css for template -->
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+</head>
+
+<body>
+
+<!-- ===============>> Preloader start here <<================= -->
+<div th:replace="~{preload :: preload}"></div>
+<!-- ===============>> Preloader end here <<================= -->
+
+
+
+<div th:replace="~{header :: header}"></div>
+
+
+<!-- ================> Page header start here <================== -->
+<section class="page-header bg--cover">
+    <div class="container">
+        <div class="page-header__content" data-aos="fade-right" data-aos-duration="1000">
+            <h1>Cart</h1>
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item "><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Cart</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</section>
+<!-- ================> Page header end here <================== -->
+
+
+
+
+
+<!-- ==========>> cart Section start Here <<========== -->
+<!-- ==========>> cart Section start Here <<========== -->
+<div class="cart padding-top padding-bottom section-bg">
+    <div class="container">
+        <div class="section-wrapper">
+            <div class="row g-5">
+                <div class="col-lg-12">
+                    <div class="cart__product table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Discount / Items</th>
+                                <th>Total</th>
+                                <th>Remove</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="item : ${cartItems}" class="cart-item"
+                                th:data-price="${item.productPrice}"
+                                th:data-quantity="${item.quantity}">
+                                <td class="cart__item">
+                                    <div class="cart__item-thumb">
+                                        <a href="#"><img th:src="@{${item.productImage}}" alt="product"></a>
+                                    </div>
+                                    <div class="cart__item-content">
+                                        <h4><a href="#" th:text="${item.productName}">Product Name</a></h4>
+                                    </div>
+                                </td>
+
+                                <!-- Price -->
+                                <td class="align-middle item-price" th:data-price="${item.productPrice}"></td>
+
+                                <!-- Quantity -->
+                                <td class="cart__quantity align-middle">
+                                    <div class="quantity-button quantity-button--style2">
+                                        <button class="quantity-button__control quantity-button__control--decrease"
+                                                th:onclick="|changeQuantity(${item.cartId}, -1, ${item.productPrice}, ${item.discount ?: 0})|">-</button>
+                                        <span class="quantity-button__display"
+                                              th:id="'quantity-' + ${item.cartId}"
+                                              th:text="${item.quantity}">1</span>
+                                        <button class="quantity-button__control quantity-button__control--increase"
+                                                th:onclick="|changeQuantity(${item.cartId}, 1, ${item.productPrice}, ${item.discount ?: 0})|">+</button>
+                                    </div>
+                                </td>
+
+                                <!-- Discount -->
+                                <td class="align-middle"
+                                    th:text="${item.discount != null} ? ${T(java.math.BigDecimal).valueOf(item.discount.doubleValue() * 100).setScale(0, T(java.math.RoundingMode).HALF_UP)} + '%' : '0%'">
+                                </td>
+
+                                <!-- Total -->
+                                <td class="align-middle item-total"
+                                    th:id="'item-total-' + ${item.cartId}"
+                                    th:data-price="${item.productPrice}"
+                                    th:data-quantity="${item.quantity}"
+                                    th:data-discount="${item.discount}">
+                                </td>
+
+                                <!-- Remove -->
+                                <td class="align-middle">
+                                    <button class="trk-btn trk-btn--outline"
+                                            th:onclick="'removeCartItem(' + ${item.cartId} + ')'">
+                                        Remove
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cart total -->
+            <div class="row justify-content-end">
+                <div class="col-lg-4">
+                    <div class="cart__total">
+                        <h3>Cart Total</h3>
+                        <div class="cart__total-data cart__total-data--total">
+                            <span>Total</span>
+                            <span id="total">Loading...</span>
+                        </div>
+                        <a href="/checkout" class="trk-btn trk-btn--primary">Proceed to checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Format individual prices
+        document.querySelectorAll('.item-price').forEach(td => {
+            const price = parseFloat(td.dataset.price);
+            td.innerText = price.toLocaleString('vi-VN') + ' VNĐ';
+        });
+
+        // Calculate item total
+        document.querySelectorAll('.item-total').forEach(td => {
+            const price = parseFloat(td.dataset.price);
+            const quantity = parseInt(td.dataset.quantity);
+            const discount = parseFloat(td.dataset.discount || 0);
+            const total = price * quantity * (1 - discount);
+            td.innerText = new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(total);
+        });
+
+        updateCartTotal();
+    });
+
+    function updateCartTotal() {
+        const totalElements = document.querySelectorAll('.item-total');
+        let sum = 0;
+
+        totalElements.forEach(el => {
+            const text = el.innerText || el.textContent;
+            const numericString = text.replace(/[^\d]/g, '');
+            const value = parseInt(numericString, 10);
+            if (!isNaN(value)) sum += value;
+        });
+
+        const totalSpan = document.getElementById('total');
+        totalSpan.textContent = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND'
+        }).format(sum);
+    }
+
+    function changeQuantity(cartId, delta, productPrice, discount) {
+        const quantitySpan = document.getElementById('quantity-' + cartId);
+        let currentQuantity = parseInt(quantitySpan.innerText);
+        let newQuantity = currentQuantity + delta;
+
+        if (newQuantity <= 0) {
+            alert("Số lượng phải lớn hơn 0");
+            return;
+        }
+
+        fetch('/cart/update?cartId=' + cartId + '&quantity=' + newQuantity, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="_csrf"]')?.getAttribute('content') || ''
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                quantitySpan.innerText = newQuantity;
+
+                const totalSpan = document.getElementById('item-total-' + cartId);
+                const effectiveDiscount = discount && discount > 0 ? discount : 0;
+                const discountedPrice = productPrice * (1 - effectiveDiscount);
+                const total = discountedPrice * newQuantity;
+
+                totalSpan.innerText = new Intl.NumberFormat('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND'
+                }).format(total);
+
+                updateCartTotal();
+            } else {
+                alert(data.message || "Cập nhật thất bại.");
+                quantitySpan.innerText = currentQuantity;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Có lỗi xảy ra khi cập nhật giỏ hàng.");
+            quantitySpan.innerText = currentQuantity;
+        });
+    }
+
+    function removeCartItem(cartId) {
+        fetch(`/cart/remove?cartId=${cartId}`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="_csrf"]')?.getAttribute('content') || ''
+            }
+        })
+        .then(response => {
+            if (response.redirected) {
+                window.location.href = response.url;
+            } else {
+                window.location.reload();
+            }
+        })
+        .catch(error => {
+            console.error('Delete failed', error);
+        });
+    }
+</script>
+
+
+
+<!-- ==========>> cart Section Ends Here <<========== -->
+
+
+
+<!-- ===============>> Feature bar section start here <<================= -->
+<div class="feature-bar border-top">
+    <div class="container">
+        <div class="row py-3 g-5 g-lg-4 justify-content-center">
+            <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
+                <div class="feature-bar__item d-flex align-items-center">
+                    <img src="assets/images/feature/bar/1.png" alt="delivery car">
+                    <div class="feature-bar__text ms-4">
+                        <h3 class="feature-bar__title fs-6 fw-bold mb-0">Fast Delivery</h3>
+                        <p class="feature-bar__description fs-7 mb-0">Minimum order $40</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
+                <div class="feature-bar__item d-flex align-items-center">
+                    <img src="assets/images/feature/bar/2.png" alt="support image">
+                    <div class="feature-bar__text ms-4">
+                        <h3 class="feature-bar__title fs-6 fw-bold mb-0">24/7 Support</h3>
+                        <p class="feature-bar__description fs-7 mb-0">Contact us 24 Hours</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
+                <div class="feature-bar__item d-flex align-items-center">
+                    <img src="assets/images/feature/bar/3.png" alt="pay security">
+                    <div class="feature-bar__text ms-4">
+                        <h3 class="feature-bar__title fs-6 fw-bold mb-0">Pay Security</h3>
+                        <p class="feature-bar__description fs-7 mb-0">100% Secure Payment</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
+                <div class="feature-bar__item d-flex align-items-center">
+                    <img src="assets/images/feature/bar/4.png" alt="money returns">
+                    <div class="feature-bar__text ms-4">
+                        <h3 class="feature-bar__title fs-6 fw-bold mb-0">Easy Returns</h3>
+                        <p class="feature-bar__description fs-7 mb-0">Within 30 Days</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ===============>> Feature bar section end here <<================= -->
+
+
+
+
+<div th:replace="~{footer :: footer}"></div>
+
+
+<!-- ===============>> scrollToTop start here <<================= -->
+<a href="#" class="scrollToTop scrollToTop--style1"><i class="fa-solid fa-arrow-up-from-bracket"></i></a>
+<!-- ===============>> scrollToTop ending here <<================= -->
+
+
+<!-- vendor plugins -->
+
+
+<script th:src="@{/assets/js/metismenujs.min.js}"></script>
+<script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/assets/js/all.min.js}"></script>
+<script th:src="@{/assets/js/swiper-bundle.min.js}"></script>
+<script th:src="@{/assets/js/aos.js}"></script>
+<script th:src="@{/assets/js/fslightbox.js}"></script>
+<script th:src="@{/assets/js/purecounter_vanilla.js}"></script>
+<script th:src="@{/assets/js/trk-menu.js}"></script>
+<script th:src="@{/assets/js/custom.js}"></script>
+
+
+</body>
+
+
+<!-- Mirrored from thetork.com/demos/html/torganic/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Apr 2025 14:27:05 GMT -->
+</html>
