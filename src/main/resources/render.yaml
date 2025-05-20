@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: ecoluffa-backend # Tên dịch vụ bạn muốn đặt trên Render
+    env: java
+    branch: main # Nhánh Git bạn muốn deploy (thường là main hoặc master)
+    buildCommand: ./mvnw clean package -DskipTests # Lệnh build project
+    startCommand: java -jar target/*.jar # Lệnh chạy ứng dụng (tự động lấy file jar trong target)
+    instanceType: free # Loại instance (bản miễn phí)
+    envVars: # Biến môi trường nếu cần (ví dụ config database, API keys)
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
