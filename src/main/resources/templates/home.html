@@ -66,7 +66,174 @@
 <div th:replace="~{header :: header}"></div>
 
 <!-- ===============>> Header section end here <<================= -->
+<!-- fragments/chatbox.html -->
+<div id="chatbox-container">
+    <button class="open-chat-btn" onclick="openChat()">💬 Chat</button>
 
+    <div id="chatModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>Support Chat</span>
+                <button class="close-btn" onclick="closeChat()">×</button>
+            </div>
+            <div class="modal-body" id="chatMessages">
+                <p><strong>Bot:</strong> Xin chào! Bạn cần giúp gì?</p>
+            </div>
+            <div class="modal-footer">
+                <input type="text" id="chatInput" placeholder="Nhập tin nhắn..." onkeydown="checkEnter(event)">
+                <button onclick="sendMessage()">Gửi</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .open-chat-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 30px;
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        background-color: #fefefe;
+        width: 600px; /* tăng rộng từ 300px lên 400px */
+        height: 350px; /* thêm chiều cao để to hơn */
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+
+        .modal-header {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-body {
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+
+        .modal-footer {
+            padding: 10px;
+            border-top: 1px solid #ccc;
+            display: flex;
+        }
+
+        .modal-footer input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .modal-footer button {
+            margin-left: 8px;
+            padding: 8px 12px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .close-btn {
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+        }
+    </style>
+
+    <script>
+        function openChat() {
+            document.getElementById("chatModal").style.display = "block";
+        }
+
+        function closeChat() {
+            document.getElementById("chatModal").style.display = "none";
+        }
+
+        function sendMessage() {
+                const input = document.getElementById("chatInput");
+                const message = input.value.trim();
+                if (message === '') return;
+
+                const chatMessages = document.getElementById("chatMessages");
+
+                // Hiển thị tin nhắn của người dùng
+                const userMessage = document.createElement("p");
+                userMessage.innerHTML = `<strong>Bạn:</strong> ${message}`;
+                chatMessages.appendChild(userMessage);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                // Gửi yêu cầu đến API Spring Boot
+                fetch('http://localhost:8080/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: message })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Response from API:', data); 
+                        const botReply = document.createElement("p");
+                        botReply.innerHTML = `<strong>Bot:</strong> ${data.reply}`;
+                        chatMessages.appendChild(botReply);
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    })
+                    .catch(error => {
+                        const errorMsg = document.createElement("p");
+                        errorMsg.innerHTML = `<strong>Bot:</strong> Lỗi khi gửi tin nhắn.`;
+                        chatMessages.appendChild(errorMsg);
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                        console.error('Error:', error);
+                    });
+
+                input.value = '';
+            }
+
+
+        function checkEnter(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+    </script>
+</div>
+  
 
 
 <!-- ===============>> Banner section start here <<================= -->

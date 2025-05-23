@@ -3,6 +3,7 @@ package com.example.exe2update.controller;
 import com.example.exe2update.entity.Category;
 import com.example.exe2update.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +19,10 @@ public class DBCategoryController {
 
     // Hiển thị danh sách ban đầu
     @GetMapping
-    public String getCategory(Model model) {
+    public String getCategory(Model model, Authentication authentication) {
+        String username = authentication.getName();
         List<Category> categories = categoryService.getAllCategories();
+        model.addAttribute("username", username);
         model.addAttribute("categories", categories);
         model.addAttribute("newCategory", new Category());
         return "dbcategory";

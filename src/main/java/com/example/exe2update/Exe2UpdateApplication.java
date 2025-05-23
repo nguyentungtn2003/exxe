@@ -8,8 +8,7 @@ public class Exe2UpdateApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(Exe2UpdateApplication.class, args);
-        
+
     }
 
 }
-    

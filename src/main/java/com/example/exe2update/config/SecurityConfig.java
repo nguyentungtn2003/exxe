@@ -17,97 +17,112 @@ import org.springframework.security.web.firewall.StrictHttpFirewall;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    @Autowired
-    private CustomAuthenticationSuccessHandler successHandler;
+        private final CustomOAuth2SuccessHandler customOAuth2SuccessHandler;
 
-    @Autowired
-    private CustomAuthenticationFailureHandler failureHandler;
+        @Autowired
+        private CustomAuthenticationSuccessHandler successHandler;
 
-    @Autowired
-    private CustomUserDetailsService userDetailsService;
+        @Autowired
+        private CustomAuthenticationFailureHandler failureHandler;
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+        @Autowired
+        private CustomUserDetailsService userDetailsService;
 
+        SecurityConfig(CustomOAuth2SuccessHandler customOAuth2SuccessHandler) {
+                this.customOAuth2SuccessHandler = customOAuth2SuccessHandler;
+        }
 
-    @Bean
-    public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
-        StrictHttpFirewall firewall = new StrictHttpFirewall();
-        firewall.setAllowUrlEncodedDoubleSlash(true); // Cho phép //
-        firewall.setAllowBackSlash(true);             // Tuỳ chọn: nếu bạn dùng \ trong URL
-        firewall.setAllowSemicolon(true);             // Tuỳ chọn
-        return firewall;
-    }
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService);
-        provider.setPasswordEncoder(passwordEncoder());
-        provider.setHideUserNotFoundExceptions(false);
-        return provider;
-    }
+        @Bean
+        public PasswordEncoder passwordEncoder() {
+                return new BCryptPasswordEncoder();
+        }
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-//                .csrf(csrf -> csrf
-//                        .ignoringRequestMatchers(
-//                                "/login", "/register", "/forgot-password", "/change-password", "/change-password/**", "/product-details/*/add-review"
-//                                , "/cart/remove", "/cart/update","/checkout/pay"
-//                        )
-//                )
-                .csrf(csrf -> csrf
-                        .ignoringRequestMatchers(
-                                "/login", "/register", "/forgot-password", "/change-password", "/change-password/**", "/product-details/*/add-review",
-                                "/cart/remove", "/cart/update", "/update","/post-comment", "/dbcategory/*"
-                        )
-                )
+        @Bean
+        public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
+                StrictHttpFirewall firewall = new StrictHttpFirewall();
+                firewall.setAllowUrlEncodedDoubleSlash(true); // Cho phép //
+                firewall.setAllowBackSlash(true); // Tuỳ chọn: nếu bạn dùng \ trong URL
+                firewall.setAllowSemicolon(true); // Tuỳ chọn
+                return firewall;
+        }
 
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/assets/**", "/login", "/register",
-                                "/forgot-password", "/change-password", "/change-password/**"
-                        ).permitAll()
+        @Bean
+        public DaoAuthenticationProvider authenticationProvider() {
+                DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+                provider.setUserDetailsService(userDetailsService);
+                provider.setPasswordEncoder(passwordEncoder());
+                provider.setHideUserNotFoundExceptions(false);
+                return provider;
+        }
 
-                        // Allow public access to product details and reviews
-                        .requestMatchers(HttpMethod.GET, "/product-details/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/product-details/*/add-review").hasRole("USER")
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+                http
+                                // .csrf(csrf -> csrf
+                                // .ignoringRequestMatchers(
+                                // "/login", "/register", "/forgot-password", "/change-password",
+                                // "/change-password/**", "/product-details/*/add-review"
+                                // , "/cart/remove", "/cart/update","/checkout/pay,"/api/chat""
+                                // )
+                                // )
+                                .csrf(csrf -> csrf
+                                                .ignoringRequestMatchers(
+                                                                "/login", "/register", "/forgot-password",
+                                                                "/change-password", "/change-password/**",
+                                                                "/product-details/*/add-review",
+                                                                "/cart/remove", "/cart/update", "/update",
+                                                                "/post-comment", "/dbcategory/*",
+                                                                "api/chat",
+                                                                "/",
+                                                                "/login/oauth2/**",
+                                                                "/verify/**"))
 
+                                .authorizeHttpRequests(auth -> auth
+                                                .requestMatchers(
+                                                                "/assets/**", "/login", "/register",
+                                                                "/forgot-password", "/change-password",
+                                                                "/change-password/**",
+                                                                "/api/chat",
+                                                                "/",
+                                                                "verify/**")
+                                                .permitAll()
 
-                        // ArticlesDetailsController
-                        .requestMatchers(HttpMethod.POST, "/post-comment").hasRole("USER")
-                        .requestMatchers(HttpMethod.POST, "/post-reply").hasRole("USER")
-                        .requestMatchers(HttpMethod.POST, "/articles/add").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/articles/edit").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/post-comment").hasRole("USER")
-                        .requestMatchers(HttpMethod.POST, "/articles/delete").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/cart/update").hasRole("USER")
+                                                // Allow public access to product details and reviews
+                                                .requestMatchers(HttpMethod.GET, "/product-details/**").permitAll()
+                                                .requestMatchers(HttpMethod.POST, "/product-details/*/add-review")
+                                                .hasRole("USER")
 
-                        .requestMatchers(HttpMethod.POST, "/checkout/pay").hasRole("USER")
+                                                // ArticlesDetailsController
+                                                .requestMatchers(HttpMethod.POST, "/post-comment").hasRole("USER")
+                                                .requestMatchers(HttpMethod.POST, "/post-reply").hasRole("USER")
+                                                .requestMatchers(HttpMethod.POST, "/articles/add").hasRole("ADMIN")
+                                                .requestMatchers(HttpMethod.POST, "/articles/edit").hasRole("ADMIN")
+                                                .requestMatchers(HttpMethod.POST, "/post-comment").hasRole("USER")
+                                                .requestMatchers(HttpMethod.POST, "/articles/delete").hasRole("ADMIN")
+                                                .requestMatchers(HttpMethod.POST, "/cart/update").hasRole("USER")
+                                                .requestMatchers(HttpMethod.POST, "/api/chat").hasRole("USER")
+                                                .requestMatchers(HttpMethod.POST, "/checkout/pay").hasRole("USER")
 
-                        .requestMatchers("/dbcategory/add").permitAll()
+                                                .requestMatchers("/dbcategory/add").permitAll()
 
-                        // Require authentication for other requests
-                        .anyRequest().authenticated()
-                )
-                .formLogin(form -> form
-                        .loginPage("/login")
-                        .loginProcessingUrl("/login")
-                        .usernameParameter("email")
-                        .successHandler(successHandler)
-                        .failureHandler(failureHandler)
-                        .permitAll()
-                )
-                .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login?logout")
-                        .permitAll()
-                );
+                                                // Require authentication for other requests
+                                                .anyRequest().authenticated())
+                                .formLogin(form -> form
+                                                .loginPage("/login")
+                                                .loginProcessingUrl("/login")
+                                                .usernameParameter("email")
+                                                .successHandler(successHandler)
+                                                .failureHandler(failureHandler)
+                                                .permitAll())
+                                .oauth2Login(oauth2 -> oauth2
+                                                .loginPage("/login") // trang login tùy chỉnh
+                                                .successHandler(customOAuth2SuccessHandler))
+                                .logout(logout -> logout
+                                                .logoutUrl("/logout")
+                                                .logoutSuccessUrl("/login?logout")
+                                                .permitAll());
 
-        return http.build();
-    }
-
+                return http.build();
+        }
 
 }

@@ -5,6 +5,7 @@ import com.example.exe2update.entity.User;
 import com.example.exe2update.service.RoleService;
 import com.example.exe2update.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,18 +27,20 @@ public class DBUserController {
 
     // Hiển thị danh sách user + roles
     @GetMapping()
-    public String showAllUsers(Model model) {
+    public String showAllUsers(Model model, Authentication authentication) {
+        String username = authentication.getName();
         List<User> users = userService.getAllUsers();
         List<Role> roles = roleService.getAllRoles();
         model.addAttribute("users", users);
+        model.addAttribute("username", username);
         model.addAttribute("roles", roles);
-        return "alluser";  // tên view .html
+        return "alluser"; // tên view .html
     }
 
     @PostMapping("/save")
     public String saveUser(@ModelAttribute User user,
-                           @RequestParam Integer roleId,
-                           @RequestParam(required = false) String passwordHash) {
+            @RequestParam Integer roleId,
+            @RequestParam(required = false) String passwordHash) {
 
         Role role = roleService.getRoleById(roleId);
         user.setRole(role);
@@ -64,13 +67,12 @@ public class DBUserController {
             }
         } else {
             user.setCreatedAt(LocalDateTime.now());
-            user.setPasswordHash(passwordEncoder.encode(passwordHash));  // hash mật khẩu mới
+            user.setPasswordHash(passwordEncoder.encode(passwordHash)); // hash mật khẩu mới
         }
 
         userService.save(user);
         return "redirect:/dballuser";
     }
-
 
     // Xóa user theo userId
     @PostMapping("/delete")

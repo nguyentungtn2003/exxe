@@ -10,6 +10,7 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+
 @Component
 public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
@@ -18,7 +19,7 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
-                                        AuthenticationException exception) throws IOException, ServletException {
+            AuthenticationException exception) throws IOException, ServletException {
 
         String email = request.getParameter("email");
         request.getSession().setAttribute("lastEmail", email);
@@ -30,6 +31,7 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
             request.getSession().setAttribute("message", "Sai mật khẩu.");
             request.getSession().setAttribute("showForgotPassword", true);
         }
+        System.out.println("Login failed: " + exception.getMessage());
 
         super.setDefaultFailureUrl("/login?error");
         super.onAuthenticationFailure(request, response, exception);

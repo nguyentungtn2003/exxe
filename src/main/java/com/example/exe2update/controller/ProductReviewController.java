@@ -3,6 +3,7 @@ package com.example.exe2update.controller;
 import com.example.exe2update.entity.Review;
 import com.example.exe2update.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
+
 @Controller
 @RequestMapping("/productreview")
 public class ProductReviewController {
@@ -20,7 +22,9 @@ public class ProductReviewController {
     private ReviewRepository reviewRepository;
 
     @GetMapping
-    public String getProductReview(Model model) {
+    public String getProductReview(Model model, Authentication authentication) {
+        String username = authentication.getName();
+        model.addAttribute("username", username);
         List<Review> reviews = reviewRepository.findAll();
         model.addAttribute("reviews", reviews);
         return "productreview";

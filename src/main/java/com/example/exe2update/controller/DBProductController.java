@@ -6,6 +6,7 @@ import com.example.exe2update.repository.CategoryRepository;
 import com.example.exe2update.repository.ProductRepository;
 import com.example.exe2update.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,10 @@ public class DBProductController {
     private ProductService productService;
 
     @GetMapping
-    public String listProducts(Model model) {
+    public String listProducts(Model model, Authentication authentication) {
+        String username = authentication.getName();
+
+        model.addAttribute("username", username);
         model.addAttribute("products", productRepository.findAll());
         return "dbproduct"; // trang list sản phẩm
     }
@@ -57,14 +61,15 @@ public class DBProductController {
 
     @PostMapping("/add")
     public String addProduct(@ModelAttribute("product") Product product,
-                             @RequestParam("imageFile") MultipartFile imageFile,
-                             Model model) {
+            @RequestParam("imageFile") MultipartFile imageFile,
+            Model model) {
 
         if (!imageFile.isEmpty()) {
             try {
                 String uploadDir = System.getProperty("user.dir") + "/uploads/";
                 File uploadFolder = new File(uploadDir);
-                if (!uploadFolder.exists()) uploadFolder.mkdirs();
+                if (!uploadFolder.exists())
+                    uploadFolder.mkdirs();
 
                 String fileName = System.currentTimeMillis() + "_" + imageFile.getOriginalFilename();
                 File destinationFile = new File(uploadDir + fileName);
@@ -94,8 +99,8 @@ public class DBProductController {
 
     @PostMapping("/edit")
     public String updateProduct(@ModelAttribute("product") Product product,
-                                @RequestParam("imageFile") MultipartFile imageFile,
-                                Model model) {
+            @RequestParam("imageFile") MultipartFile imageFile,
+            Model model) {
 
         Product existing = productRepository.findById(product.getProductId()).orElse(null);
         if (existing == null) {
@@ -106,7 +111,8 @@ public class DBProductController {
             try {
                 String uploadDir = System.getProperty("user.dir") + "/uploads/";
                 File uploadFolder = new File(uploadDir);
-                if (!uploadFolder.exists()) uploadFolder.mkdirs();
+                if (!uploadFolder.exists())
+                    uploadFolder.mkdirs();
 
                 String fileName = System.currentTimeMillis() + "_" + imageFile.getOriginalFilename();
                 File destinationFile = new File(uploadDir + fileName);
@@ -140,7 +146,6 @@ public class DBProductController {
         return "redirect:/dbproduct";
     }
 
-
     // AJAX search
     @GetMapping("/search")
     public String searchProducts(@RequestParam(name = "name", required = false) String name, Model model) {
@@ -151,6 +156,6 @@ public class DBProductController {
             products = productService.findByNameContainingIgnoreCase(name);
         }
         model.addAttribute("products", products);
-        return "dbproduct :: productRows";  // trả về fragment tbody
+        return "dbproduct :: productRows"; // trả về fragment tbody
     }
 }
