@@ -4,6 +4,7 @@ import com.example.exe2update.entity.*;
 import com.example.exe2update.service.CartService;
 import com.example.exe2update.service.OrderService;
 import com.example.exe2update.service.UserService;
+import com.example.exe2update.service.impl.PayOSService;
 import com.example.exe2update.service.impl.VNPayService;
 import com.example.exe2update.repository.OrderDetailRepository;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,10 +31,11 @@ public class CheckoutController {
     private final OrderService orderService;
     private final VNPayService vnPayService;
     private final OrderDetailRepository orderDetailRepository;
+    private final PayOSService payOSService;
 
     @GetMapping
     public String showCheckoutPage(Authentication auth, Model model,
-                                   @RequestParam(value = "error", required = false) String error) {
+            @RequestParam(value = "error", required = false) String error) {
         String email = auth.getName();
         User user = userService.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Không tìm thấy người dùng"));
@@ -54,10 +56,10 @@ public class CheckoutController {
 
     @PostMapping("/pay/vnpay")
     public RedirectView payByVNPay(HttpServletRequest request,
-                                   Authentication auth,
-                                   @RequestParam String fullName,
-                                   @RequestParam String address,
-                                   @RequestParam BigDecimal totalPrice) {
+            Authentication auth,
+            @RequestParam String fullName,
+            @RequestParam String address,
+            @RequestParam BigDecimal totalPrice) {
         try {
             String email = auth.getName();
             User user = userService.findByEmail(email)
@@ -72,22 +74,22 @@ public class CheckoutController {
             order.setOrderDate(LocalDateTime.now());
             order.setStatus(OrderStatus.Pending);
             orderService.save(order);
-           // Tạo danh sách OrderDetail từ Cart
-        List<Cart> cartItems = cartService.getCartByUser(user);
-        List<OrderDetail> orderDetails = new ArrayList<>();
+            // Tạo danh sách OrderDetail từ Cart
+            List<Cart> cartItems = cartService.getCartByUser(user);
+            List<OrderDetail> orderDetails = new ArrayList<>();
 
-        for (Cart cart : cartItems) {
-            OrderDetail detail = new OrderDetail();
-            detail.setOrder(order);
-            detail.setProduct(cart.getProduct());
-            detail.setQuantity(cart.getQuantity());
-            detail.setPrice(cart.getProduct().getPrice()); // Lưu lại giá thời điểm mua
-            orderDetails.add(detail);
-        }
+            for (Cart cart : cartItems) {
+                OrderDetail detail = new OrderDetail();
+                detail.setOrder(order);
+                detail.setProduct(cart.getProduct());
+                detail.setQuantity(cart.getQuantity());
+                detail.setPrice(cart.getProduct().getPrice()); // Lưu lại giá thời điểm mua
+                orderDetails.add(detail);
+            }
 
-        // Lưu chi tiết đơn hàng
-        orderDetailRepository.saveAll(orderDetails); // hoặc orderDetailService.saveAll()
-            
+            // Lưu chi tiết đơn hàng
+            orderDetailRepository.saveAll(orderDetails); // hoặc orderDetailService.saveAll()
+
             // Lấy IP của client
             String ipAddr = getClientIp(request);
 
@@ -96,8 +98,7 @@ public class CheckoutController {
                     order.getOrderId().toString(),
                     totalPrice.longValue(),
                     ipAddr,
-                    "Thanh Toan Don Hang " + order.getOrderId()
-            );
+                    "Thanh Toan Don Hang " + order.getOrderId());
 
             // Redirect user đến VNPAY
             return new RedirectView(paymentUrl);
@@ -117,7 +118,7 @@ public class CheckoutController {
     }
 
     @GetMapping("/vnpay-return")
-    public String handleVnpayReturn(HttpServletRequest request, Model model,Authentication auth) {
+    public String handleVnpayReturn(HttpServletRequest request, Model model, Authentication auth) {
         Map<String, String> fields = new HashMap<>();
 
         // Lấy tất cả tham số bắt đầu bằng "vnp_"
@@ -159,6 +160,71 @@ public class CheckoutController {
             model.addAttribute("message", "Dữ liệu không hợp lệ (sai chữ ký)");
             return "payment-result";
         }
+    }
+
+    @PostMapping("/pay/payos")
+    public RedirectView payByPayOS(HttpServletRequest request,
+            Authentication auth,
+            @RequestParam String fullName,
+            @RequestParam String address,
+            @RequestParam BigDecimal totalPrice) {
+        try {
+            String email = auth.getName();
+            User user = userService.findByEmail(email)
+                    .orElseThrow(() -> new RuntimeException("Không tìm thấy user"));
+
+            Order order = new Order();
+            order.setUser(user);
+            order.setFullName(fullName);
+            order.setAddress(address);
+            order.setTotalAmount(totalPrice);
+            order.setOrderDate(LocalDateTime.now());
+            order.setStatus(OrderStatus.Pending);
+            orderService.save(order);
+
+            List<Cart> cartItems = cartService.getCartByUser(user);
+            List<OrderDetail> orderDetails = new ArrayList<>();
+
+            for (Cart cart : cartItems) {
+                OrderDetail detail = new OrderDetail();
+                detail.setOrder(order);
+                detail.setProduct(cart.getProduct());
+                detail.setQuantity(cart.getQuantity());
+                detail.setPrice(cart.getProduct().getPrice());
+                orderDetails.add(detail);
+            }
+
+            orderDetailRepository.saveAll(orderDetails);
+
+            String returnUrl = "http://localhost:8080/checkout/payos-return";
+            String cancelUrl = "http://localhost:8080/checkout?error=cancelled";
+
+            String paymentUrl = payOSService.createPaymentUrl(order.getOrderId(), totalPrice.longValue(), returnUrl,
+                    cancelUrl);
+
+            return new RedirectView(paymentUrl);
+
+        } catch (Exception e) {
+            log.error("Lỗi khi tạo URL thanh toán PayOS", e);
+            return new RedirectView("/checkout?error=" + e.getMessage());
+        }
+    }
+
+    @GetMapping("/payos-return")
+    public String handlePayosReturn(@RequestParam Map<String, String> params, Model model) {
+        String status = params.get("status");
+        String orderCode = params.get("orderCode");
+
+        if ("PAID".equalsIgnoreCase(status)) {
+            Integer orderId = Integer.valueOf(orderCode);
+            orderService.updateOrderStatus(orderId, OrderStatus.Completed);
+            cartService.removeFromCart(orderId);
+            model.addAttribute("message", "Thanh toán thành công qua PayOS!");
+        } else {
+            model.addAttribute("message", "Thanh toán thất bại hoặc bị hủy.");
+        }
+
+        return "payment-result";
     }
 
 }

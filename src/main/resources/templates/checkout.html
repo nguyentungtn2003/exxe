@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
+
 <head>
   <title>Torganic | Organic Food eCommerce HTML Template </title>
   <meta charset="UTF-8">
@@ -7,7 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Meta Data -->
-  <meta name="description" content="Torganic is a premium, fully responsive HTML template designed for organic food eCommerce sites.">
+  <meta name="description"
+    content="Torganic is a premium, fully responsive HTML template designed for organic food eCommerce sites.">
   <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="/assets/css/aos.css">
@@ -18,165 +20,195 @@
 
 <body>
 
-<!-- Preloader -->
-<div class="preloader">
-  <img src="assets/images/logo/preloader.png" alt="preloader icon">
-</div>
+  <!-- Preloader -->
+  <div class="preloader">
+    <img src="assets/images/logo/preloader.png" alt="preloader icon">
+  </div>
 
-<div th:replace="~{header :: header}"></div>
+  <div th:replace="~{header :: header}"></div>
 
-<!-- Checkout Section -->
-<section class="checkout padding-top padding-bottom">
-  <div class="container">
-    <div class="checkout__wrapper">
-      <form action="/checkout/pay/vnpay" method="POST" class="checkout__form">
-        <!-- CSRF Token -->
-        <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+  <!-- Checkout Section -->
+  <section class="checkout padding-top padding-bottom">
+    <div class="container">
+      <div class="checkout__wrapper">
+        <form id="checkoutForm" method="POST" class="checkout__form">
+          <!-- CSRF Token -->
+          <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
 
-        <div class="row g-5">
-          <!-- Billing Details -->
-          <div class="col-lg-7">
-            <div class="checkout__details" data-aos="fade-right" data-aos-duration="800" data-aos-delay="100">
-              <div class="row g-4">
-                <div class="col-lg-12">
-                  <div class="checkout__title">
-                    <h5>Checkout</h5>
+          <div class="row g-5">
+            <!-- Billing Details -->
+            <div class="col-lg-7">
+              <div class="checkout__details">
+                <div class="row g-4">
+                  <div class="col-lg-12">
+                    <div class="checkout__title">
+                      <h5>Checkout</h5>
+                    </div>
+                    <div class="checkout__subtitle">
+                      <p>Billing Details</p>
+                    </div>
                   </div>
-                  <div class="checkout__subtitle">
-                    <p>Billing Details</p>
+
+                  <!-- Input Fields -->
+                  <div class="col-lg-6">
+                    <input type="text" class="form-control" name="fullName" placeholder="Full Name*" required>
                   </div>
-                </div>
 
-                <!-- Input Fields -->
-                <div class="col-lg-6">
-                  <input type="text" class="form-control" id="first-name" name="fullName" placeholder="Full Name*" required>
-                </div>
+                  <div class="col-lg-6">
+                    <input type="text" class="form-control" name="address" placeholder="Address*" required>
+                  </div>
 
-                <div class="col-lg-6">
-                  <input type="text" class="form-control" id="address" name="address" placeholder="Address*" required>
-                </div>
-
-                <div class="col-lg-12">
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="terms-check" required>
-                    <label for="terms-check" class="form-check-label">I agree to the Terms and Conditions</label>
+                  <div class="col-lg-12">
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="terms-check" required>
+                      <label for="terms-check" class="form-check-label">I agree to the Terms and Conditions</label>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+
+            <!-- Order Summary -->
+            <div class="col-lg-5">
+              <div class="order">
+                <div class="checkout__title">
+                  <h5>Order Summary</h5>
+                </div>
+                <div class="order__details table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Product</th>
+                        <th>Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr th:each="item, itemStat : ${cartItems}">
+                        <td>
+                          <img th:src="@{'/assets/images/product/' + ${item.product.imageUrl}}" alt="product">
+                          <div class="o-details">
+                            <a th:href="@{/product-details/{id}(id=${item.product.productId})}"
+                              th:text="${item.product.name}">Product Name</a>
+                          </div>
+                        </td>
+                        <td>
+                          <span
+                            th:text="${item.quantity} + ' x ' + ${#numbers.formatDecimal(T(java.lang.Math).floor(item.product.price * ((item.product.discount != null and item.product.discount > 0) ? (1 - item.product.discount) : 1)), 1, 'COMMA', 0, 'POINT')} + ' ₫'"></span><br>
+                          <strong
+                            th:text="${#numbers.formatDecimal(T(java.lang.Math).floor(item.quantity * item.product.price * ((item.product.discount != null and item.product.discount > 0) ? (1 - item.product.discount) : 1)), 1, 'COMMA', 0, 'POINT')} + ' ₫'"></strong>
+                        </td>
+
+                        <input type="hidden" name="cartItems[__${itemStat.index}__].productId"
+                          th:value="${item.product.productId}" />
+                        <input type="hidden" name="cartItems[__${itemStat.index}__].quantity"
+                          th:value="${item.quantity}" />
+                      </tr>
+
+                      <tr>
+                        <th scope="row">Sub Total</th>
+                        <td
+                          th:text="${#numbers.formatDecimal(T(java.lang.Math).floor(totalPrice), 1, 'COMMA', 0, 'POINT')} + ' ₫'">
+                          0 ₫</td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>Total (VND)</th>
+                        <td>
+                          <span
+                            th:text="${#numbers.formatDecimal(T(java.lang.Math).floor(totalPrice), 1, 'COMMA', 0, 'POINT')} + ' ₫'"></span>
+                          <input type="hidden" name="totalPrice" th:value="${totalPrice}" />
+                        </td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+
+                <!-- Payment Option -->
+                <div class="order__option">
+                  <div class="order__option-title">
+                    <p>Payment</p>
+                  </div>
+
+                  <!-- VNPay -->
+                  <div class="order__option-item">
+                    <div class="form-radio-wrapper">
+                      <input class="form-radio" type="radio" name="paymentMethod" id="vnpay" value="vnpay" checked
+                        onchange="updateFormAction()">
+                      <label for="vnpay">VNPay Payment</label>
+                    </div>
+                    <div class="thumb">
+                      <img src="assets/images/payment/vnpay_logo.png" alt="VNPay" style="height: 32px;">
+                    </div>
+                  </div>
+
+                  <!-- PayOS -->
+                  <div class="order__option-item">
+                    <div class="form-radio-wrapper">
+                      <input class="form-radio" type="radio" name="paymentMethod" id="payos" value="payos"
+                        onchange="updateFormAction()">
+                      <label for="payos">PayOS Payment</label>
+                    </div>
+                    <div class="thumb">
+                      <img src="assets/images/payment/payos_logo.png" alt="PayOS" style="height: 32px;">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Terms -->
+                <div class="order__check mt-5">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="data" required>
+                    <label class="form-check-label" for="data">
+                      Your personal data will be used to process your order and for other purposes described in our
+                      privacy
+                      policy.
+                    </label>
+                  </div>
+                </div>
+
+                <button type="submit" class="trk-btn trk-btn--primary d-block mt-4">Place Order</button>
+              </div>
+            </div>
           </div>
+        </form>
 
-          <!-- Order Summary -->
-          <div class="col-lg-5">
-  <div class="order" data-aos="fade-left" data-aos-duration="800" data-aos-delay="100">
-    <div class="checkout__title">
-      <h5>Order Summary</h5>
-    </div>
-    <div class="order__details table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-       <tr th:each="item, itemStat : ${cartItems}">
-  <td>
-    <img th:src="@{'/assets/images/product/' + ${item.product.imageUrl}}" alt="product">
-    <div class="o-details">
-      <a th:href="@{/product-details/{id}(id=${item.product.productId})}" 
-         th:text="${item.product.name}">Product Name</a>
-    </div>
-  </td>
-  <td>
-    <span th:text="${item.quantity} + ' x ' + 
-      ${#numbers.formatDecimal(
-         T(java.lang.Math).floor(
-           item.product.price * 
-           ( (item.product.discount != null and item.product.discount > 0) ? (1 - item.product.discount) : 1 )
-         ), 
-       1, 'COMMA', 0, 'POINT')} + ' ₫'"></span><br>
-    <strong th:text="${#numbers.formatDecimal(
-         T(java.lang.Math).floor(
-           item.quantity * item.product.price * 
-           ( (item.product.discount != null and item.product.discount > 0) ? (1 - item.product.discount) : 1 )
-         ), 
-       1, 'COMMA', 0, 'POINT')} + ' ₫'"></strong>
-  </td>
+        <!-- SCRIPT: Change form action based on selected payment method -->
+        <script>
+          function updateFormAction() {
+            const form = document.getElementById('checkoutForm');
+            const selectedMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
 
-  <!-- Hidden inputs to pass to backend -->
-  <input type="hidden" name="cartItems[__${itemStat.index}__].productId" th:value="${item.product.productId}" />
-  <input type="hidden" name="cartItems[__${itemStat.index}__].quantity" th:value="${item.quantity}" />
-</tr>
+            if (selectedMethod === 'vnpay') {
+              form.action = '/checkout/pay/vnpay';
+            } else if (selectedMethod === 'payos') {
+              form.action = '/checkout/pay/payos';
+            }
+          }
 
-          <tr>
-            <th scope="row">Sub Total</th>
-            <td th:text="${#numbers.formatDecimal(T(java.lang.Math).floor(totalPrice), 1, 'COMMA', 0, 'POINT')} + ' ₫'">0 ₫</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <th>Total &#40;VND&#41;</th>
-            <td>
-              <span th:text="${#numbers.formatDecimal(T(java.lang.Math).floor(totalPrice), 1, 'COMMA', 0, 'POINT')} + ' ₫'"></span>
-              <input type="hidden" name="totalPrice" th:value="${totalPrice}" />
-            </td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
+          // Ensure correct action on page load
+          document.addEventListener('DOMContentLoaded', updateFormAction);
+        </script>
 
-    <!-- Payment Option -->
-    <div class="order__option">
-      <div class="order__option-title">
-        <p>Payment</p>
-      </div>
-      <div class="order__option-item">
-        <div class="form-radio-wrapper">
-          <input class="form-radio" type="radio" name="paymentMethod" id="vnpay" value="vnpay" checked>
-          <label class="form-check-label" for="vnpay">VNPay Payment</label>
-        </div>
-        <div class="thumb">
-          <img src="assets/images/payment/vnpay_logo.png" alt="VNPay" style="height: 32px;">
-        </div>
+
       </div>
     </div>
+  </section>
 
-    <!-- Terms -->
-    <div class="order__check mt-5">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="data" required>
-        <label class="form-check-label" for="data">
-          Your personal data will be used to process your order and for other purposes described in our privacy policy.
-        </label>
-      </div>
-    </div>
+  <!-- Scroll to Top Button -->
+  <a href="#" class="scrollToTop"><i class="fa-solid fa-arrow-up-from-bracket"></i></a>
 
-    <button type="submit" class="trk-btn trk-btn--primary d-block mt-4">Place Order</button>
-  </div>
-</div>
-
-        </div>
-      </form>
-
-    </div>
-  </div>
-</section>
-
-<!-- Scroll to Top Button -->
-<a href="#" class="scrollToTop"><i class="fa-solid fa-arrow-up-from-bracket"></i></a>
-
-<!-- Vendor Scripts -->
-<script src="/assets/js/metismenujs.min.js"></script>
-<script src="/assets/js/bootstrap.bundle.min.js"></script>
-<script src="/assets/js/all.min.js"></script>
-<script src="/assets/js/swiper-bundle.min.js"></script>
-<script src="/assets/js/aos.js"></script>
-<script src="/assets/js/fslightbox.js"></script>
-<script src="/assets/js/purecounter_vanilla.js"></script>
-<script src="/assets/js/trk-menu.js"></script>
-<script src="/assets/js/custom.js"></script>
+  <!-- Vendor Scripts -->
+  <script src="/assets/js/metismenujs.min.js"></script>
+  <script src="/assets/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/js/all.min.js"></script>
+  <script src="/assets/js/swiper-bundle.min.js"></script>
+  <script src="/assets/js/aos.js"></script>
+  <script src="/assets/js/fslightbox.js"></script>
+  <script src="/assets/js/purecounter_vanilla.js"></script>
+  <script src="/assets/js/trk-menu.js"></script>
+  <script src="/assets/js/custom.js"></script>
 
 </body>
+
 </html>
