@@ -3,14 +3,15 @@
 
 
 <!-- Mirrored from themes.pixelstrap.com/fastkart/back-end/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 16 May 2025 11:20:53 GMT -->
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-          content="Fastkart admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+        content="Fastkart admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
     <meta name="keywords"
-          content="admin template, Fastkart admin template, dashboard template, flat admin template, responsive admin template, web app">
+        content="admin template, Fastkart admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
@@ -18,8 +19,8 @@
 
     <!-- Google font-->
     <link
-            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
-            rel="stylesheet">
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+        rel="stylesheet">
 
     <!-- Linear Icon css -->
     <link rel="stylesheet" th:href="@{/assets/assets2/css/linearicon.css}">
@@ -58,502 +59,528 @@
 </head>
 
 <body>
-<!-- tap on top start -->
-<div class="tap-top">
-    <span class="lnr lnr-chevron-up"></span>
-</div>
-<!-- tap on tap end -->
-
-<!-- page-wrapper Start-->
-<div class="page-wrapper compact-wrapper" id="pageWrapper">
-    <!-- Page Header Start-->
-    <div class="page-header">
-        <div class="header-wrapper m-0">
-            <div class="header-logo-wrapper p-0">
-                <div class="logo-wrapper">
-                    <a href="index.html">
-                        <img class="img-fluid main-logo" src="assets/images/logo/1.png" alt="logo">
-                        <img class="img-fluid white-logo" src="assets/images/logo/1-white.png" alt="logo">
-                    </a>
-                </div>
-                <div class="toggle-sidebar">
-                    <i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i>
-                    <a href="index.html">
-                        <img src="assets/images/logo/1.png" class="img-fluid" alt="">
-                    </a>
-                </div>
-            </div>
-
-
-            <div class="nav-right col-6 pull-right right-header p-0">
-                <ul class="nav-menus">
-                
-                  
-                    <li>
-                        <div class="mode">
-                            <i class="ri-moon-line"></i>
-                        </div>
-                    </li>
-                 <li class="profile-nav onhover-dropdown pe-0 me-0 dropdown">
-  <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-    <div class="media profile-media">
-      <div class="user-name-hide media-body">
-        <span th:text="'Hello ' + ${username}"></span>
-      </div>
+    <!-- tap on top start -->
+    <div class="tap-top">
+        <span class="lnr lnr-chevron-up"></span>
     </div>
-  </a>
-  <ul class="dropdown-menu">
-    <li>
-      <a class="dropdown-item" th:href="@{/login}">Logout</a>
-    </li>
-  </ul>
-</li>
+    <!-- tap on tap end -->
+
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <!-- Page Header Start-->
+        <div class="page-header">
+            <div class="header-wrapper m-0">
+                <div class="header-logo-wrapper p-0">
+                    <div class="logo-wrapper">
+                        <a href="index.html">
+                            <img class="img-fluid main-logo" src="assets/images/logo/1.png" alt="logo">
+                            <img class="img-fluid white-logo" src="assets/images/logo/1-white.png" alt="logo">
+                        </a>
+                    </div>
+                    <div class="toggle-sidebar">
+                        <i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i>
+                        <a href="index.html">
+                            <img src="assets/images/logo/1.png" class="img-fluid" alt="">
+                        </a>
+                    </div>
+                </div>
 
 
-                </ul>
+                <div class="nav-right col-6 pull-right right-header p-0">
+                    <ul class="nav-menus">
+
+
+                        <li>
+                            <div class="mode">
+                                <i class="ri-moon-line"></i>
+                            </div>
+                        </li>
+                        <li class="profile-nav onhover-dropdown pe-0 me-0 dropdown">
+                            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="media profile-media">
+                                    <div class="user-name-hide media-body">
+                                        <span th:text="'Hello ' + ${username}"></span>
+                                    </div>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" th:href="@{/login}">Logout</a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- Page Header Ends-->
+        <!-- Page Header Ends-->
 
-    <!-- Page Body Start-->
-    <div class="page-body-wrapper">
-        <!-- Page Sidebar Start-->
-        <div th:replace="sidebar :: sidebar"></div>
-        <!-- Page Sidebar Ends-->
+        <!-- Page Body Start-->
+        <div class="page-body-wrapper">
+            <!-- Page Sidebar Start-->
+            <div th:replace="sidebar :: sidebar"></div>
+            <!-- Page Sidebar Ends-->
 
-        <!-- index body start -->
-        <div class="page-body">
-            <div class="container-fluid">
-                <div class="row">
-                    <!-- chart caard section start -->
-                    <div class="col-sm-6 col-xxl-3 col-lg-6">
-                        <div class="main-tiles border-5 border-0  card-hover card o-hidden">
-                            <div class="custome-1-bg b-r-4 card-body">
-                                <div class="media align-items-center static-top-widget">
-                                    <div class="media-body p-0">
-                                        <span class="m-0">Total Revenue</span>
-                                        <span th:text="${totalRevenue}">0 VNĐ</span>
+            <!-- index body start -->
+            <div class="page-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- chart caard section start -->
+                        <div class="col-sm-6 col-xxl-3 col-lg-6">
+                            <div class="main-tiles border-5 border-0  card-hover card o-hidden">
+                                <div class="custome-1-bg b-r-4 card-body">
+                                    <div class="media align-items-center static-top-widget">
+                                        <div class="media-body p-0">
+                                            <span class="m-0">Total Revenue</span>
+                                            <span th:text="${totalRevenue}">0 VNĐ</span>
 
-                                    </div>
-                                    <div class="align-self-center text-center">
-                                        <i class="ri-database-2-line"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-xxl-3 col-lg-6">
-                        <div class="main-tiles border-5 card-hover border-0 card o-hidden">
-                            <div class="custome-2-bg b-r-4 card-body">
-                                <div class="media static-top-widget">
-                                    <div class="media-body p-0">
-                                        <span class="m-0">Total Orders</span>
-                                        <span th:text="${totalOrders}">0 VNĐ</span>
-                                    </div>
-                                    <div class="align-self-center text-center">
-                                        <i class="ri-shopping-bag-3-line"></i>
+                                        </div>
+                                        <div class="align-self-center text-center">
+                                            <i class="ri-database-2-line"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-sm-6 col-xxl-3 col-lg-6">
-                        <div class="main-tiles border-5 card-hover border-0  card o-hidden">
-                            <div class="custome-3-bg b-r-4 card-body">
-                                <div class="media static-top-widget">
-                                    <div class="media-body p-0">
-                                        <span class="m-0">Total Products</span>
-                                        <span th:text="${totalProducts}">0 VNĐ</span>
-                                        <h4 class="mb-0 counter">
-                                            <a href="/dbproduct/add" class="badge badge-light-secondary grow">
-                                                ADD NEW</a>
-                                        </h4>
-                                    </div>
-
-                                    <div class="align-self-center text-center">
-                                        <i class="ri-chat-3-line"></i>
+                        <div class="col-sm-6 col-xxl-3 col-lg-6">
+                            <div class="main-tiles border-5 card-hover border-0 card o-hidden">
+                                <div class="custome-2-bg b-r-4 card-body">
+                                    <div class="media static-top-widget">
+                                        <div class="media-body p-0">
+                                            <span class="m-0">Total Orders</span>
+                                            <span th:text="${totalOrders}">0 VNĐ</span>
+                                        </div>
+                                        <div class="align-self-center text-center">
+                                            <i class="ri-shopping-bag-3-line"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-sm-6 col-xxl-3 col-lg-6">
-                        <div class="main-tiles border-5 card-hover border-0 card o-hidden">
-                            <div class="custome-4-bg b-r-4 card-body">
-                                <div class="media static-top-widget">
-                                    <div class="media-body p-0">
-                                        <span class="m-0">Total Customers</span>
-                                       <span th:text="${totalCustomers}">0 VNĐ</span>
-                                    </div>
+                        <div class="col-sm-6 col-xxl-3 col-lg-6">
+                            <div class="main-tiles border-5 card-hover border-0  card o-hidden">
+                                <div class="custome-3-bg b-r-4 card-body">
+                                    <div class="media static-top-widget">
+                                        <div class="media-body p-0">
+                                            <span class="m-0">Total Products</span>
+                                            <span th:text="${totalProducts}">0 VNĐ</span>
+                                            <h4 class="mb-0 counter">
+                                                <a href="/dbproduct/add" class="badge badge-light-secondary grow">
+                                                    ADD NEW</a>
+                                            </h4>
+                                        </div>
 
-                                    <div class="align-self-center text-center">
-                                        <i class="ri-user-add-line"></i>
+                                        <div class="align-self-center text-center">
+                                            <i class="ri-chat-3-line"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-12">
-                        <div class="card o-hidden card-hover">
-                            <div class="card-header border-0 pb-1">
-                                <div class="card-header-title p-0">
-                                    <h4>Category</h4>
+                        <div class="col-sm-6 col-xxl-3 col-lg-6">
+                            <div class="main-tiles border-5 card-hover border-0 card o-hidden">
+                                <div class="custome-4-bg b-r-4 card-body">
+                                    <div class="media static-top-widget">
+                                        <div class="media-body p-0">
+                                            <span class="m-0">Total Customers</span>
+                                            <span th:text="${totalCustomers}">0 VNĐ</span>
+                                        </div>
+
+                                        <div class="align-self-center text-center">
+                                            <i class="ri-user-add-line"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        <div style="padding: 0;">
-  <div style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 10px;">
-    <div th:each="category : ${allCategories}" 
-         style="flex: 0 0 auto; background: #f5f5f5; padding: 10px 15px; border-radius: 5px; cursor: pointer; user-select: none;">
-      <a href="javascript:void(0)" style="text-decoration: none; color: #333;">
-        <h6 style="margin: 0; font-weight: 600; font-family: 'Arial', sans-serif; font-style: italic; font-size: 18px; 
+                        </div>
+
+                        <div class="col-12">
+                            <div class="card o-hidden card-hover">
+                                <div class="card-header border-0 pb-1">
+                                    <div class="card-header-title p-0">
+                                        <h4>Category</h4>
+                                    </div>
+                                </div>
+                                <div style="padding: 0;">
+                                    <div
+                                        style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 10px;">
+                                        <div th:each="category : ${allCategories}"
+                                            style="flex: 0 0 auto; background: #f5f5f5; padding: 10px 15px; border-radius: 5px; cursor: pointer; user-select: none;">
+                                            <a href="javascript:void(0)" style="text-decoration: none; color: #333;">
+                                                <h6 style="margin: 0; font-weight: 600; font-family: 'Arial', sans-serif; font-style: italic; font-size: 18px; 
                    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">
-          <span th:text="${category.name}">Category Name</span>
-        </h6>
-      </a>
-    </div>
-  </div>
-</div>
-
-
-                        </div>
-                    </div>
-                    <!-- chart card section End -->
-
-
-                    <!-- Earning chart star-->
-                     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-                     <style>
-        #report-chart {
-            height: 300px;
-            width: 100%;
-        }
-    </style>
-         <div class="col-xl-6">
-            <div class="card o-hidden card-hover">
-                <div class="card-header border-0 pb-1">
-                    <div class="card-header-title">
-                        <h4>Revenue Report</h4>
-                    </div>
-                </div>
-                <div class="card-body p-0">
-                    <div id="report-chart"></div>
-                </div>
-            </div>
-        </div>
-
-<script th:inline="javascript">
-/*<![CDATA[*/
-    const revenueByMonthJson = /*[[${revenueByMonthJson}]]*/ '{}';
-    console.log('Raw JSON:', revenueByMonthJson);
-    const revenueData = JSON.parse(revenueByMonthJson);
-    console.log('Parsed data:', revenueData);
-
-    const months = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6'];
-    const values = months.map(month => revenueData[month] || 0);
-    console.log('Values:', values);
-
-    const options = {
-        chart: {
-            type: 'area',
-            height: 300,
-            toolbar: { show: false }
-        },
-        series: [{
-            name: 'Revenue',
-            data: values
-        }],
-        xaxis: {
-            categories: months
-        },
-        fill: {
-            type: 'gradient',
-            gradient: {
-                shadeIntensity: 1,
-                opacityFrom: 0.7,
-                opacityTo: 0.2,
-                stops: [0, 90, 100]
-            }
-        },
-        colors: ['#00b894'],
-        stroke: {
-            curve: 'smooth',
-            width: 3
-        },
-        dataLabels: {
-            enabled: false
-        },
-        grid: {
-            strokeDashArray: 4
-        }
-    };
-
-    const chart = new ApexCharts(document.querySelector("#report-chart"), options);
-    chart.render();
-/*]]>*/
-</script>
-
-
-                    <!-- Earning chart  end-->
-
-
-                    <!-- Best Selling Product Start -->
-                    <div class="col-xl-6 col-md-12">
-                        <div class="card o-hidden card-hover">
-                            <div class="card-header card-header-top card-header--2 px-0 pt-0">
-                                <div class="card-header-title">
-                                    <h4>Best Selling Product</h4>
+                                                    <span th:text="${category.name}">Category Name</span>
+                                                </h6>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
 
-                               
-                            </div>
 
-                            <div class="card-body p-0">
-                                <div>
-                                    <div class="table-responsive">
-                                       <table class="best-selling-table w-image
+                            </div>
+                        </div>
+                        <!-- chart card section End -->
+
+
+                        <!-- Earning chart star-->
+                        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+                        <style>
+                            #report-chart {
+                                height: 300px;
+                                width: 100%;
+                            }
+                        </style>
+                        <div class="col-xl-6">
+                            <div class="card o-hidden card-hover">
+                                <div class="card-header border-0 pb-1">
+                                    <div class="card-header-title">
+                                        <h4>Revenue Report</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div id="report-chart"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script th:inline="javascript">
+                            /*<![CDATA[*/
+                            const revenueByMonthJson = /*[[${revenueByMonthJson}]]*/ '{}';
+                            console.log('Raw JSON:', revenueByMonthJson);
+                            const revenueData = JSON.parse(revenueByMonthJson);
+                            console.log('Parsed data:', revenueData);
+
+                            const months = [
+                                'Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
+                                'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'
+                            ];
+                            const values = months.map(month => revenueData[month] || 0);
+                            console.log('Values:', values);
+
+                            function formatCurrency(value) {
+                                if (value >= 1000000) {
+                                    return (value / 1000000).toFixed(1).replace(/\.0$/, '') + 'M VNĐ';
+                                } else if (value >= 1000) {
+                                    return Math.round(value / 1000) + 'k VNĐ';
+                                }
+                                return value + ' VNĐ';
+                            }
+
+                            const options = {
+                                chart: {
+                                    type: 'area',
+                                    height: 300,
+                                    toolbar: { show: false }
+                                },
+                                series: [{
+                                    name: 'Revenue',
+                                    data: values
+                                }],
+                                xaxis: {
+                                    categories: months
+                                },
+                                fill: {
+                                    type: 'gradient',
+                                    gradient: {
+                                        shadeIntensity: 1,
+                                        opacityFrom: 0.7,
+                                        opacityTo: 0.2,
+                                        stops: [0, 90, 100]
+                                    }
+                                },
+                                colors: ['#00b894'],
+                                stroke: {
+                                    curve: 'smooth',
+                                    width: 3
+                                },
+                                dataLabels: {
+                                    enabled: true,
+                                    formatter: function (val) {
+                                        return formatCurrency(val);
+                                    }
+                                },
+                                tooltip: {
+                                    y: {
+                                        formatter: function (val) {
+                                            return formatCurrency(val);
+                                        }
+                                    }
+                                },
+                                grid: {
+                                    strokeDashArray: 4
+                                }
+                            };
+
+                            const chart = new ApexCharts(document.querySelector("#report-chart"), options);
+                            chart.render();
+                            /*]]>*/
+                        </script>
+
+
+                        <!-- Earning chart  end-->
+
+
+                        <!-- Best Selling Product Start -->
+                        <div class="col-xl-6 col-md-12">
+                            <div class="card o-hidden card-hover">
+                                <div class="card-header card-header-top card-header--2 px-0 pt-0">
+                                    <div class="card-header-title">
+                                        <h4>Best Selling Product</h4>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="card-body p-0">
+                                    <div>
+                                        <div class="table-responsive">
+                                            <table class="best-selling-table w-image
                                             w-image
                                             w-image table border-0">
-                                            <tbody>
-                                            <tr th:each="row : ${top3Products}">
-                                                <td>
-                                                    <div class="best-product-box">
-                                                        <div class="product-image">
-                                                          <img th:if="${row[0].imageUrl != null}" th:src="${row[0].imageUrl}" class="img-fluid" alt="Product" />
+                                                <tbody>
+                                                    <tr th:each="row : ${top3Products}">
+                                                        <td>
+                                                            <div class="best-product-box">
+                                                                <div class="product-image">
+                                                                    <img th:if="${row[0].imageUrl != null}"
+                                                                        th:src="${row[0].imageUrl}" class="img-fluid"
+                                                                        alt="Product" />
 
-                                                        </div>
-                                                        <div class="product-name">
-                                                            <h5 th:text="${row[0].name}">Aata Buscuit</h5>
-                                                        </div>
-                                                    </div>
-                                                </td>
+                                                                </div>
+                                                                <div class="product-name">
+                                                                    <h5 th:text="${row[0].name}">Aata Buscuit</h5>
+                                                                </div>
+                                                            </div>
+                                                        </td>
 
-                                                <td>
-                                                    <div class="product-detail-box">
-                                                        <h6>Price</h6>
-                                                        <h5 class="price" 
-                                                            th:attr="data-price=${row[0].price}" 
-                                                            th:text="${row[0].price}">29000</h5>
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Price</h6>
+                                                                <h5 class="price" th:attr="data-price=${row[0].price}"
+                                                                    th:text="${row[0].price}">29000</h5>
 
-                                                    </div>
-                                                </td>
+                                                            </div>
+                                                        </td>
 
-                                                <td>
-                                                    <div class="product-detail-box">
-                                                        <h6>Orders</h6>
-                                                         <h5 th:text="${row[1]}"></h5>
-                                                    </div>
-                                                </td>
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Orders</h6>
+                                                                <h5 th:text="${row[1]}"></h5>
+                                                            </div>
+                                                        </td>
 
-                                                <td>
-                                                    <div class="product-detail-box">
-                                                        <h6>Stock</h6>
-                                                         <h5 th:text="${row[0].stock}"></h5>
-                                                    </div>
-                                                </td>
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Stock</h6>
+                                                                <h5 th:text="${row[0].stock}"></h5>
+                                                            </div>
+                                                        </td>
 
-                                                <td>
-                                                    <div class="product-detail-box">
-                                                        <h6>Amount</h6>
-                                                       <h5 class="amount" 
-                                                th:attr="data-amount=${row[0].price.doubleValue() * row[1]}" 
-                                                th:text="${row[0].price.doubleValue() * row[1]}">1798000</h5>
-                                                                                                    
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <script>
-                                                document.querySelectorAll('.price, .amount').forEach(el => {
-                                                    const value = Number(el.getAttribute('data-price') || el.getAttribute('data-amount'));
-                                                    if (!isNaN(value)) {
-                                                        el.textContent = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
-                                                    }
-                                                });
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Amount</h6>
+                                                                <h5 class="amount"
+                                                                    th:attr="data-amount=${row[0].price.doubleValue() * row[1]}"
+                                                                    th:text="${row[0].price.doubleValue() * row[1]}">
+                                                                    1798000</h5>
 
-                                            </script>
-                                            </tbody>
-                                        </table>
- 
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <script>
+                                                        document.querySelectorAll('.price, .amount').forEach(el => {
+                                                            const value = Number(el.getAttribute('data-price') || el.getAttribute('data-amount'));
+                                                            if (!isNaN(value)) {
+                                                                el.textContent = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+                                                            }
+                                                        });
 
+                                                    </script>
+                                                </tbody>
+                                            </table>
+
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Best Selling Product End -->
+                        <!-- Best Selling Product End -->
 
 
-                    <!-- Recent orders start-->
-                    <div class="col-xl-6">
-                        <div class="card o-hidden card-hover">
-                            <div class="card-header card-header-top card-header--2 px-0 pt-0">
-                                <div class="card-header-title">
-                                    <h4>Recent Orders</h4>
+                        <!-- Recent orders start-->
+                        <div class="col-xl-6">
+                            <div class="card o-hidden card-hover">
+                                <div class="card-header card-header-top card-header--2 px-0 pt-0">
+                                    <div class="card-header-title">
+                                        <h4>Recent Orders</h4>
+                                    </div>
+
+
                                 </div>
 
-                            
-                            </div>
+                                <div class="card-body p-0">
+                                    <div>
+                                        <div class="table-responsive">
+                                            <table class="best-selling-table table border-0">
+                                                <tbody>
+                                                    <tr th:each="order : ${recentOrders}">
+                                                        <td>
+                                                            <div class="best-product-box">
+                                                                <div class="product-name">
+                                                                    <p>Email</p>
+                                                                    <h5 th:text="${order.user.email}"></h5>
 
-                            <div class="card-body p-0">
-                                <div>
-                                    <div class="table-responsive">
-                                        <table class="best-selling-table table border-0">
-                                            <tbody>
-                                            <tr th:each="order : ${recentOrders}">
-                                                <td>
-                                                    <div class="best-product-box">
-                                                        <div class="product-name">
-                                                            <p>Email</p>
-                                                            <h5 th:text="${order.user.email}"></h5>
-                                                        
-                                                        </div>
-                                                    </div>
-                                                </td>
+                                                                </div>
+                                                            </div>
+                                                        </td>
 
-                                                <td>
-                                                    <div class="product-detail-box">
-                                                        <h6>Date Placed</h6>
-                                                        <h5>5/1/22</h5>
-                                                    </div>
-                                                </td>
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Date Placed</h6>
+                                                                <h5>5/1/22</h5>
+                                                            </div>
+                                                        </td>
 
-                                                <td>
-                                                    <div class="product-detail-box">
-                                                        <h6>Price</h6>
-                                                   <h5>
-  <span th:text="${order.totalAmount}"></span>
-  <script>
-    const el = document.currentScript.previousElementSibling;
-    const val = parseFloat(el.textContent);
-    el.textContent = val.toLocaleString('vi-VN', {style: 'currency', currency: 'VND', maximumFractionDigits: 0});
-  </script>
-</h5>
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Price</h6>
+                                                                <h5>
+                                                                    <span th:text="${order.totalAmount}"></span>
+                                                                    <script>
+                                                                        const el = document.currentScript.previousElementSibling;
+                                                                        const val = parseFloat(el.textContent);
+                                                                        el.textContent = val.toLocaleString('vi-VN', { style: 'currency', currency: 'VND', maximumFractionDigits: 0 });
+                                                                    </script>
+                                                                </h5>
 
 
-                                                    </div>
-                                                </td>
+                                                            </div>
+                                                        </td>
 
-                                                <td>
-                                                    <div class="product-detail-box">
-                                                        <h6>Order Status</h6>
-                                                        <h5 th:text="${order.status}"></h5>
-                                                    </div>
-                                                </td>
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Order Status</h6>
+                                                                <h5 th:text="${order.status}"></h5>
+                                                            </div>
+                                                        </td>
 
-                                                <td>
-                                                    <div class="product-detail-box">
-                                                        <h6>Address</h6>
-                                                        <h5 th:text="${order.address}"></h5>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
+                                                        <td>
+                                                            <div class="product-detail-box">
+                                                                <h6>Address</h6>
+                                                                <h5 th:text="${order.address}"></h5>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- Recent orders end-->
+
+
+
                     </div>
-                    <!-- Recent orders end-->
-
-
-
                 </div>
-            </div>
-            <!-- Container-fluid Ends-->
+                <!-- Container-fluid Ends-->
 
-            <!-- footer start-->
-            <div class="container-fluid">
-                <footer class="footer">
-                    <div class="row">
-                        <div class="col-md-12 footer-copyright text-center">
-                            <p class="mb-0">Copyright 2025 Exe201</p>
+                <!-- footer start-->
+                <div class="container-fluid">
+                    <footer class="footer">
+                        <div class="row">
+                            <div class="col-md-12 footer-copyright text-center">
+                                <p class="mb-0">Copyright 2025 Exe201</p>
+                            </div>
                         </div>
-                    </div>
-                </footer>
+                    </footer>
+                </div>
+                <!-- footer End-->
             </div>
-            <!-- footer End-->
+            <!-- index body end -->
+
         </div>
-        <!-- index body end -->
-
+        <!-- Page Body End -->
     </div>
-    <!-- Page Body End -->
-</div>
-<!-- page-wrapper End-->
+    <!-- page-wrapper End-->
 
-<!-- Modal Start -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <h5 class="modal-title" id="staticBackdropLabel">Logging Out</h5>
-                <p>Are you sure you want to log out?</p>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <div class="button-box">
-                    <button type="button" class="btn btn--no" data-bs-dismiss="modal">No</button>
-                    <button type="button" class="btn  btn--yes btn-primary">Yes</button>
+    <!-- Modal Start -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5 class="modal-title" id="staticBackdropLabel">Logging Out</h5>
+                    <p>Are you sure you want to log out?</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="button-box">
+                        <button type="button" class="btn btn--no" data-bs-dismiss="modal">No</button>
+                        <button type="button" class="btn  btn--yes btn-primary">Yes</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Modal End -->
+    <!-- Modal End -->
 
-<!-- latest js -->
-<script th:src="@{/assets/assets2/js/jquery-3.6.0.min.js}"></script>
+    <!-- latest js -->
+    <script th:src="@{/assets/assets2/js/jquery-3.6.0.min.js}"></script>
 
-<!-- Bootstrap js -->
-<script th:src="@{/assets/assets2/js/bootstrap/bootstrap.bundle.min.js}"></script>
+    <!-- Bootstrap js -->
+    <script th:src="@{/assets/assets2/js/bootstrap/bootstrap.bundle.min.js}"></script>
 
-<!-- feather icon js -->
-<script th:src="@{/assets/assets2/js/icons/feather-icon/feather.min.js}"></script>
-<script th:src="@{/assets/assets2/js/icons/feather-icon/feather-icon.js}"></script>
+    <!-- feather icon js -->
+    <script th:src="@{/assets/assets2/js/icons/feather-icon/feather.min.js}"></script>
+    <script th:src="@{/assets/assets2/js/icons/feather-icon/feather-icon.js}"></script>
 
-<!-- scrollbar simplebar js -->
-<script th:src="@{/assets/assets2/js/scrollbar/simplebar.js}"></script>
-<script th:src="@{/assets/assets2/js/scrollbar/custom.js}"></script>
+    <!-- scrollbar simplebar js -->
+    <script th:src="@{/assets/assets2/js/scrollbar/simplebar.js}"></script>
+    <script th:src="@{/assets/assets2/js/scrollbar/custom.js}"></script>
 
-<!-- Sidebar jquery -->
-<script th:src="@{/assets/assets2/js/config.js}"></script>
+    <!-- Sidebar jquery -->
+    <script th:src="@{/assets/assets2/js/config.js}"></script>
 
-<!-- tooltip init js -->
-<script th:src="@{/assets/assets2/js/tooltip-init.js}"></script>
+    <!-- tooltip init js -->
+    <script th:src="@{/assets/assets2/js/tooltip-init.js}"></script>
 
-<!-- Plugins JS -->
-<script th:src="@{/assets/assets2/js/sidebar-menu.js}"></script>
-<script th:src="@{/assets/assets2/js/notify/bootstrap-notify.min.js}"></script>
-<script th:src="@{/assets/assets2/js/notify/index.js}"></script>
+    <!-- Plugins JS -->
+    <script th:src="@{/assets/assets2/js/sidebar-menu.js}"></script>
+    <script th:src="@{/assets/assets2/js/notify/bootstrap-notify.min.js}"></script>
+    <script th:src="@{/assets/assets2/js/notify/index.js}"></script>
 
-<!-- Apexchar js -->
-<script th:src="@{/assets/assets2/js/chart/apex-chart/apex-chart1.js}"></script>
-<script th:src="@{/assets/assets2/js/chart/apex-chart/moment.min.js}"></script>
-<script th:src="@{/assets/assets2/js/chart/apex-chart/apex-chart.js}"></script>
-<script th:src="@{/assets/assets2/js/chart/apex-chart/stock-prices.js}"></script>
-<script th:src="@{/assets/assets2/js/chart/apex-chart/chart-custom1.js}"></script>
+    <!-- Apexchar js -->
+    <script th:src="@{/assets/assets2/js/chart/apex-chart/apex-chart1.js}"></script>
+    <script th:src="@{/assets/assets2/js/chart/apex-chart/moment.min.js}"></script>
+    <script th:src="@{/assets/assets2/js/chart/apex-chart/apex-chart.js}"></script>
+    <script th:src="@{/assets/assets2/js/chart/apex-chart/stock-prices.js}"></script>
+    <script th:src="@{/assets/assets2/js/chart/apex-chart/chart-custom1.js}"></script>
 
-<!-- slick slider js -->
-<script th:src="@{/assets/assets2/js/slick.min.js}"></script>
-<script th:src="@{/assets/assets2/js/custom-slick.js}"></script>
+    <!-- slick slider js -->
+    <script th:src="@{/assets/assets2/js/slick.min.js}"></script>
+    <script th:src="@{/assets/assets2/js/custom-slick.js}"></script>
 
-<!-- customizer js -->
-<script th:src="@{/assets/assets2/js/customizer.js}"></script>
+    <!-- customizer js -->
+    <script th:src="@{/assets/assets2/js/customizer.js}"></script>
 
-<!-- ratio js -->
-<script th:src="@{/assets/assets2/js/ratio.js}"></script>
+    <!-- ratio js -->
+    <script th:src="@{/assets/assets2/js/ratio.js}"></script>
 
-<!-- sidebar effect -->
-<script th:src="@{/assets/assets2/js/sidebareffect.js}"></script>
+    <!-- sidebar effect -->
+    <script th:src="@{/assets/assets2/js/sidebareffect.js}"></script>
 
-<!-- Theme js -->
-<script th:src="@{/assets/assets2/js/script.js}"></script>
+    <!-- Theme js -->
+    <script th:src="@{/assets/assets2/js/script.js}"></script>
 
 </body>
 
 
 <!-- Mirrored from themes.pixelstrap.com/fastkart/back-end/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 16 May 2025 11:21:11 GMT -->
+
 </html>

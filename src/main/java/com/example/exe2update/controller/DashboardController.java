@@ -38,7 +38,7 @@ public class DashboardController {
         Map<String, Object> data = dashboardService.getDashboardSummary();
         model.addAllAttributes(data);
         String username = authentication.getName();
-        Map<String, Long> revenueByMonth = dashboardService.getRevenueByMonth(1, 6, 2024);
+        Map<String, Long> revenueByMonth = dashboardService.getRevenueByMonth(1, 12, 2025);
         model.addAttribute("revenueByMonth", revenueByMonth);
 
         // Convert Map sang JSON String

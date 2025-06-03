@@ -5,20 +5,21 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "users") // đổi "Users" thành "users"
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id") // đổi userId thành user_id
     private Integer userId;
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "full_name", nullable = false, length = 100) // đổi fullName thành full_name
     private String fullName;
 
     @Column(nullable = false, unique = true, length = 150)
     private String email;
 
-    @Column(nullable = false, length = 255)
+    @Column(name = "password_hash", nullable = false, length = 255) // đổi passwordHash thành password_hash
     private String passwordHash;
 
     @Column(length = 20)
@@ -28,10 +29,10 @@ public class User {
     private String address;
 
     @ManyToOne
-    @JoinColumn(name = "roleID")
+    @JoinColumn(name = "role_id") // đổi roleID thành role_id
     private Role role;
 
-    @Column(nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false) // đổi createdAt thành created_at
     private LocalDateTime createdAt;
 
     @Column(nullable = false)
@@ -49,7 +50,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
 
-    @Column(length = 100)
+    @Column(name = "verification_token", length = 100) // đổi verificationToken thành verification_token
     private String verificationToken;
 
     // Constructor không tham số
@@ -169,8 +170,6 @@ public class User {
         this.reviews = reviews;
     }
 
-    // toString() chỉ in những trường cơ bản, không in collections hay role chi tiết
-    // để tránh vòng đệ quy
     @Override
     public String toString() {
         return "User{" +

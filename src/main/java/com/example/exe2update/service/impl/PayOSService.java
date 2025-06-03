@@ -1,7 +1,7 @@
 package com.example.exe2update.service.impl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -9,8 +9,12 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import java.util.*;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PayOSService {
@@ -26,20 +30,28 @@ public class PayOSService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    public String createPaymentUrl(Integer orderId, Long amount, String returnUrl, String cancelUrl) throws Exception {
-        String endpoint = "https://api.payos.vn/v1/payment-requests";
+    public String createPaymentUrl(Integer orderCode, Long amount, String returnUrl, String cancelUrl)
+            throws Exception {
+        String endpoint = "https://api-merchant.payos.vn/v2/payment-requests";
+        String description = "Thanh toán đơn hàng #" + orderCode;
 
-        Map<String, Object> body = new HashMap<>();
-        body.put("orderCode", orderId);
+        // ⚠️ DÙNG URL GỐC, KHÔNG ENCODE TRONG rawData
+        String rawData = "amount=" + amount +
+                "&cancelUrl=" + cancelUrl +
+                "&description=" + description +
+                "&orderCode=" + orderCode +
+                "&returnUrl=" + returnUrl;
+
+        String signature = hmacSHA256(checksumKey, rawData);
+
+        // Gửi lên API, vẫn dùng giá trị gốc (không encode)
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("orderCode", orderCode);
         body.put("amount", amount);
-        body.put("description", "Thanh toán đơn hàng #" + orderId);
-        body.put("returnUrl", returnUrl);
+        body.put("description", description);
         body.put("cancelUrl", cancelUrl);
-
-        // Checksum
-        String rawData = clientId + "|" + orderId + "|" + amount + "|" + returnUrl + "|" + cancelUrl;
-        String checksum = hmacSHA256(checksumKey, rawData);
-        body.put("signature", checksum);
+        body.put("returnUrl", returnUrl);
+        body.put("signature", signature);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -49,19 +61,35 @@ public class PayOSService {
         HttpEntity<Map<String, Object>> request = new HttpEntity<>(body, headers);
         ResponseEntity<Map> response = restTemplate.postForEntity(endpoint, request, Map.class);
 
-        if (response.getStatusCode() == HttpStatus.OK) {
+        if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
             Map<String, Object> responseBody = response.getBody();
-            return responseBody.get("checkoutUrl").toString();
+            Object dataObj = responseBody.get("data");
+            if (dataObj instanceof Map) {
+                Map<String, Object> data = (Map<String, Object>) dataObj;
+                Object checkoutUrl = data.get("checkoutUrl");
+                if (checkoutUrl != null) {
+                    return checkoutUrl.toString();
+                }
+            }
+            throw new RuntimeException("Không có checkoutUrl trong phản hồi: " + responseBody);
         } else {
-            throw new RuntimeException("Tạo thanh toán thất bại: " + response.getBody());
+            throw new RuntimeException("Tạo thanh toán thất bại. Status: " + response.getStatusCode()
+                    + ", body: " + response.getBody());
         }
     }
 
-    public String hmacSHA256(String key, String data) throws Exception {
+    private String hmacSHA256(String key, String data) throws Exception {
         Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
-        SecretKeySpec secret_key = new SecretKeySpec(key.getBytes(), "HmacSHA256");
-        sha256_HMAC.init(secret_key);
-        byte[] hash = sha256_HMAC.doFinal(data.getBytes());
-        return Base64.getEncoder().encodeToString(hash);
+        SecretKeySpec secretKey = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "HmacSHA256");
+        sha256_HMAC.init(secretKey);
+        byte[] hash = sha256_HMAC.doFinal(data.getBytes(StandardCharsets.UTF_8));
+        StringBuilder hexString = new StringBuilder();
+        for (byte b : hash) {
+            String hex = Integer.toHexString(0xff & b);
+            if (hex.length() == 1)
+                hexString.append('0');
+            hexString.append(hex);
+        }
+        return hexString.toString();
     }
 }

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Roles")
+@Table(name = "roles")
 public class Role {
 
     @Id
@@ -18,17 +18,14 @@ public class Role {
     private List<User> users;
 
     @ManyToMany
-    @JoinTable(
-            name = "RolePermissions",
-            joinColumns = @JoinColumn(name = "RoleID"),
-            inverseJoinColumns = @JoinColumn(name = "PermissionID")
-    )
+    @JoinTable(name = "role_permissions", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "permission_id"))
     private List<Permission> permissions;
 
-    // Constructor không tham số
-    public Role() {}
+    public Role() {
+    }
 
-    // Getter và Setter
+    // Getters và Setters
+
     public Integer getRoleId() {
         return roleId;
     }
@@ -61,7 +58,6 @@ public class Role {
         this.permissions = permissions;
     }
 
-    // toString() chỉ in trường đơn giản, không in users hay permissions chi tiết
     @Override
     public String toString() {
         return "Role{" +

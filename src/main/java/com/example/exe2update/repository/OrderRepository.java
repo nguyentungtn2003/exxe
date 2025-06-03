@@ -17,16 +17,15 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
   Double calculateTotalRevenue();
 
   @Query(value = """
-          SELECT MONTH(order_date) AS month, SUM(total_amount) AS revenue
+          SELECT EXTRACT(MONTH FROM order_date) AS month, SUM(total_amount) AS revenue
           FROM orders
-          WHERE MONTH(order_date) BETWEEN :fromMonth AND :toMonth
-            AND YEAR(order_date) = :year
-          GROUP BY MONTH(order_date)
-          ORDER BY MONTH(order_date)
+          WHERE EXTRACT(MONTH FROM order_date) BETWEEN :fromMonth AND :toMonth
+            AND EXTRACT(YEAR FROM order_date) = :year
+          GROUP BY EXTRACT(MONTH FROM order_date)
+          ORDER BY EXTRACT(MONTH FROM order_date)
       """, nativeQuery = true)
   List<Object[]> getRevenueByMonth(
       @Param("fromMonth") int fromMonth,
       @Param("toMonth") int toMonth,
       @Param("year") int year);
-
 }

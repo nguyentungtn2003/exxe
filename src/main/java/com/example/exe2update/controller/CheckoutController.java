@@ -15,8 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-
+import java.net.URLEncoder;
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -83,7 +84,22 @@ public class CheckoutController {
                 detail.setOrder(order);
                 detail.setProduct(cart.getProduct());
                 detail.setQuantity(cart.getQuantity());
-                detail.setPrice(cart.getProduct().getPrice()); // Lưu lại giá thời điểm mua
+
+                // Lấy giá gốc
+                double price = cart.getProduct().getPrice().doubleValue();
+
+                // Lấy discount, giả sử kiểu Double, giá trị như 0.2 (20%)
+                Double discount = cart.getProduct().getDiscount();
+                if (discount == null)
+                    discount = 0.0;
+
+                // Tính giá sau giảm
+                BigDecimal discountBD = BigDecimal.valueOf(1 - discount);
+                BigDecimal finalPrice = BigDecimal.valueOf(price).multiply(discountBD);
+
+                // Lưu giá thời điểm mua đã áp dụng giảm giá
+                detail.setPrice(finalPrice);
+
                 orderDetails.add(detail);
             }
 
@@ -163,7 +179,7 @@ public class CheckoutController {
     }
 
     @PostMapping("/pay/payos")
-    public RedirectView payByPayOS(HttpServletRequest request,
+    public RedirectView payByPayOS(
             Authentication auth,
             @RequestParam String fullName,
             @RequestParam String address,
@@ -184,7 +200,6 @@ public class CheckoutController {
 
             List<Cart> cartItems = cartService.getCartByUser(user);
             List<OrderDetail> orderDetails = new ArrayList<>();
-
             for (Cart cart : cartItems) {
                 OrderDetail detail = new OrderDetail();
                 detail.setOrder(order);
@@ -193,38 +208,64 @@ public class CheckoutController {
                 detail.setPrice(cart.getProduct().getPrice());
                 orderDetails.add(detail);
             }
-
             orderDetailRepository.saveAll(orderDetails);
 
-            String returnUrl = "http://localhost:8080/checkout/payos-return";
+            String returnUrl = "http://localhost:8080/checkout/payos-return?status=PAID&orderCode="
+                    + order.getOrderId();
             String cancelUrl = "http://localhost:8080/checkout?error=cancelled";
 
-            String paymentUrl = payOSService.createPaymentUrl(order.getOrderId(), totalPrice.longValue(), returnUrl,
+            String paymentUrl = payOSService.createPaymentUrl(
+                    order.getOrderId(),
+                    totalPrice.longValue(),
+                    returnUrl,
                     cancelUrl);
 
             return new RedirectView(paymentUrl);
 
         } catch (Exception e) {
-            log.error("Lỗi khi tạo URL thanh toán PayOS", e);
-            return new RedirectView("/checkout?error=" + e.getMessage());
+            log.error("Lỗi tạo URL thanh toán PayOS", e);
+            String errorEncoded = URLEncoder.encode(e.getMessage(), StandardCharsets.UTF_8);
+            return new RedirectView("/checkout?error=" + errorEncoded);
         }
     }
 
     @GetMapping("/payos-return")
-    public String handlePayosReturn(@RequestParam Map<String, String> params, Model model) {
-        String status = params.get("status");
-        String orderCode = params.get("orderCode");
+    public String handlePayOSReturn(
+            @RequestParam(required = false) String status,
+            @RequestParam(required = false) String orderCode,
+            @RequestParam(required = false) String code,
+            @RequestParam(required = false) String id,
+            @RequestParam(required = false) Boolean cancel,
+            Model model,
+            Authentication authentication) {
 
-        if ("PAID".equalsIgnoreCase(status)) {
-            Integer orderId = Integer.valueOf(orderCode);
-            orderService.updateOrderStatus(orderId, OrderStatus.Completed);
-            cartService.removeFromCart(orderId);
-            model.addAttribute("message", "Thanh toán thành công qua PayOS!");
-        } else {
-            model.addAttribute("message", "Thanh toán thất bại hoặc bị hủy.");
+        // Ghi log để kiểm tra controller có được gọi không
+        System.out.println("✅ Đã vào handlePayOSReturn với status=" + status + ", orderCode=" + orderCode);
+        String email = authentication.getName();
+        User user = userService.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy người dùng"));
+        if (status == null || orderCode == null) {
+            model.addAttribute("message", "Dữ liệu trả về không đầy đủ.");
+            model.addAttribute("username", user.getEmail());
+            return "home";
         }
 
-        return "payment-result";
+        if ("PAID".equalsIgnoreCase(status)) {
+            try {
+                int orderId = Integer.parseInt(orderCode);
+                orderService.updateOrderStatus(orderId, OrderStatus.Completed);
+                cartService.removeFromCart(orderId);
+                model.addAttribute("message", "Thanh toán thành công!");
+            } catch (NumberFormatException e) {
+                model.addAttribute("message", "Mã đơn hàng không hợp lệ.");
+            } catch (Exception e) {
+                model.addAttribute("message", "Lỗi xử lý đơn hàng: " + e.getMessage());
+            }
+        } else {
+            model.addAttribute("message", "Thanh toán bị hủy hoặc thất bại.");
+        }
+        model.addAttribute("username", user.getEmail());
+        return "home";
     }
 
 }

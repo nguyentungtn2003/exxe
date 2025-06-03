@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "Orders")
+@Table(name = "orders")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,7 +23,7 @@ public class Order {
     private Integer orderId;
 
     @ManyToOne
-    @JoinColumn(name = "UserID", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Column(nullable = false, updatable = false)
@@ -39,19 +39,15 @@ public class Order {
     private OrderStatus status;
 
     @ManyToOne
-    @JoinColumn(name = "VoucherID")
+    @JoinColumn(name = "voucher_id")
     private Voucher voucher;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderDetail> orderDetails;
 
-    // Billing details
     @Column(length = 50)
     private String fullName;
 
-
     @Column(length = 100)
     private String address;
-
-
 }

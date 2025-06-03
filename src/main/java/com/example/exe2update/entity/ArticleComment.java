@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "ArticleComments")
+@Table(name = "article_comments")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,26 +21,26 @@ public class ArticleComment {
 
     @ManyToOne
     @JoinColumn(name = "article_id", nullable = false)
-    private Article article; // Bài viết mà comment vào
+    private Article article;
 
     @Column(nullable = false)
-    private String name; // Tên người bình luận
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "parent_comment_id")
-    private ArticleComment parentComment; // Bình luận cha (nếu có)
+    private ArticleComment parentComment;
 
     @OneToMany(mappedBy = "parentComment", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ArticleComment> replies; // Danh sách các bình luận trả lời
+    private List<ArticleComment> replies;
 
     @Column(nullable = false)
-    private String email; // Email người bình luận
+    private String email;
 
-    @Column(nullable = false, columnDefinition = "NVARCHAR(MAX)")
-    private String content; // Nội dung bình luận
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String content;
 
     @Column(nullable = false)
-    private Boolean isAdminReply = false; // TRUE: nếu đây là trả lời của admin
+    private Boolean isAdminReply = false;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;

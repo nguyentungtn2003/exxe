@@ -19,30 +19,30 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer articleId;
 
-    @Column(nullable = false, length = 255, columnDefinition = "NVARCHAR(MAX)")
+    @Column(nullable = false, length = 255, columnDefinition = "TEXT")
     private String title;
 
-    @Column(columnDefinition = "NVARCHAR(MAX)")
+    @Column(columnDefinition = "TEXT")
     private String content;
 
-    // Sửa lại trường author thành userId
-    @Column(name = "userid", nullable = false)
+    @Column(name = "user_id", nullable = false)
     private Integer userId;
+
     @Transient
-    private String authorUsername; // Không lưu vào DB, chỉ để view
+    private String authorUsername;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(columnDefinition = "NVARCHAR(MAX)")
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "image_url")
-    private String image_Url;
+    private String imageUrl;
 
     @Column
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
-    private List<ArticleComment> comments; // Các comment vào bài viết
+    private List<ArticleComment> comments;
 }

@@ -9,7 +9,7 @@ import lombok.ToString;
 import java.util.List;
 
 @Entity
-@Table(name = "Categories")
+@Table(name = "categories")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,15 +19,13 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer categoryId;
 
-    @Column(length = 50, columnDefinition = "NVARCHAR(MAX)")
+    @Column(length = 50, columnDefinition = "TEXT")
     private String name;
 
-    @Column(columnDefinition = "NVARCHAR(MAX)")
+    @Column(columnDefinition = "TEXT")
     private String description;
 
-    @ToString.Exclude // Loại trừ quan hệ này khỏi việc gọi toString()
-    @OneToMany(mappedBy = "category")
+    @ToString.Exclude
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> products;
-
-    // Getters and Setters
 }

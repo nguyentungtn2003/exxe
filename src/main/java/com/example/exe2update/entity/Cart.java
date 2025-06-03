@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Cart")
+@Table(name = "cart") // PostgreSQL mặc định để tên bảng chữ thường
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,28 +20,28 @@ public class Cart {
     private Integer cartId;
 
     @ManyToOne
-    @JoinColumn(name = "userID", nullable = false)
-    private User user;  // Each cart belongs to a user.
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @ManyToOne
-    @JoinColumn(name = "productID", nullable = false)
-    private Product product;  // Each cart item corresponds to a product.
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
 
-    private Integer quantity;  // Number of the product in the cart.
+    private Integer quantity;
+
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String productName;
 
     @Column(nullable = false)
-    private String productName;  // Product name (stored separately in the cart).
+    private BigDecimal productPrice;
 
-    @Column(nullable = false)
-    private BigDecimal productPrice;  // Product price (stored separately in the cart).
+    @Column(columnDefinition = "TEXT")
+    private String productImage;
 
-    private String productImage;  // Product image URL (stored separately in the cart).
-
-
-    private Double discount;  // Discount on the product (if any).
+    private Double discount;
 
     @Column(nullable = false, updatable = false)
-    private LocalDateTime createdAt;  // Creation timestamp for the cart item.
+    private LocalDateTime createdAt;
 
     public Double getTotalPrice() {
         if (productPrice != null && quantity != null) {
@@ -50,15 +50,13 @@ public class Cart {
         return 0.0;
     }
 
-    // Ensuring createdAt gets set before inserting a new cart item
     @PrePersist
     public void prePersist() {
         if (createdAt == null) {
-            createdAt = LocalDateTime.now();  // Set the current timestamp for the cart creation.
+            createdAt = LocalDateTime.now();
         }
     }
 
-    // Method to update Cart info from Product (in case product details change)
     public void updateFromProduct(Product product) {
         this.productName = product.getName();
         this.productPrice = product.getPrice();

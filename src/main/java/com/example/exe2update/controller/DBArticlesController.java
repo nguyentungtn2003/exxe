@@ -27,33 +27,32 @@ public class DBArticlesController {
 
     @Autowired
     private UserService userService;
-  @Autowired
-    private UserRepository userRepository;  // gọi thẳng repo luôn
+    @Autowired
+    private UserRepository userRepository; // gọi thẳng repo luôn
 
     private final String UPLOAD_DIR = "uploads/";
 
- @GetMapping
-public String showArticles(Model model) {
-    List<User> admins = userRepository.findAllAdmins();
+    @GetMapping
+    public String showArticles(Model model) {
+        List<User> admins = userRepository.findAllAdmins();
 
-    model.addAttribute("users", admins);
-    model.addAttribute("article", new Article());
+        model.addAttribute("users", admins);
+        model.addAttribute("article", new Article());
 
-    List<Article> articles = articleService.findAll();
-    model.addAttribute("articles", articles);
+        List<Article> articles = articleService.findAll();
+        model.addAttribute("articles", articles);
 
-    // Tạo Map userId -> email
-    Map<Integer, String> userEmails = admins.stream()
-            .collect(Collectors.toMap(User::getUserId, User::getEmail));
-    model.addAttribute("userEmails", userEmails);
+        // Tạo Map userId -> email
+        Map<Integer, String> userEmails = admins.stream()
+                .collect(Collectors.toMap(User::getUserId, User::getEmail));
+        model.addAttribute("userEmails", userEmails);
 
-    return "articles";
-}
-
+        return "articles";
+    }
 
     @PostMapping("/add")
     public String addArticle(@ModelAttribute("article") Article article,
-                             @RequestParam("imageFile") MultipartFile imageFile) throws IOException {
+            @RequestParam("imageFile") MultipartFile imageFile) throws IOException {
 
         if (imageFile != null && !imageFile.isEmpty()) {
             String originalFilenameRaw = imageFile.getOriginalFilename();
@@ -74,7 +73,7 @@ public String showArticles(Model model) {
             Path filePath = uploadPath.resolve(newFileName);
             Files.copy(imageFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 
-            article.setImage_Url("/" + UPLOAD_DIR + newFileName);
+            article.setImageUrl("/" + UPLOAD_DIR + newFileName);
         }
 
         article.setCreatedAt(LocalDateTime.now());
@@ -101,7 +100,7 @@ public String showArticles(Model model) {
 
     @PostMapping("/edit")
     public String editArticle(@ModelAttribute("article") Article article,
-                              @RequestParam("imageFile") MultipartFile imageFile) throws IOException {
+            @RequestParam("imageFile") MultipartFile imageFile) throws IOException {
         Article existing = articleService.findById(article.getArticleId());
         if (existing == null) {
             return "redirect:/articles";
@@ -125,9 +124,9 @@ public String showArticles(Model model) {
             Path filePath = uploadPath.resolve(newFileName);
             Files.copy(imageFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 
-            article.setImage_Url("/" + UPLOAD_DIR + newFileName);
+            article.setImageUrl("/" + UPLOAD_DIR + newFileName);
         } else {
-            article.setImage_Url(existing.getImage_Url());
+            article.setImageUrl(existing.getImageUrl());
         }
 
         article.setCreatedAt(existing.getCreatedAt());

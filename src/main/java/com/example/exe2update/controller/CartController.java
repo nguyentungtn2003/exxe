@@ -28,7 +28,7 @@ public class CartController {
         String email = authentication.getName();
         User user = userService.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found with email: " + email));
-    model.addAttribute("username", user.getEmail());
+        model.addAttribute("username", user.getEmail());
         model.addAttribute("cartItems", cartService.getCartByUser(user));
         return "cart";
     }
@@ -36,15 +36,15 @@ public class CartController {
     // Thêm sản phẩm vào giỏ bằng path variable (mặc định quantity = 1)
     @GetMapping("/add/{productId}")
     public String addToCartByPath(@PathVariable("productId") Integer productId,
-                                  Authentication authentication) {
+            Authentication authentication) {
         return addToCart(productId, 1, authentication);
     }
 
     // Thêm sản phẩm vào giỏ bằng query param
     @GetMapping("/add")
     public String addToCartByParam(@RequestParam("productId") Integer productId,
-                                   @RequestParam(value = "quantity", defaultValue = "1") Integer quantity,
-                                   Authentication authentication) {
+            @RequestParam(value = "quantity", defaultValue = "1") Integer quantity,
+            Authentication authentication) {
         return addToCart(productId, quantity, authentication);
     }
 
@@ -58,39 +58,40 @@ public class CartController {
         return "redirect:/cart";
     }
 
-   @PostMapping("/update")
-@ResponseBody
-public Map<String, Object> updateCart(@RequestParam("cartId") Integer cartId,
-                                      @RequestParam("quantity") Integer quantity) {
-    Map<String, Object> response = new HashMap<>();
+    @PostMapping("/update")
+    @ResponseBody
+    public Map<String, Object> updateCart(@RequestParam("cartId") Integer cartId,
+            @RequestParam("quantity") Integer quantity) {
+        Map<String, Object> response = new HashMap<>();
 
-    if (quantity <= 0) {
-        response.put("success", false);
-        response.put("message", "Số lượng phải lớn hơn 0");
+        if (quantity <= 0) {
+            response.put("success", false);
+            response.put("message", "Số lượng phải lớn hơn 0");
+            return response;
+        }
+
+        boolean updated = cartService.updateQuantity(cartId, quantity);
+
+        if (updated) {
+            // Lấy giá đã được nhân số lượng rồi, nên không nhân thêm quantity nữa
+            double totalPrice = cartService.getProductPrice(cartId);
+
+            response.put("success", true);
+            response.put("totalPrice", totalPrice);
+        } else {
+            response.put("success", false);
+            response.put("message", "Cập nhật thất bại. Kiểm tra số lượng sản phẩm trong kho.");
+        }
+
         return response;
     }
-
-    boolean updated = cartService.updateQuantity(cartId, quantity);
-
-    if (updated) {
-        // Lấy giá đã được nhân số lượng rồi, nên không nhân thêm quantity nữa
-        double totalPrice = cartService.getProductPrice(cartId);
-
-        response.put("success", true);
-        response.put("totalPrice", totalPrice);
-    } else {
-        response.put("success", false);
-        response.put("message", "Cập nhật thất bại. Kiểm tra số lượng sản phẩm trong kho.");
-    }
-
-    return response;
-}
 
     @DeleteMapping("/remove")
     public String removeFromCart(@RequestParam("cartId") Integer cartId) {
         cartService.removeFromCart(cartId);
         return "redirect:/cart";
     }
+
     @GetMapping("/total")
     @ResponseBody
     public Map<String, Object> getCartTotal(Authentication authentication) {
@@ -105,8 +106,5 @@ public Map<String, Object> updateCart(@RequestParam("cartId") Integer cartId,
         response.put("total", total);
         return response;
     }
-
-
-
 
 }

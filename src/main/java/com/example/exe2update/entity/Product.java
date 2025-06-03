@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,10 +20,10 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer productId;
 
-    @Column(columnDefinition = "NVARCHAR(50)")
+    @Column(length = 50) // PostgreSQL sẽ map sang VARCHAR(50)
     private String name;
 
-    @Column(columnDefinition = "NVARCHAR(MAX)")
+    @Column(columnDefinition = "TEXT") // Thay NVARCHAR(MAX) bằng TEXT trong PostgreSQL
     private String description;
 
     private BigDecimal price;
@@ -33,7 +34,7 @@ public class Product {
     private String imageUrl;
 
     @ManyToOne
-    @JoinColumn(name = "categoryID")
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @Column(nullable = false, updatable = false)
@@ -51,14 +52,11 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<Review> reviews;
 
-    private Double discount; // Tỷ lệ giảm, ví dụ: 0.2 nghĩa là giảm 20%
+    private Double discount;
 
-    // Tự định nghĩa lại phương thức toString() để tránh vòng lặp vô hạn
     @Override
     public String toString() {
         return String.format("Product{id=%d, name='%s', price=%s, stock=%d, isActive=%b, discount=%f}",
                 productId, name, price, stock, isActive, discount);
     }
-
-    // Getters and Setters
 }

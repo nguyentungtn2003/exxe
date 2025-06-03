@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Reviews")
+@Table(name = "reviews")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,16 +19,16 @@ public class Review {
     private Integer reviewId;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "userID")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "productID")
+    @JoinColumn(name = "product_id")
     private Product product;
 
     private Integer rating;
 
-    @Column(columnDefinition = "NVARCHAR(MAX)")
+    @Column(columnDefinition = "TEXT")
     private String comment;
 
     @Column(length = 255)
@@ -39,6 +39,4 @@ public class Review {
 
     @Column(nullable = false)
     private Boolean isApproved = true;
-
-    // Getters and Setters
 }
