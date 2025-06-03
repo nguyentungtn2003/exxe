@@ -3,14 +3,13 @@ package com.example.exe2update.controller;
 // ChatController.java
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.exe2update.dto.Request.ChatRequest;
 import com.example.exe2update.dto.Response.ChatResponse;
 import com.example.exe2update.service.impl.ChatService;
 
-@Controller
+@RestController
 @RequestMapping("/api/chat")
 @CrossOrigin(origins = "*")
 @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')") // Chỉ cho phép người dùng đã đăng nhập
