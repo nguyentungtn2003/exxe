@@ -211,7 +211,9 @@ public class CheckoutController {
             orderDetailRepository.saveAll(orderDetails);
 
             // Trả về endpoint xử lý kết quả thanh toán
-            String returnUrl = "https://exxe.onrender.com/payos-return?orderId=" + order.getOrderId();
+            // String returnUrl = "https://exxe.onrender.com/payos-return?orderId=" +
+            // order.getOrderId();
+            String returnUrl = "https://exxe.onrender.com/home";
             String cancelUrl = "https://exxe.onrender.com/checkout?error=cancelled";
 
             String paymentUrl = payOSService.createPaymentUrl(
@@ -220,7 +222,7 @@ public class CheckoutController {
                     returnUrl,
                     cancelUrl);
 
-            return new RedirectView(paymentUrl);
+            return new RedirectView(returnUrl);
 
         } catch (Exception e) {
             log.error("Lỗi tạo URL thanh toán PayOS", e);
