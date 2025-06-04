@@ -210,8 +210,8 @@ public class CheckoutController {
             }
             orderDetailRepository.saveAll(orderDetails);
 
-            String returnUrl = "https://exxe.onrender.com/home"
-                    + order.getOrderId();
+            // Trả về endpoint xử lý kết quả thanh toán
+            String returnUrl = "https://exxe.onrender.com/payos-return?orderId=" + order.getOrderId();
             String cancelUrl = "https://exxe.onrender.com/checkout?error=cancelled";
 
             String paymentUrl = payOSService.createPaymentUrl(
@@ -220,7 +220,7 @@ public class CheckoutController {
                     returnUrl,
                     cancelUrl);
 
-            return new RedirectView(returnUrl);
+            return new RedirectView(paymentUrl);
 
         } catch (Exception e) {
             log.error("Lỗi tạo URL thanh toán PayOS", e);
@@ -230,42 +230,29 @@ public class CheckoutController {
     }
 
     @GetMapping("/payos-return")
-    public String handlePayOSReturn(
+    public RedirectView handlePayOSReturn(
             @RequestParam(required = false) String status,
             @RequestParam(required = false) String orderCode,
             @RequestParam(required = false) String code,
             @RequestParam(required = false) String id,
             @RequestParam(required = false) Boolean cancel,
-            Model model,
-            Authentication authentication) {
+            @RequestParam(required = false) Integer orderId) {
 
-        // Ghi log để kiểm tra controller có được gọi không
-        System.out.println("✅ Đã vào handlePayOSReturn với status=" + status + ", orderCode=" + orderCode);
-        String email = authentication.getName();
-        User user = userService.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("Không tìm thấy người dùng"));
-        if (status == null || orderCode == null) {
-            model.addAttribute("message", "Dữ liệu trả về không đầy đủ.");
-            model.addAttribute("username", user.getEmail());
-            return "home";
-        }
+        log.info("✅ Đã vào handlePayOSReturn với status={}, orderCode={}, cancel={}", status, orderCode, cancel);
 
-        if ("PAID".equalsIgnoreCase(status)) {
+        if ("PAID".equalsIgnoreCase(status) && Boolean.FALSE.equals(cancel)) {
             try {
-                int orderId = Integer.parseInt(orderCode);
-                orderService.updateOrderStatus(orderId, OrderStatus.Completed);
-                cartService.removeFromCart(orderId);
-                model.addAttribute("message", "Thanh toán thành công!");
-            } catch (NumberFormatException e) {
-                model.addAttribute("message", "Mã đơn hàng không hợp lệ.");
+                // Cập nhật trạng thái đơn hàng
+                orderService.updateOrderStatus(orderId.intValue(), OrderStatus.Completed);
+                cartService.removeFromCart(orderId); // hoặc theo user
+                return new RedirectView("/home?payment=success");
             } catch (Exception e) {
-                model.addAttribute("message", "Lỗi xử lý đơn hàng: " + e.getMessage());
+                log.error("❌ Lỗi cập nhật đơn hàng: {}", e.getMessage());
+                return new RedirectView("/checkout?error=update_failed");
             }
         } else {
-            model.addAttribute("message", "Thanh toán bị hủy hoặc thất bại.");
+            return new RedirectView("/checkout?error=cancelled_or_failed");
         }
-        model.addAttribute("username", user.getEmail());
-        return "home";
     }
 
 }
