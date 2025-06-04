@@ -210,9 +210,9 @@ public class CheckoutController {
             }
             orderDetailRepository.saveAll(orderDetails);
 
-            String returnUrl = "http://localhost:8080/checkout/payos-return?status=PAID&orderCode="
+            String returnUrl = "https://exxe.onrender.com/home"
                     + order.getOrderId();
-            String cancelUrl = "http://localhost:8080/checkout?error=cancelled";
+            String cancelUrl = "https://exxe.onrender.com/checkout?error=cancelled";
 
             String paymentUrl = payOSService.createPaymentUrl(
                     order.getOrderId(),
