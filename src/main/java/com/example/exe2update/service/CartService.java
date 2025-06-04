@@ -20,6 +20,4 @@ public interface CartService {
 
     void clearCart(User user);
 
-    void clearCartByUser(User user);
-
 }
