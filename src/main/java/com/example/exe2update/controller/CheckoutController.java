@@ -220,7 +220,7 @@ public class CheckoutController {
                     returnUrl,
                     cancelUrl);
 
-            return new RedirectView(paymentUrl);
+            return new RedirectView(returnUrl);
 
         } catch (Exception e) {
             log.error("Lỗi tạo URL thanh toán PayOS", e);
