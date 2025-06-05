@@ -50,7 +50,5 @@ public class Order {
 
     @Column(length = 100)
     private String address;
-    @Column(name = "payment_order_code", unique = true)
-    private String paymentOrderCode;
 
 }

@@ -33,9 +33,13 @@ public class PayOSService {
     public String createPaymentUrl(Integer orderCode, Long amount, String returnUrl, String cancelUrl)
             throws Exception {
         String endpoint = "https://api-merchant.payos.vn/v2/payment-requests";
-        String description = "Thanh toán đơn hàng #" + orderCode;
+        // Tạo description và cắt tối đa 25 ký tự
+        String description = "Thanh toán đơn #" + orderCode;
+        if (description.length() > 25) {
+            description = description.substring(0, 25);
+        }
 
-        // ⚠️ DÙNG URL GỐC, KHÔNG ENCODE TRONG rawData
+        // ⚠️ Chú ý dùng raw data gốc chưa encode trong phần ký
         String rawData = "amount=" + amount +
                 "&cancelUrl=" + cancelUrl +
                 "&description=" + description +
@@ -44,7 +48,6 @@ public class PayOSService {
 
         String signature = hmacSHA256(checksumKey, rawData);
 
-        // Gửi lên API, vẫn dùng giá trị gốc (không encode)
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("orderCode", orderCode);
         body.put("amount", amount);
@@ -76,7 +79,6 @@ public class PayOSService {
             throw new RuntimeException("Tạo thanh toán thất bại. Status: " + response.getStatusCode()
                     + ", body: " + response.getBody());
         }
-
     }
 
     private String hmacSHA256(String key, String data) throws Exception {
