@@ -88,8 +88,8 @@ public class CheckoutController {
             orderDetailRepository.saveAll(orderDetails);
 
             // Trả về endpoint xử lý kết quả thanh toán
-            String returnUrl = "http://localhost:8080/checkout/payos-return";
-            String cancelUrl = "http://localhost:8080/checkout?error=cancelled";
+            String returnUrl = "https://exxe.onrender.com/checkout/payos-return";
+            String cancelUrl = "https://exxe.onrender.com/checkout?error=cancelled";
 
             String paymentUrl = payOSService.createPaymentUrl(
                     order.getOrderId(),
