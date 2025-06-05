@@ -20,67 +20,77 @@ import com.example.exe2update.service.OrderService;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-    @Autowired
-    private OrderRepository orderRepository;
-    @Autowired
-    private CartRepository cartRepository;
-    @Autowired
-    private OrderDetailRepository orderDetailRepository;
-    
-      @Override
-    public boolean createOrder(User user, List<Cart> cartItems) {
-        // Tạo đơn hàng mới
-        Order order = new Order();
-        order.setUser(user);
-        order.setOrderDate(LocalDateTime.now());
-        order.setStatus(OrderStatus.Pending);  // Đơn hàng mới sẽ có trạng thái "Đang chờ xử lý"
-        
-        // Tính tổng giá trị của đơn hàng
-        BigDecimal totalAmount = cartItems.stream()
-            .map(cart -> cart.getProductPrice().multiply(BigDecimal.valueOf(cart.getQuantity())))
-            .reduce(BigDecimal.ZERO, BigDecimal::add);
-        order.setTotalAmount(totalAmount);
+  @Autowired
+  private OrderRepository orderRepository;
+  @Autowired
+  private CartRepository cartRepository;
+  @Autowired
+  private OrderDetailRepository orderDetailRepository;
 
-        // Lưu đơn hàng vào cơ sở dữ liệu
-        Order savedOrder = orderRepository.save(order);
+  @Override
+  public boolean createOrder(User user, List<Cart> cartItems) {
+    // Tạo đơn hàng mới
+    Order order = new Order();
+    order.setUser(user);
+    order.setOrderDate(LocalDateTime.now());
+    order.setStatus(OrderStatus.Pending); // Đơn hàng mới sẽ có trạng thái "Đang chờ xử lý"
 
-        // Tạo OrderDetails từ Cart
-        for (Cart cartItem : cartItems) {
-            OrderDetail orderDetail = new OrderDetail();
-            orderDetail.setOrder(savedOrder);
-            orderDetail.setProduct(cartItem.getProduct());
-            orderDetail.setQuantity(cartItem.getQuantity());
-            orderDetail.setPrice(cartItem.getProductPrice());
+    // Tính tổng giá trị của đơn hàng
+    BigDecimal totalAmount = cartItems.stream()
+        .map(cart -> cart.getProductPrice().multiply(BigDecimal.valueOf(cart.getQuantity())))
+        .reduce(BigDecimal.ZERO, BigDecimal::add);
+    order.setTotalAmount(totalAmount);
 
-            orderDetailRepository.save(orderDetail);  // Lưu chi tiết đơn hàng
-        }
+    // Lưu đơn hàng vào cơ sở dữ liệu
+    Order savedOrder = orderRepository.save(order);
 
-        // Xóa các sản phẩm trong giỏ hàng sau khi tạo đơn
-        cartRepository.deleteAll(cartItems);
+    // Tạo OrderDetails từ Cart
+    for (Cart cartItem : cartItems) {
+      OrderDetail orderDetail = new OrderDetail();
+      orderDetail.setOrder(savedOrder);
+      orderDetail.setProduct(cartItem.getProduct());
+      orderDetail.setQuantity(cartItem.getQuantity());
+      orderDetail.setPrice(cartItem.getProductPrice());
 
-        return savedOrder != null;
+      orderDetailRepository.save(orderDetail); // Lưu chi tiết đơn hàng
     }
 
-      @Override
-      public Order save(Order order) {
-        return orderRepository.save(order);
-      }
+    // Xóa các sản phẩm trong giỏ hàng sau khi tạo đơn
+    cartRepository.deleteAll(cartItems);
 
-      @Override
-      public void saveOrderDetail(OrderDetail orderDetail) {
-        orderDetailRepository.save(orderDetail);
-      }
+    return savedOrder != null;
+  }
 
-    @Override
-    public Order findByOrderId(Integer orderId) {
-        return orderRepository.findById(orderId).orElse(null);
-    }
+  @Override
+  public Order save(Order order) {
+    return orderRepository.save(order);
+  }
 
-    @Override
-    public void updateOrderStatus(Integer orderId, OrderStatus status) {
-        Order order = orderRepository.findById(orderId)
-                .orElseThrow(() -> new RuntimeException("Không tìm thấy đơn hàng với ID: " + orderId));
-        order.setStatus(status);
-        orderRepository.save(order);
-    }
+  @Override
+  public void saveOrderDetail(OrderDetail orderDetail) {
+    orderDetailRepository.save(orderDetail);
+  }
+
+  @Override
+  public Order findByOrderId(Integer orderId) {
+    return orderRepository.findById(orderId).orElse(null);
+  }
+
+  @Override
+  public void updateOrderStatus(Integer orderId, OrderStatus status) {
+    Order order = orderRepository.findById(orderId)
+        .orElseThrow(() -> new RuntimeException("Không tìm thấy đơn hàng với ID: " + orderId));
+    order.setStatus(status);
+    orderRepository.save(order);
+  }
+
+  @Override
+  public int countCompletedOrdersByUserId(int userId) {
+    return orderRepository.countByUser_UserIdAndStatus(userId, OrderStatus.Completed);
+  }
+
+  @Override
+  public List<Order> getCompletedOrdersByUserId(Integer userId) {
+    return orderRepository.findByUser_UserIdAndStatus(userId, OrderStatus.Completed);
+  }
 }

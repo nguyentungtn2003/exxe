@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Order Tracking</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 40px 20px;
+            background: linear-gradient(to right, #eef2f3, #f9f9f9);
+            color: #333;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            color: #222;
+            font-weight: 700;
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            color: #007bff;
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            border-left: 6px solid #007bff;
+            padding-left: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 15px;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: 600;
+            padding: 14px 16px;
+            border-radius: 8px 8px 0 0;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        td {
+            background: #fdfdfe;
+            padding: 14px 16px;
+            font-size: 0.95rem;
+            color: #444;
+            box-shadow: 0 1px 4px rgba(0, 123, 255, 0.05);
+        }
+
+        tbody tr {
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        tbody tr:hover td {
+            background-color: #eef6ff;
+        }
+
+        ul.product-list {
+            list-style: disc;
+            margin: 0;
+            padding-left: 20px;
+            color: #555;
+        }
+
+        ul.product-list li {
+            margin-bottom: 4px;
+        }
+
+        p.no-orders-message {
+            font-size: 1rem;
+            margin-top: 30px;
+            color: #888;
+            text-align: center;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 30px;
+            font-weight: 600;
+            color: #007bff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        a:hover {
+            border-color: #007bff;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Hi, <span th:text="${username}">User</span>!</h1>
+        <h2>Your Completed Orders:</h2>
+
+        <table th:if="${orders != null and #lists.size(orders) > 0}">
+            <thead>
+                <tr>
+                    <th>Order Date</th>
+                    <th>Full Name</th>
+                    <th>Address</th>
+                    <th>Total Amount</th>
+                    <th>Products</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="order : ${orders}">
+                    <td
+                        th:text="${order.orderDate.format(T(java.time.format.DateTimeFormatter).ofPattern('dd-MM-yyyy HH:mm'))}">
+                    </td>
+
+                    <td th:text="${order.fullName}"></td>
+                    <td th:text="${order.address}"></td>
+                    <td th:text="${#numbers.formatDecimal(order.totalAmount, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td>
+
+                    <td>
+                        <ul class="product-list">
+                            <li th:each="detail : ${order.orderDetails}"
+                                th:text="${detail.product.name + ' (x' + detail.quantity + ')'}"></li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p th:if="${orders == null or #lists.isEmpty(orders)}" class="no-orders-message">You have no completed orders
+            yet.</p>
+
+        <a href="/home" style="text-decoration:none; color:#007bff;">Back to home</a>
+    </div>
+</body>
+
+</html>

@@ -40,7 +40,8 @@ public class CartServiceImpl implements CartService {
             // Nếu sản phẩm đã có trong giỏ hàng, chỉ cần cập nhật số lượng
             existingCartItem.setQuantity(existingCartItem.getQuantity() + quantity);
 
-            // Gọi updateFromProduct để cập nhật các trường khác như productName, productPrice, productImage
+            // Gọi updateFromProduct để cập nhật các trường khác như productName,
+            // productPrice, productImage
             existingCartItem.updateFromProduct(product);
             existingCartItem.setDiscount(product.getDiscount());
             // Lưu lại giỏ hàng đã cập nhật
@@ -52,7 +53,8 @@ public class CartServiceImpl implements CartService {
             newCartItem.setProduct(product);
             newCartItem.setQuantity(quantity);
             newCartItem.setDiscount(product.getDiscount());
-            // Gọi phương thức updateFromProduct để gán các giá trị của sản phẩm vào giỏ hàng
+            // Gọi phương thức updateFromProduct để gán các giá trị của sản phẩm vào giỏ
+            // hàng
             newCartItem.updateFromProduct(product);
 
             // Lưu giỏ hàng mới vào cơ sở dữ liệu
@@ -60,11 +62,11 @@ public class CartServiceImpl implements CartService {
         }
     }
 
-
     @Override
     public boolean updateQuantity(Integer cartId, Integer quantity) {
         Optional<Cart> optional = cartRepository.findById(cartId);
-        if (optional.isEmpty()) return false;
+        if (optional.isEmpty())
+            return false;
 
         Cart cart = optional.get();
 
@@ -74,7 +76,7 @@ public class CartServiceImpl implements CartService {
 
         // Kiểm tra số lượng sản phẩm có vượt quá số lượng còn lại trong kho không
         if (quantity > availableStock) {
-            return false;  // Nếu số lượng vượt quá, trả về false
+            return false; // Nếu số lượng vượt quá, trả về false
         }
 
         cart.setQuantity(quantity);
@@ -82,58 +84,54 @@ public class CartServiceImpl implements CartService {
         return true;
     }
 
-
     @Override
     @Transactional
     public void removeFromCart(Integer cartId) {
         cartRepository.deleteById(cartId);
     }
 
-    
+    @Override
+    public double getProductPrice(Integer cartId) {
+        Optional<Cart> optional = cartRepository.findById(cartId);
+        if (optional.isPresent()) {
+            Cart cart = optional.get();
+            Product product = cart.getProduct();
 
-  @Override
-public double getProductPrice(Integer cartId) {
-    Optional<Cart> optional = cartRepository.findById(cartId);
-    if (optional.isPresent()) {
-        Cart cart = optional.get();
-        Product product = cart.getProduct();
+            BigDecimal price = product.getPrice();
 
-        BigDecimal price = product.getPrice();
+            Double discountValue = product.getDiscount(); // discount kiểu Double hoặc double
+            if (discountValue != null && discountValue > 0) {
+                BigDecimal discount = BigDecimal.valueOf(discountValue);
+                BigDecimal discountMultiplier = BigDecimal.ONE.subtract(discount.divide(BigDecimal.valueOf(100)));
+                price = price.multiply(discountMultiplier);
+            }
 
-        Double discountValue = product.getDiscount(); // discount kiểu Double hoặc double
-        if (discountValue != null && discountValue > 0) {
-            BigDecimal discount = BigDecimal.valueOf(discountValue);
-            BigDecimal discountMultiplier = BigDecimal.ONE.subtract(discount.divide(BigDecimal.valueOf(100)));
-            price = price.multiply(discountMultiplier);
+            return price.multiply(BigDecimal.valueOf(cart.getQuantity())).doubleValue();
         }
-
-        return price.multiply(BigDecimal.valueOf(cart.getQuantity())).doubleValue();
+        return 0;
     }
-    return 0;
-}
-@Override
-public double calculateTotalByUser(User user) {
-    List<Cart> cartItems = cartRepository.findByUser(user);
-    return cartItems.stream()
-            .map(cart -> {
-                Product product = cart.getProduct();
-                BigDecimal price = product.getPrice();
 
-                Double discountValue = product.getDiscount();
-                if (discountValue != null && discountValue > 0) {
-                    // Không chia cho 100 vì discount đã là dạng 0.15 (tức 15%) rồi
-                    BigDecimal discount = BigDecimal.valueOf(discountValue);
-                    BigDecimal discountMultiplier = BigDecimal.ONE.subtract(discount);
-                    price = price.multiply(discountMultiplier);
-                }
+    @Override
+    public double calculateTotalByUser(User user) {
+        List<Cart> cartItems = cartRepository.findByUser(user);
+        return cartItems.stream()
+                .map(cart -> {
+                    Product product = cart.getProduct();
+                    BigDecimal price = product.getPrice();
 
-                return price.multiply(BigDecimal.valueOf(cart.getQuantity()));
-            })
-            .reduce(BigDecimal.ZERO, BigDecimal::add)
-            .doubleValue();
-}
+                    Double discountValue = product.getDiscount();
+                    if (discountValue != null && discountValue > 0) {
+                        // Không chia cho 100 vì discount đã là dạng 0.15 (tức 15%) rồi
+                        BigDecimal discount = BigDecimal.valueOf(discountValue);
+                        BigDecimal discountMultiplier = BigDecimal.ONE.subtract(discount);
+                        price = price.multiply(discountMultiplier);
+                    }
 
-
+                    return price.multiply(BigDecimal.valueOf(cart.getQuantity()));
+                })
+                .reduce(BigDecimal.ZERO, BigDecimal::add)
+                .doubleValue();
+    }
 
     @Override
     @Transactional

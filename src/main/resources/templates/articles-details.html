@@ -3,7 +3,9 @@
 
 
 <!-- Mirrored from thetork.com/demos/html/torganic/blog-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Apr 2025 14:27:21 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
 <head>
     <title>Torganic | Organic Food eCommerce HTML Template </title>
     <meta charset="UTF-8">
@@ -15,14 +17,14 @@
     <meta name="author" content="thetork">
     <meta name="keywords" content="Torganic, Crypto, Forex, and Stocks Trading Business">
     <meta name="description"
-          content="Torganic is a premium, fully responsive HTML template designed for organic food eCommerce sites. Featuring clean, modern design and powerful functionality, it’s perfect for creating a professional online store. Boost your sales with Torganic's user-friendly layout, SEO-optimized code, and seamless shopping experience.">
+        content="Torganic is a premium, fully responsive HTML template designed for organic food eCommerce sites. Featuring clean, modern design and powerful functionality, it’s perfect for creating a professional online store. Boost your sales with Torganic's user-friendly layout, SEO-optimized code, and seamless shopping experience.">
 
     <!-- OG meta data -->
     <meta property="og:title" content="Torganic | Organic Food eCommerce HTML Template">
     <meta property="og:site_name" content=Torganic>
     <meta property="og:url" content="index-2.html">
     <meta property="og:description"
-          content="Welcome to Torganic – Organic Food eCommerce HTML Template
+        content="Welcome to Torganic – Organic Food eCommerce HTML Template
 
 Discover Torganic, a meticulously designed HTML template tailored for organic food and eco-friendly eCommerce websites. Whether you're building an online store for fresh produce, natural products, or sustainable goods, Torganic offers a clean, modern design with powerful functionality to make your site stand out.">
     <meta property="og:type" content="website">
@@ -44,268 +46,293 @@ Discover Torganic, a meticulously designed HTML template tailored for organic fo
 
 <body>
 
-<!-- ===============>> Preloader start here <<================= -->
-<div class="preloader">
-    <img th:src="@{/assets/images/logo/preloader.png}" alt="preloader icon">
-</div>
+    <!-- ===============>> Preloader start here <<================= -->
+    <div class="preloader">
+        <img th:src="@{/assets/images/logo/preloader.png}" alt="preloader icon">
+    </div>
 
-<!-- ===============>> Preloader end here <<================= -->
-
-
-
-
-<div th:replace="~{header :: header}"></div>
+    <!-- ===============>> Preloader end here <<================= -->
 
 
 
-<!-- ================> Page header start here <================== -->
-<section class="page-header bg--cover">
-    <div class="container">
-        <div class="page-header__content" data-aos="fade-right" data-aos-duration="1000">
-            <h1>Blog Details</h1>
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item "><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item "><a href="index.html">Blogs</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Blog Details</li>
-                </ol>
-            </nav>
+
+    <div th:replace="~{header :: header}"></div>
+
+
+
+    <!-- ================> Page header start here <================== -->
+    <section class="page-header bg--cover">
+        <div class="container">
+            <div class="page-header__content" data-aos="fade-right" data-aos-duration="1000">
+                <h1>Blog Details</h1>
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center mb-0">
+                        <li class="breadcrumb-item "><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item "><a href="index.html">Blogs</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Blog Details</li>
+                    </ol>
+                </nav>
+            </div>
         </div>
-    </div>
-</section>
-<!-- ================> Page header end here <================== -->
+    </section>
+    <!-- ================> Page header end here <================== -->
 
 
 
 
-<!-- ===============>> Blogs section start here <<================= -->
-<div class="blog-details padding-top padding-bottom section-bg">
-    <div class="container">
-        <div class="blog-details__wrapper">
-            <div class="row g-5">
-                <div class="col-lg-8">
-                    <div class="blog-details__item">
-                        <div class="blog-details__item-inner">
-                            <!-- Load Article Thumbnail -->
-                            <div class="blog-details__thumb">
-                                <div class="blog-details__thumb-inner" data-aos="fade-up" data-aos-duration="800">
-                                    <img th:src="@{${article.image_Url}}" alt="blog-image">
-                                </div>
-                            </div>
-                            <!-- Hiển thị nội dung bài viết -->
-                           <div class="blog-details__content" style="max-width:700px; margin:20px auto; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color:#333; line-height:1.6;">
-    <h2 th:text="${article.title}" style="font-size:2rem; font-weight:700; margin-bottom:10px; color:#222; border-bottom:2px solid #007bff; padding-bottom:5px;">
-        Article Title
-    </h2>
-    <div class="blog-details__meta" style="margin:10px 0 20px;">
-        <ul style="list-style:none; padding:0; margin:0; display:flex; gap:20px; font-size:0.9rem; color:#666;">
-            <li><span th:text="${authorName}" style="cursor:default;">Author</span></li>
-            <li><span th:text="${#temporals.format(article.createdAt, 'MMMM dd, yyyy')}" style="cursor:default;">Date</span></li>
-            <li><a href="#" style="color:#666; text-decoration:none;"><span th:text="${comments.size()} + ' Comments'">0 Comments</span></a></li>
-        </ul>
-    </div>
-    <p>Description</p>
-    <h5 th:text="${article.description}" style="font-style:italic; color:#555; margin-bottom:15px;">
-        Article summary goes here.
-    </h5>
+    <!-- ===============>> Blogs section start here <<================= -->
+    <div class="blog-details padding-top padding-bottom section-bg">
+        <div class="container">
+            <div class="blog-details__wrapper">
+                <div class="row g-5">
+                    <div class="col-lg-8">
+                        <div class="blog-details__item">
+                            <div class="blog-details__item-inner">
+                                <!-- Load Article Thumbnail -->
+                                <div class="blog-details__thumb">
+                                    <div class="blog-details__thumb-inner" data-aos="fade-up" data-aos-duration="800">
+                                        <img th:src="@{${article.imageUrl}}" alt="Article Image" />
 
-    <p>Content</p>
-    <div class="blog-details__text">
-        <p th:text="${article.content}" style="font-size:1.1rem; margin-bottom:20px;">
-            Full article content goes here.
-        </p>
-    </div>
-</div>
-
-
-                            <!-- Hiển thị bình luận -->
-                            <div class="blog-details__comment">
-                                <div class="sidebar__comment">
-                                    <div class="sidebar__head">
-                                        <h3>Comments</h3>
                                     </div>
-                                    <div class="sidebar__comment-body">
-                                        <ul>
-                                            <li class="sidebar__comment-item" th:each="comment : ${comments}">
-                                                <div class="comment__inner">
-                                                    <!-- Thông tin người bình luận -->
-                                                    <div class="comment__head">
-                                                        <div class="comment__author-info">
-                                                            <h6 th:text="${comment.name}">User Name</h6>
-                                                            <span th:text="${#temporals.format(comment.createdAt, 'MMMM dd, yyyy')}">Date</span>
-                                                        </div>
-                                                        <div class="comment__action">
-                                                            <a href="javascript:void(0);" th:attr="onclick='toggleReplyForm(' + ${comment.commentId} + ')'" >
-                                                                Reply
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- Nội dung bình luận -->
-                                                    <div class="comment__body">
-                                                        <p th:text="${comment.content}">Comment content</p>
-                                                    </div>
-
-                                                    <!-- Form trả lời (ẩn mặc định) -->
-                                                    <div th:attr="id='replyForm_' + ${comment.commentId}" style="display:none; margin-top: 10px;">
-                                                        <form action="/post-reply" method="POST">
-                                                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                                                            <input type="hidden" name="articleId" th:value="${article.articleId}" />
-                                                            <input type="hidden" name="parentCommentId" th:value="${comment.commentId}" />
-                                                            <div class="row g-4">
-                                                                <div class="col-md-6">
-                                                                    <label class="form-label">Your Name</label>
-                                                                    <input class="form-control" type="text" name="name" required />
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="form-label">Your Email</label>
-                                                                    <input class="form-control" type="email" name="email" required />
-                                                                </div>
-                                                                <div class="col-md-12">
-                                                                    <label class="form-label">Your Reply</label>
-                                                                    <textarea class="form-control" name="message" required></textarea>
-                                                                </div>
-                                                            </div>
-                                                            <button type="submit" class="btn btn-primary mt-3">Post Reply</button>
-                                                        </form>
-                                                    </div>
-
-                                                    <!-- Hiển thị các phản hồi -->
-                                                    <ul th:if="${comment.replies != null}">
-                                                        <li th:each="reply : ${comment.replies}" style="margin-left: 30px; margin-top: 15px;">
-                                                            <div class="reply" style="border-left: 2px solid #ddd; padding-left: 15px;">
-                                                                <p><strong th:text="${reply.name}">Reply User</strong></p>
-                                                                <p th:text="${#temporals.format(reply.createdAt, 'MMMM dd, yyyy')}">Reply Date</p>
-                                                                <p th:text="${reply.content}">Reply content</p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                </div>
+                                <!-- Hiển thị nội dung bài viết -->
+                                <div class="blog-details__content"
+                                    style="max-width:700px; margin:20px auto; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color:#333; line-height:1.6;">
+                                    <h2 th:text="${article.title}"
+                                        style="font-size:2rem; font-weight:700; margin-bottom:10px; color:#222; border-bottom:2px solid #007bff; padding-bottom:5px;">
+                                        Article Title
+                                    </h2>
+                                    <div class="blog-details__meta" style="margin:10px 0 20px;">
+                                        <ul
+                                            style="list-style:none; padding:0; margin:0; display:flex; gap:20px; font-size:0.9rem; color:#666;">
+                                            <li><span th:text="${authorName}" style="cursor:default;">Author</span></li>
+                                            <li><span th:text="${#temporals.format(article.createdAt, 'MMMM dd, yyyy')}"
+                                                    style="cursor:default;">Date</span></li>
+                                            <li><a href="#" style="color:#666; text-decoration:none;"><span
+                                                        th:text="${comments.size()} + ' Comments'">0 Comments</span></a>
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
-                            </div>
+                                    <p>Description</p>
+                                    <h5 th:text="${article.description}"
+                                        style="font-style:italic; color:#555; margin-bottom:15px;">
+                                        Article summary goes here.
+                                    </h5>
 
-                            <!-- Form gửi bình luận mới -->
-                            <div class="sidebar__comment-form">
-                                <h3>Leave a Comment</h3>
-                                <form action="/post-comment" method="POST">
-                                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                                    <input type="hidden" name="articleId" th:value="${article.articleId}" />
-                                    <div class="row g-4">
-                                        <div class="col-md-6">
-                                            <label class="form-label">Your Name</label>
-                                            <input class="form-control" type="text" name="name" required />
+                                    <p>Content</p>
+                                    <div class="blog-details__text">
+                                        <p th:text="${article.content}" style="font-size:1.1rem; margin-bottom:20px;">
+                                            Full article content goes here.
+                                        </p>
+                                    </div>
+                                </div>
+
+
+                                <!-- Hiển thị bình luận -->
+                                <div class="blog-details__comment">
+                                    <div class="sidebar__comment">
+                                        <div class="sidebar__head">
+                                            <h3>Comments</h3>
                                         </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label">Your Email</label>
-                                            <input class="form-control" type="email" name="email" required />
-                                        </div>
-                                        <div class="col-md-12">
-                                            <label class="form-label">Your Comment</label>
-                                            <textarea class="form-control" name="message" required></textarea>
+                                        <div class="sidebar__comment-body">
+                                            <ul>
+                                                <li class="sidebar__comment-item" th:each="comment : ${comments}">
+                                                    <div class="comment__inner">
+                                                        <!-- Thông tin người bình luận -->
+                                                        <div class="comment__head">
+                                                            <div class="comment__author-info">
+                                                                <h6 th:text="${comment.name}">User Name</h6>
+                                                                <span
+                                                                    th:text="${#temporals.format(comment.createdAt, 'MMMM dd, yyyy')}">Date</span>
+                                                            </div>
+                                                            <div class="comment__action">
+                                                                <a href="javascript:void(0);"
+                                                                    th:attr="onclick='toggleReplyForm(' + ${comment.commentId} + ')'">
+                                                                    Reply
+                                                                </a>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Nội dung bình luận -->
+                                                        <div class="comment__body">
+                                                            <p th:text="${comment.content}">Comment content</p>
+                                                        </div>
+
+                                                        <!-- Form trả lời (ẩn mặc định) -->
+                                                        <div th:attr="id='replyForm_' + ${comment.commentId}"
+                                                            style="display:none; margin-top: 10px;">
+                                                            <form action="/post-reply" method="POST">
+                                                                <input type="hidden" th:name="${_csrf.parameterName}"
+                                                                    th:value="${_csrf.token}" />
+                                                                <input type="hidden" name="articleId"
+                                                                    th:value="${article.articleId}" />
+                                                                <input type="hidden" name="parentCommentId"
+                                                                    th:value="${comment.commentId}" />
+                                                                <div class="row g-4">
+                                                                    <div class="col-md-6">
+                                                                        <label class="form-label">Your Name</label>
+                                                                        <input class="form-control" type="text"
+                                                                            name="name" required />
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <label class="form-label">Your Email</label>
+                                                                        <input class="form-control" type="email"
+                                                                            name="email" required />
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <label class="form-label">Your Reply</label>
+                                                                        <textarea class="form-control" name="message"
+                                                                            required></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <button type="submit" class="btn btn-primary mt-3">Post
+                                                                    Reply</button>
+                                                            </form>
+                                                        </div>
+
+                                                        <!-- Hiển thị các phản hồi -->
+                                                        <ul th:if="${comment.replies != null}">
+                                                            <li th:each="reply : ${comment.replies}"
+                                                                style="margin-left: 30px; margin-top: 15px;">
+                                                                <div class="reply"
+                                                                    style="border-left: 2px solid #ddd; padding-left: 15px;">
+                                                                    <p><strong th:text="${reply.name}">Reply
+                                                                            User</strong></p>
+                                                                    <p
+                                                                        th:text="${#temporals.format(reply.createdAt, 'MMMM dd, yyyy')}">
+                                                                        Reply Date</p>
+                                                                    <p th:text="${reply.content}">Reply content</p>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary mt-4">Post Comment</button>
-                                </form>
-                            </div>
+                                </div>
 
-                            <!-- JavaScript Toggle Reply Form -->
-                            <script>
-                                function toggleReplyForm(commentId) {
-                                    const replyForm = document.getElementById("replyForm_" + commentId);
-                                    if (replyForm) {
-                                        const isHidden = replyForm.style.display === "none" || replyForm.style.display === "";
-                                        replyForm.style.display = isHidden ? "block" : "none";
-                                        if (isHidden) {
-                                            replyForm.scrollIntoView({ behavior: "smooth", block: "center" });
+                                <!-- Form gửi bình luận mới -->
+                                <div class="sidebar__comment-form">
+                                    <h3>Leave a Comment</h3>
+                                    <form action="/post-comment" method="POST">
+                                        <input type="hidden" th:name="${_csrf.parameterName}"
+                                            th:value="${_csrf.token}" />
+                                        <input type="hidden" name="articleId" th:value="${article.articleId}" />
+                                        <div class="row g-4">
+                                            <div class="col-md-6">
+                                                <label class="form-label">Your Name</label>
+                                                <input class="form-control" type="text" name="name" required />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Your Email</label>
+                                                <input class="form-control" type="email" name="email" required />
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label class="form-label">Your Comment</label>
+                                                <textarea class="form-control" name="message" required></textarea>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary mt-4">Post Comment</button>
+                                    </form>
+                                </div>
+
+                                <!-- JavaScript Toggle Reply Form -->
+                                <script>
+                                    function toggleReplyForm(commentId) {
+                                        const replyForm = document.getElementById("replyForm_" + commentId);
+                                        if (replyForm) {
+                                            const isHidden = replyForm.style.display === "none" || replyForm.style.display === "";
+                                            replyForm.style.display = isHidden ? "block" : "none";
+                                            if (isHidden) {
+                                                replyForm.scrollIntoView({ behavior: "smooth", block: "center" });
+                                            }
                                         }
                                     }
-                                }
-                            </script>
+                                </script>
 
 
 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- ===============>> Blogs section start here <<================= -->
+    <!-- ===============>> Blogs section start here <<================= -->
 
-<!-- ===============>> Feature bar section start here <<================= -->
-<div class="feature-bar border-top">
-    <div class="container">
-        <div class="row py-3 g-5 g-lg-4 justify-content-center">
-            <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
-                <div class="feature-bar__item d-flex align-items-center">
-                    <img th:src="@{/assets/images/feature/bar/1.png}" alt="delivery car">
-                    <div class="feature-bar__text ms-4">
-                        <h3 class="feature-bar__title fs-6 fw-bold mb-0">Fast Delivery</h3>
-                        <p class="feature-bar__description fs-7 mb-0">Minimum order $40</p>
+    <!-- ===============>> Feature bar section start here <<================= -->
+    <div class="feature-bar border-top">
+        <div class="container">
+            <div class="row py-3 g-5 g-lg-4 justify-content-center">
+                <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
+                    <div class="feature-bar__item d-flex align-items-center">
+                        <img th:src="@{/assets/images/feature/bar/1.png}" alt="delivery car">
+                        <div class="feature-bar__text ms-4">
+                            <h3 class="feature-bar__title fs-6 fw-bold mb-0">Fast Delivery</h3>
+                            <p class="feature-bar__description fs-7 mb-0">Minimum order $40</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
-                <div class="feature-bar__item d-flex align-items-center">
-                    <img th:src="@{/assets/images/feature/bar/2.png}" alt="support image">
-                    <div class="feature-bar__text ms-4">
-                        <h3 class="feature-bar__title fs-6 fw-bold mb-0">24/7 Support</h3>
-                        <p class="feature-bar__description fs-7 mb-0">Contact us 24 Hours</p>
+                <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
+                    <div class="feature-bar__item d-flex align-items-center">
+                        <img th:src="@{/assets/images/feature/bar/2.png}" alt="support image">
+                        <div class="feature-bar__text ms-4">
+                            <h3 class="feature-bar__title fs-6 fw-bold mb-0">24/7 Support</h3>
+                            <p class="feature-bar__description fs-7 mb-0">Contact us 24 Hours</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
-                <div class="feature-bar__item d-flex align-items-center">
-                    <img th:src="@{/assets/images/feature/bar/3.png}" alt="pay security">
-                    <div class="feature-bar__text ms-4">
-                        <h3 class="feature-bar__title fs-6 fw-bold mb-0">Pay Security</h3>
-                        <p class="feature-bar__description fs-7 mb-0">100% Secure Payment</p>
+                <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
+                    <div class="feature-bar__item d-flex align-items-center">
+                        <img th:src="@{/assets/images/feature/bar/3.png}" alt="pay security">
+                        <div class="feature-bar__text ms-4">
+                            <h3 class="feature-bar__title fs-6 fw-bold mb-0">Pay Security</h3>
+                            <p class="feature-bar__description fs-7 mb-0">100% Secure Payment</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
-                <div class="feature-bar__item d-flex align-items-center">
-                    <img th:src="@{/assets/images/feature/bar/4.png}" alt="money returns">
-                    <div class="feature-bar__text ms-4">
-                        <h3 class="feature-bar__title fs-6 fw-bold mb-0">Easy Returns</h3>
-                        <p class="feature-bar__description fs-7 mb-0">Within 30 Days</p>
+                <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
+                    <div class="feature-bar__item d-flex align-items-center">
+                        <img th:src="@{/assets/images/feature/bar/4.png}" alt="money returns">
+                        <div class="feature-bar__text ms-4">
+                            <h3 class="feature-bar__title fs-6 fw-bold mb-0">Easy Returns</h3>
+                            <p class="feature-bar__description fs-7 mb-0">Within 30 Days</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- ===============>> Feature bar section end here <<================= -->
+    <!-- ===============>> Feature bar section end here <<================= -->
 
 
-<div th:replace="~{footer :: footer}"></div>
+    <div th:replace="~{footer :: footer}"></div>
 
 
-<!-- ===============>> scrollToTop start here <<================= -->
-<a href="#" class="scrollToTop scrollToTop--style1"><i class="fa-solid fa-arrow-up-from-bracket"></i></a>
-<!-- ===============>> scrollToTop ending here <<================= -->
+    <!-- ===============>> scrollToTop start here <<================= -->
+    <a href="#" class="scrollToTop scrollToTop--style1"><i class="fa-solid fa-arrow-up-from-bracket"></i></a>
+    <!-- ===============>> scrollToTop ending here <<================= -->
 
 
-<!-- vendor plugins -->
+    <!-- vendor plugins -->
 
 
-<script th:src="@{/assets/js/metismenujs.min.js}"></script>
-<script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
-<script th:src="@{/assets/js/all.min.js}"></script>
-<script th:src="@{/assets/js/swiper-bundle.min.js}"></script>
-<script th:src="@{/assets/js/aos.js}"></script>
-<script th:src="@{/assets/js/fslightbox.js}"></script>
-<script th:src="@{/assets/js/purecounter_vanilla.js}"></script>
-<script th:src="@{/assets/js/trk-menu.js}"></script>
-<script th:src="@{/assets/js/custom.js}"></script>
+    <script th:src="@{/assets/js/metismenujs.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/assets/js/all.min.js}"></script>
+    <script th:src="@{/assets/js/swiper-bundle.min.js}"></script>
+    <script th:src="@{/assets/js/aos.js}"></script>
+    <script th:src="@{/assets/js/fslightbox.js}"></script>
+    <script th:src="@{/assets/js/purecounter_vanilla.js}"></script>
+    <script th:src="@{/assets/js/trk-menu.js}"></script>
+    <script th:src="@{/assets/js/custom.js}"></script>
 
 
 </body>
 
 
 <!-- Mirrored from thetork.com/demos/html/torganic/blog-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 11 Apr 2025 14:27:28 GMT -->
+
 </html>

@@ -1,6 +1,8 @@
 package com.example.exe2update.repository;
 
 import com.example.exe2update.entity.Order;
+import com.example.exe2update.entity.OrderStatus;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -28,4 +30,8 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
       @Param("fromMonth") int fromMonth,
       @Param("toMonth") int toMonth,
       @Param("year") int year);
+
+  int countByUser_UserIdAndStatus(int userId, OrderStatus status);
+
+  List<Order> findByUser_UserIdAndStatus(Integer userId, OrderStatus status);
 }

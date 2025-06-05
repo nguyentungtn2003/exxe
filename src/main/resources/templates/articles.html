@@ -75,7 +75,7 @@
                     <tr th:each="article : ${articles}" th:data-articleid="${article.articleId}"
                         th:data-title="${article.title}" th:data-description="${article.description}"
                         th:data-content="${article.content}" th:data-userid="${article.userId}"
-                        th:data-imageurl="${article.image_Url}">
+                        th:data-imageurl="${article.imageUrl}">
                         <td th:text="${article.articleId}"></td>
                         <td th:text="${article.title}"></td>
                         <td th:text="${article.description}"></td>
@@ -87,7 +87,7 @@
                             th:text="${article.updatedAt != null ? #temporals.format(article.updatedAt, 'dd-MM-yyyy HH:mm') : ''}">
                         </td>
                         <td>
-                            <img th:if="${article.image_Url != null}" th:src="@{${article.image_Url}}"
+                            <img th:if="${article.imageUrl != null}" th:src="@{${article.imageUrl}}"
                                 class="thumbnail" />
                         </td>
                         <td
