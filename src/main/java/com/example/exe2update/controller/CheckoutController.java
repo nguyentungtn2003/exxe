@@ -84,11 +84,18 @@ public class CheckoutController {
             // demo đơn giản dùng timestamp.
             int orderCode = (int) (System.currentTimeMillis() / 1000);
 
-            String returnUrl = "http://localhost:8080/checkout/payos-return?orderCode=" + orderCode + "&fullName="
-                    + URLEncoder.encode(fullName, StandardCharsets.UTF_8) + "&address="
-                    + URLEncoder.encode(address, StandardCharsets.UTF_8) + "&email="
-                    + URLEncoder.encode(email, StandardCharsets.UTF_8);
-            String cancelUrl = "http://localhost:8080/checkout?error=cancelled";
+            // String returnUrl = "http://localhost:8080/checkout/payos-return?orderCode=" +
+            // orderCode + "&fullName="
+            // + URLEncoder.encode(fullName, StandardCharsets.UTF_8) + "&address="
+            // + URLEncoder.encode(address, StandardCharsets.UTF_8) + "&email="
+            // + URLEncoder.encode(email, StandardCharsets.UTF_8);
+            // String cancelUrl = "http://localhost:8080/checkout?error=cancelled";
+            String returnUrl = "https://exxe.onrender.com/checkout/payos-return?orderCode=" + orderCode
+                    + "&fullName=" + URLEncoder.encode(fullName, StandardCharsets.UTF_8)
+                    + "&address=" + URLEncoder.encode(address, StandardCharsets.UTF_8)
+                    + "&email=" + URLEncoder.encode(email, StandardCharsets.UTF_8);
+
+            String cancelUrl = "https://exxe.onrender.com/checkout?error=cancelled";
 
             String paymentUrl = payOSService.createPaymentUrl(
                     orderCode,
