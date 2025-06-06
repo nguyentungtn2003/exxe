@@ -172,7 +172,8 @@
             transition: background-color 0.3s, color 0.3s, transform 0.3s;
             display: inline-block;
             cursor: pointer;
-            margin-left: 650px;
+            margin-left: 750px;
+            /* tăng cách trái lên, dịch sang phải hơn */
             margin-right: 10px;
             text-transform: capitalize;
         }
@@ -180,14 +181,16 @@
         /* Responsive cho màn hình nhỏ hơn 1200px */
         @media (max-width: 1200px) {
             .header__username {
-                margin-left: 300px;
+                margin-left: 400px;
+                /* tăng từ 300px lên 400px */
             }
         }
 
         /* Responsive cho màn hình nhỏ hơn 768px (tablet) */
         @media (max-width: 768px) {
             .header__username {
-                margin-left: 100px;
+                margin-left: 150px;
+                /* tăng từ 100px lên 150px */
                 font-size: 14px;
                 padding: 6px 12px;
             }
@@ -196,7 +199,8 @@
         /* Responsive cho màn hình nhỏ hơn 480px (mobile) */
         @media (max-width: 480px) {
             .header__username {
-                margin-left: 20px;
+                margin-left: 40px;
+                /* tăng từ 20px lên 40px */
                 font-size: 12px;
                 padding: 4px 8px;
                 display: block;
