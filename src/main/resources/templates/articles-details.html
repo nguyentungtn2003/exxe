@@ -7,7 +7,7 @@
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 
 <head>
-    <title>Torganic | Organic Food eCommerce HTML Template </title>
+    <title>Loofah</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -113,16 +113,16 @@ Discover Torganic, a meticulously designed HTML template tailored for organic fo
                                             </li>
                                         </ul>
                                     </div>
-                                    <p>Description</p>
+                                    <p>Mô tả</p>
                                     <h5 th:text="${article.description}"
                                         style="font-style:italic; color:#555; margin-bottom:15px;">
-                                        Article summary goes here.
+                                        Tóm tắt ở đây
                                     </h5>
 
-                                    <p>Content</p>
+                                    <p>Nội Dung</p>
                                     <div class="blog-details__text">
                                         <p th:text="${article.content}" style="font-size:1.1rem; margin-bottom:20px;">
-                                            Full article content goes here.
+                                            Toàn bộ nội dung
                                         </p>
                                     </div>
                                 </div>
@@ -132,7 +132,7 @@ Discover Torganic, a meticulously designed HTML template tailored for organic fo
                                 <div class="blog-details__comment">
                                     <div class="sidebar__comment">
                                         <div class="sidebar__head">
-                                            <h3>Comments</h3>
+                                            <h3>Bình luận</h3>
                                         </div>
                                         <div class="sidebar__comment-body">
                                             <ul>
@@ -214,26 +214,26 @@ Discover Torganic, a meticulously designed HTML template tailored for organic fo
 
                                 <!-- Form gửi bình luận mới -->
                                 <div class="sidebar__comment-form">
-                                    <h3>Leave a Comment</h3>
+                                    <h3>Để lại bình luận </h3>
                                     <form action="/post-comment" method="POST">
                                         <input type="hidden" th:name="${_csrf.parameterName}"
                                             th:value="${_csrf.token}" />
                                         <input type="hidden" name="articleId" th:value="${article.articleId}" />
                                         <div class="row g-4">
                                             <div class="col-md-6">
-                                                <label class="form-label">Your Name</label>
+                                                <label class="form-label">Tên của bạn</label>
                                                 <input class="form-control" type="text" name="name" required />
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="form-label">Your Email</label>
+                                                <label class="form-label">Email của bạn</label>
                                                 <input class="form-control" type="email" name="email" required />
                                             </div>
                                             <div class="col-md-12">
-                                                <label class="form-label">Your Comment</label>
+                                                <label class="form-label">Comment của bạn</label>
                                                 <textarea class="form-control" name="message" required></textarea>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary mt-4">Post Comment</button>
+                                        <button type="submit" class="btn btn-primary mt-4">Đăng bình luận</button>
                                     </form>
                                 </div>
 
@@ -265,13 +265,14 @@ Discover Torganic, a meticulously designed HTML template tailored for organic fo
     <!-- ===============>> Feature bar section start here <<================= -->
     <div class="feature-bar border-top">
         <div class="container">
-            <div class="row py-3 g-5 g-lg-4 justify-content-center">
+            <div class="row py-3 g-4 justify-content-center">
                 <div class="col-xl-3 col-lg-4 col-sm-6 mb-3 mb-md-0">
                     <div class="feature-bar__item d-flex align-items-center">
                         <img th:src="@{/assets/images/feature/bar/1.png}" alt="delivery car">
                         <div class="feature-bar__text ms-4">
-                            <h3 class="feature-bar__title fs-6 fw-bold mb-0">Fast Delivery</h3>
-                            <p class="feature-bar__description fs-7 mb-0">Minimum order $40</p>
+                            <h3 class="feature-bar__title fs-6 fw-bold mb-0">Giao hàng nhanh</h3>
+                            <p class="feature-bar__description fs-7 mb-0">Đơn hàng tối thiểu 40$</p>
+
                         </div>
                     </div>
                 </div>
@@ -279,8 +280,9 @@ Discover Torganic, a meticulously designed HTML template tailored for organic fo
                     <div class="feature-bar__item d-flex align-items-center">
                         <img th:src="@{/assets/images/feature/bar/2.png}" alt="support image">
                         <div class="feature-bar__text ms-4">
-                            <h3 class="feature-bar__title fs-6 fw-bold mb-0">24/7 Support</h3>
-                            <p class="feature-bar__description fs-7 mb-0">Contact us 24 Hours</p>
+                            <h3 class="feature-bar__title fs-6 fw-bold mb-0">Hỗ trợ 24/7</h3>
+                            <p class="feature-bar__description fs-7 mb-0">Liên hệ với chúng tôi 24 giờ mỗi ngày</p>
+
                         </div>
                     </div>
                 </div>
@@ -288,8 +290,9 @@ Discover Torganic, a meticulously designed HTML template tailored for organic fo
                     <div class="feature-bar__item d-flex align-items-center">
                         <img th:src="@{/assets/images/feature/bar/3.png}" alt="pay security">
                         <div class="feature-bar__text ms-4">
-                            <h3 class="feature-bar__title fs-6 fw-bold mb-0">Pay Security</h3>
-                            <p class="feature-bar__description fs-7 mb-0">100% Secure Payment</p>
+                            <h3 class="feature-bar__title fs-6 fw-bold mb-0">Thanh toán an toàn</h3>
+                            <p class="feature-bar__description fs-7 mb-0">Thanh toán an toàn 100%</p>
+
                         </div>
                     </div>
                 </div>
@@ -297,8 +300,9 @@ Discover Torganic, a meticulously designed HTML template tailored for organic fo
                     <div class="feature-bar__item d-flex align-items-center">
                         <img th:src="@{/assets/images/feature/bar/4.png}" alt="money returns">
                         <div class="feature-bar__text ms-4">
-                            <h3 class="feature-bar__title fs-6 fw-bold mb-0">Easy Returns</h3>
-                            <p class="feature-bar__description fs-7 mb-0">Within 30 Days</p>
+                            <h3 class="feature-bar__title fs-6 fw-bold mb-0">Đổi trả dễ dàng</h3>
+                            <p class="feature-bar__description fs-7 mb-0">Trong vòng 30 ngày</p>
+
                         </div>
                     </div>
                 </div>

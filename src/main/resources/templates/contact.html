@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Liên hệ - Nhóm Exe201</title>
+    <title>Giới thiệu & Liên hệ - VitaMướp</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" th:href="@{/assets/images/favicon.png}" type="image/x-icon">
@@ -13,50 +13,116 @@
     <link rel="stylesheet" th:href="@{/assets/css/aos.css}">
     <link rel="stylesheet" th:href="@{/assets/css/all.min.css}">
     <link rel="stylesheet" th:href="@{/assets/css/swiper-bundle.min.css}">
-    <link rel="stylesheet" th:href="@{/assets/css/style.css}"> <!-- Main CSS -->
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
 
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
 
+        h1,
+        h2 {
+            text-align: center;
+            color: #2e7d32;
+            margin-top: 30px;
+        }
+
+        .section-box {
+            background-color: #ffffff;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+        }
+
+        .section-box p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #333;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #1b5e20;
+        }
+
+        a {
+            color: #1e88e5;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-link {
+            margin-top: 10px;
+            display: inline-block;
+            background-color: #43a047;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .contact-link:hover {
+            background-color: #388e3c;
+        }
+    </style>
 </head>
-<style>
-    .info {
-
-        margin-bottom: 30px;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        text-align: center;
-    }
-
-    .label {
-        font-weight: bold;
-    }
-
-    h1 {
-        text-align: center;
-    }
-</style>
 
 <body>
 
     <!-- Include Header -->
     <div th:replace="~{header :: header}"></div>
 
-    <h1>Liên hệ nhóm Exe201</h1>
-    <div class="info">
+    <h1>VitaMướp - Xơ mướp thiên nhiên vì cộng đồng xanh</h1>
+
+    <!-- About Section -->
+    <div class="section-box">
+        <h2>Giới thiệu về VitaMướp</h2>
+        <p>
+            VitaMướp là dự án khởi nghiệp xanh của nhóm sinh viên FPT University, hướng đến mục tiêu phát triển các sản
+            phẩm thân thiện với môi trường từ xơ mướp tự nhiên.
+        </p>
+        <p>
+            Chúng tôi cam kết mang đến những sản phẩm <strong>an toàn, không hóa chất, thân thiện với môi
+                trường</strong> như bông rửa mặt, mút tắm, dụng cụ vệ sinh nhà cửa,... làm từ xơ mướp được xử lý sạch và
+            đóng gói tiêu chuẩn.
+        </p>
+        <p>
+            Với nền tảng thương mại điện tử VitaMướp, khách hàng có thể dễ dàng:
+        </p>
+        <ul>
+            <li>Mua sắm sản phẩm xanh nhanh chóng, tiện lợi</li>
+            <li>Theo dõi đơn hàng, quản lý tài khoản</li>
+            <li>Tìm hiểu kiến thức sống xanh, tái chế và bảo vệ môi trường</li>
+        </ul>
+        <p><strong>Giá trị cốt lõi:</strong> Sinh thái – Sáng tạo – Cộng đồng</p>
+        <p><strong>Tầm nhìn:</strong> Trở thành thương hiệu tiên phong trong lĩnh vực sản phẩm tái chế tự nhiên tại Việt
+            Nam.</p>
+        <p><strong>Sứ mệnh:</strong> Góp phần thay đổi nhận thức cộng đồng về lối sống xanh và tiêu dùng bền vững.</p>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="section-box">
+        <h2>Liên hệ nhóm phát triển</h2>
         <p><span class="label">Tên nhóm:</span> Exe201</p>
         <p><span class="label">Số điện thoại:</span> 0378330686</p>
         <p><span class="label">Email:</span> <a href="mailto:tungnthe176064@fpt.edu.vn">tungnthe176064@fpt.edu.vn</a>
         </p>
 
         <h2>Gửi phản hồi</h2>
-        <p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd7f1_XYhws8sMgdim527ALyNCBWBRZKeXPNSG0SsTRaMcW5A/viewform?pli=1"
-                target="_blank" rel="noopener noreferrer">
-                Nhấn vào đây để gửi phản hồi
-            </a>
-        </p>
+        <a class="contact-link"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSd7f1_XYhws8sMgdim527ALyNCBWBRZKeXPNSG0SsTRaMcW5A/viewform?pli=1"
+            target="_blank" rel="noopener noreferrer">
+            Nhấn vào đây để gửi phản hồi
+        </a>
     </div>
-
 
     <!-- Include Footer -->
     <div th:replace="~{footer :: footer}"></div>

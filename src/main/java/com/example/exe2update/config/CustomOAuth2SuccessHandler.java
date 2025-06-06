@@ -51,11 +51,11 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
                 newUser.setEmail(email);
                 newUser.setFullName((String) attributes.getOrDefault("name", email));
                 newUser.setUsername(email);
-                newUser.setPasswordHash("N/A"); // Google login
+                newUser.setPasswordHash("N/A"); // OAuth user
                 newUser.setCreatedAt(LocalDateTime.now());
                 newUser.setStatus(true);
 
-                Role role = roleRepository.findById(2)
+                Role role = roleRepository.findById(2) // ID 2 = USER
                         .orElseThrow(() -> new RuntimeException("Role with id=2 not found"));
                 newUser.setRole(role);
 

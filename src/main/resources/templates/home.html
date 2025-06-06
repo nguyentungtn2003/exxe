@@ -12,13 +12,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Sites meta Data -->
-    <meta name="application-name" content="Torganic | Organic Food eCommerce HTML Template">
-    <meta name="admin" content="thetork">
-    <meta name="keywords" content="Torganic, Crypto, Forex, and Stocks Trading Business">
-    <meta name="description"
-        content="Torganic is a premium, fully responsive HTML template designed for organic food eCommerce sites. Featuring clean, modern design and powerful functionality, it’s perfect for creating a professional online store. Boost your sales with Torganic's user-friendly layout, SEO-optimized code, and seamless shopping experience.">
-
     <!-- OG meta data -->
     <meta property="og:title" content="Torganic | Organic Food eCommerce HTML Template">
     <meta property="og:site_name" content=Torganic>
@@ -337,11 +330,12 @@
                 <div class="row align-items-center g-5">
                     <div class="col-lg-6 col-md-7">
                         <div class="banner__content" data-aos="fade-right" data-aos-duration="800">
-                            <h1 class="banner__content-heading">Natural Loofah for Your Daily Care</h1>
+                            <h1 class="banner__content-heading">Xơ Mướp Tự Nhiên Cho Chăm Sóc Hằng Ngày</h1>
                             <p class="banner__content-moto">
-                                Experience the natural benefits of loofah for healthy skin and wellness.
+                                Trải nghiệm lợi ích tự nhiên từ xơ mướp giúp làn da khỏe mạnh và nâng cao sức khỏe.
                             </p>
-                            <a href="/shop" class="trk-btn trk-btn--primary">Shop now
+
+                            <a href="/shop" class="trk-btn trk-btn--primary">Mua Ngay
                                 <span><i class="fa-solid fa-arrow-right-long"></i></span></a>
                         </div>
                     </div>
@@ -462,7 +456,7 @@
         <div class="container">
             <div class="section-header">
                 <div class="section-header__content">
-                    <h2 class="mb-10">Featured categories</h2>
+                    <h2 class="mb-10">Các loại sản phẩm</h2>
                 </div>
                 <div class="section-header__action">
                     <div class="swiper-nav swiper-nav--style1">
@@ -583,7 +577,7 @@
                                             <div class="product__item-action">
                                                 <a class="trk-btn trk-btn--outline"
                                                     th:href="@{/cart/add/{id}(id=${product.productId})}">
-                                                    Add to cart
+                                                    Thêm vào giỏ hàng
                                                 </a>
                                             </div>
                                         </div>
@@ -687,10 +681,12 @@
                     </div>
                 </div>
                 <div class="sale-banner__item-content" style="flex: 1; padding-left: 20px;">
-                    <h2 style="font-size: 32px; margin-bottom: 15px; color: #333;">Loofah Super Sale</h2>
-                    <p style="font-size: 16px; line-height: 1.5; color: #666;">Explore natural loofah products for
-                        skincare,
-                        cleaning, and more at great prices.</p>
+                    <h2 style="font-size: 32px; margin-bottom: 15px; color: #333;">Siêu Khuyến Mãi Loofah</h2>
+                    <p style="font-size: 16px; line-height: 1.5; color: #666;">
+                        Khám phá các sản phẩm loofah thiên nhiên dành cho chăm sóc da, vệ sinh và nhiều hơn nữa với giá
+                        cực hấp dẫn.
+                    </p>
+
                     <a href="/shop" class="trk-btn trk-btn--md mt-3"
                         style="display: inline-block; margin-top: 20px; background-color: #007bff; color: white; padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: 600; transition: background-color 0.3s ease;">
                         Shop Now
@@ -717,7 +713,7 @@
     <section class="popular-product">
         <div class="popular-product__wrapper" data-aos="fade-up" data-aos-duration="1000">
             <div class="popular-product__header section-header">
-                <h2 class="popular-product__title order-sm-1"> Popular Products</h2>
+                <h2 class="popular-product__title order-sm-1"> Sản phẩm phổ biến</h2>
                 <div class="popular-product__filters order-sm-3 order-lg-2">
                     <ul class="nav nav-pills " id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
@@ -783,7 +779,7 @@
                                             </div>
 
                                             <div class="product__item-action">
-                                                <a class="trk-btn trk-btn--outline" href="/cart">Add to cart</a>
+                                                <a class="trk-btn trk-btn--outline" href="/cart">Thêm vào giỏ hàng</a>
                                             </div>
                                         </div>
                                     </div>
@@ -832,7 +828,7 @@
                                             </div>
 
                                             <div class="product__item-action">
-                                                <a class="trk-btn trk-btn--outline" href="/cart">Add to cart</a>
+                                                <a class="trk-btn trk-btn--outline" href="/cart">Thêm vào giỏ hàng</a>
                                             </div>
                                         </div>
                                     </div>
@@ -908,7 +904,7 @@
                         <div class="row align-items-center justify-content-center g-5 g-lg-4">
                             <div class="col-lg-4 col-md-6">
                                 <div class="row g-3 ">
-                                    <h2>Top selling</h2>
+                                    <h2>Bán chạy nhất</h2>
                                     <div th:each="product : ${topSellingProducts}">
                                         <div class="col-12">
                                             <div class="product__item product__item--style3">
@@ -975,7 +971,7 @@
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="row g-3">
-                                    <h2>Trending products</h2>
+                                    <h2>Sản phẩm đang được ưa chuộng</h2>
                                     <div th:each="product : ${trendingProducts}">
                                         <div class="col-12">
                                             <div class="product__item product__item--style3">
@@ -1049,7 +1045,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class="row g-3">
-                                    <h2>New products</h2>
+                                    <h2>Sản phẩm mới</h2>
                                     <div th:each="product : ${top3newproducts}">
                                         <div class="col-12">
                                             <div class="product__item product__item--style3">
@@ -1215,7 +1211,7 @@
                 <div class="container">
                     <div class="section-header d-md-flex align-items-center justify-content-between">
                         <div class="section-header__content">
-                            <h2 class="mb-10">Regular articles</h2>
+                            <h2 class="mb-10">Các bài viết</h2>
                         </div>
                         <div class="section-header__action">
                             <div class="swiper-nav swiper-nav--style1">
@@ -1290,8 +1286,9 @@
                             <div class="feature-bar__item d-flex align-items-center">
                                 <img src="assets/images/feature/bar/1.png" alt="delivery car">
                                 <div class="feature-bar__text ms-4">
-                                    <h3 class="feature-bar__title fs-6 fw-bold mb-0">Fast Delivery</h3>
-                                    <p class="feature-bar__description fs-7 mb-0">Minimum order $40</p>
+                                    <h3 class="feature-bar__title fs-6 fw-bold mb-0">Giao hàng nhanh</h3>
+                                    <p class="feature-bar__description fs-7 mb-0">Đơn hàng tối thiểu 40$</p>
+
                                 </div>
                             </div>
                         </div>
@@ -1299,8 +1296,9 @@
                             <div class="feature-bar__item d-flex align-items-center">
                                 <img src="assets/images/feature/bar/2.png" alt="support image">
                                 <div class="feature-bar__text ms-4">
-                                    <h3 class="feature-bar__title fs-6 fw-bold mb-0">24/7 Support</h3>
-                                    <p class="feature-bar__description fs-7 mb-0">Contact us 24 Hours</p>
+                                    <h3 class="feature-bar__title fs-6 fw-bold mb-0">Hỗ trợ 24/7</h3>
+                                    <p class="feature-bar__description fs-7 mb-0">Liên hệ với chúng tôi 24 giờ</p>
+
                                 </div>
                             </div>
                         </div>
@@ -1308,8 +1306,9 @@
                             <div class="feature-bar__item d-flex align-items-center">
                                 <img src="assets/images/feature/bar/3.png" alt="pay security">
                                 <div class="feature-bar__text ms-4">
-                                    <h3 class="feature-bar__title fs-6 fw-bold mb-0">Pay Security</h3>
-                                    <p class="feature-bar__description fs-7 mb-0">100% Secure Payment</p>
+                                    <h3 class="feature-bar__title fs-6 fw-bold mb-0">Thanh toán an toàn</h3>
+                                    <p class="feature-bar__description fs-7 mb-0">Thanh toán bảo mật 100%</p>
+
                                 </div>
                             </div>
                         </div>
@@ -1317,8 +1316,9 @@
                             <div class="feature-bar__item d-flex align-items-center">
                                 <img src="assets/images/feature/bar/4.png" alt="money returns">
                                 <div class="feature-bar__text ms-4">
-                                    <h3 class="feature-bar__title fs-6 fw-bold mb-0">Easy Returns</h3>
-                                    <p class="feature-bar__description fs-7 mb-0">Within 30 Days</p>
+                                    <h3 class="feature-bar__title fs-6 fw-bold mb-0">Trả hàng dễ dàng</h3>
+                                    <p class="feature-bar__description fs-7 mb-0">Trong vòng 30 ngày</p>
+
                                 </div>
                             </div>
                         </div>
