@@ -26,7 +26,7 @@ public class ForgotPasswordController {
     @PostMapping("/forgot-password")
     public String forgotPassword(@RequestParam String email, Model model) throws MessagingException {
         String token = tokenService.createResetToken(email);
-        String resetLink = "http://localhost:8080/change-password?token=" + token;
+        String resetLink = "https://exxe.onrender.com/change-password?token=" + token;
 
         emailService.sendResetLink(email, resetLink);
         model.addAttribute("message", "Một liên kết đổi mật khẩu đã được gửi đến email.");
@@ -48,10 +48,10 @@ public class ForgotPasswordController {
 
     @PostMapping("/change-password")
     public String changePassword(@RequestParam String email,
-                                 @RequestParam String token,
-                                 @RequestParam String newPassword,
-                                 @RequestParam String confirmPassword,
-                                 Model model) {
+            @RequestParam String token,
+            @RequestParam String newPassword,
+            @RequestParam String confirmPassword,
+            Model model) {
         if (!newPassword.equals(confirmPassword)) {
             model.addAttribute("message", "Mật khẩu không khớp.");
             model.addAttribute("email", email);
