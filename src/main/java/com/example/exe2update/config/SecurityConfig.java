@@ -66,7 +66,8 @@ public class SecurityConfig {
                                                                 "/cart/remove", "/cart/update", "/update",
                                                                 "/post-comment", "/dbcategory/*",
                                                                 "/api/chat", "/", "/login/oauth2/**",
-                                                                "/verify/**"))
+                                                                "/verify/**",
+                                                                "/api/chat/**"))
                                 .authorizeHttpRequests(auth -> auth
                                                 .requestMatchers("/", "/home", "/assets/**", "/login", "/register",
                                                                 "/forgot-password", "/change-password",

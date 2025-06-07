@@ -12,7 +12,6 @@ import com.example.exe2update.service.impl.ChatService;
 @RestController
 @RequestMapping("/api/chat")
 @CrossOrigin(origins = "*")
-@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')") // Chỉ cho phép người dùng đã đăng nhập
 public class ChatController {
 
     @Autowired
